@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hafiz Mazhanafi | Lexus Consultant</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lexusBlack: '#050505',
+                        lexusGold: '#C5A059',
+                        lexusGray: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Tambahan dikit untuk smooth scroll */
+        html { scroll-behavior: smooth; }
+        .car-card:hover { transform: translateY(-5px); border-color: #C5A059; }
+        .lang-active { color: #C5A059; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-lexusBlack text-white antialiased">
+
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-widest uppercase">
+                Hafiz <span class="text-lexusGold">Mazhanafi</span>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex gap-6 text-sm tracking-widest text-gray-400">
+                    <a href="#home" class="hover:text-white transition" data-i18n="nav_home">HOME</a>
+                    <a href="#about" class="hover:text-white transition" data-i18n="nav_about">PROFILE</a>
+                    <a href="#collection" class="hover:text-white transition" data-i18n="nav_cars">COLLECTION</a>
+                    <a href="#contact" class="hover:text-white transition" data-i18n="nav_contact">CONTACT</a>
+                </div>
+
+                <div class="flex gap-2 text-xs border border-gray-700 rounded px-2 py-1">
+                    <button onclick="setLanguage('en')" id="btn-en" class="hover:text-lexusGold transition">EN</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="setLanguage('ms')" id="btn-ms" class="hover:text-lexusGold transition">MY</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="h-screen flex flex-col justify-center items-center text-center px-4 bg-[url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070')] bg-cover bg-center relative">
+        <div class="absolute inset-0 bg-black/70"></div> <div class="relative z-10 max-w-2xl">
+            <h1 class="text-4xl md:text-6xl font-light tracking-widest mb-6" data-i18n="hero_title">
+                EXPERIENCE THE EXTRAORDINARY
+            </h1>
+            <p class="text-gray-400 text-lg mb-8 font-light" data-i18n="hero_desc">
+                Your trusted partner for Lexus ownership. Serving with integrity and over 10 years of financial expertise.
+            </p>
+            <a href="#collection" class="inline-block px-8 py-3 border border-white text-white font-bold tracking-widest hover:bg-white hover:text-black transition duration-300" data-i18n="hero_cta">
+                VIEW COLLECTION
+            </a>
+        </div>
+    </header>
+
+    <section id="about" class="py-20 px-6 bg-lexusBlack">
+        <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="h-96 bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
+               <span class="text-gray-500">[Photo: profil-hafiz.jpg]</span> 
+               </div>
+            
+            <div>
+                <h2 class="text-3xl font-light border-l-4 border-lexusGold pl-6 mb-6" data-i18n="about_title">
+                    Professional Profile
+                </h2>
+                <div class="text-gray-400 space-y-4 text-justify">
+                    <p data-i18n="about_p1">
+                        Hello, I am Mohd Hafiz Bin Mazhanafi. With over 10 years of experience in the premium automotive industry and banking sector, I am dedicated to providing a seamless and transparent car buying experience.
+                    </p>
+                    <p data-i18n="about_p2">
+                        My expertise goes beyond vehicle specs. As a former banker, I specialize in Financial Advisory to help you plan loans, trade-ins, and documentation for the best approval rates.
+                    </p>
+                </div>
+                
+                <ul class="mt-8 space-y-2 text-lexusGold text-sm tracking-wide">
+                    <li class="flex items-center gap-2">✓ <span data-i18n="skill_1">Financial & Loan Expert</span></li>
+                    <li class="flex items-center gap-2">✓ <span data-i18n="skill_2">10 Years Sales Experience</span></li>
+                    <li class="flex items-center gap-2">✓ <span data-i18n="skill_3">End-to-End Service</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-lexusGray">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl tracking-widest mb-12 uppercase" data-i18n="service_head">Why Choose Me?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 border border-gray-700 hover:border-lexusGold transition duration-300">
+                    <h3 class="text-lexusGold text-xl mb-4" data-i18n="svc_1_title">Consultation</h3>
+                    <p class="text-gray-400 text-sm" data-i18n="svc_1_desc">Objective advice on selecting the perfect Lexus for your lifestyle.</p>
+                </div>
+                <div class="p-8 border border-gray-700 hover:border-lexusGold transition duration-300">
+                    <h3 class="text-lexusGold text-xl mb-4" data-i18n="svc_2_title">Easy Financing</h3>
+                    <p class="text-gray-400 text-sm" data-i18n="svc_2_desc">Leveraging my banking background for easier loan approvals.</p>
+                </div>
+                <div class="p-8 border border-gray-700 hover:border-lexusGold transition duration-300">
+                    <h3 class="text-lexusGold text-xl mb-4" data-i18n="svc_3_title">Premium Delivery</h3>
+                    <p class="text-gray-400 text-sm" data-i18n="svc_3_desc">A memorable and special car delivery experience directly to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="collection" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl text-center font-light tracking-[0.2em] mb-12 uppercase" data-i18n="nav_cars">Lexus Collection</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="car-card bg-black border border-gray-800 transition duration-300 group">
+                    <div class="h-64 overflow-hidden bg-gray-900 relative">
+                        <img src="Lexus LBX Luxury.jpeg" alt="Lexus LBX" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Lexus LBX Luxury</h3>
+                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">Compact Luxury</p>
+                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
+                    </div>
+                </div>
+
+                <div class="car-card bg-black border border-gray-800 transition duration-300 group">
+                    <div class="h-64 overflow-hidden bg-gray-900 relative">
+                        <img src="Lexus NX350 F Sport.jpeg" alt="Lexus NX350" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Lexus NX 350 F Sport</h3>
+                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">Dynamic Performance</p>
+                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
+                    </div>
+                </div>
+
+                <div class="car-card bg-black border border-gray-800 transition duration-300 group">
+                    <div class="h-64 overflow-hidden bg-gray-900 relative">
+                        <img src="Lexus NX350h.jpeg" alt="Lexus NX350h" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Lexus NX 350h</h3>
+                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">Hybrid Efficiency</p>
+                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
+                    </div>
+                </div>
+
+                <div class="car-card bg-black border border-gray-800 transition duration-300 group">
+                    <div class="h-64 overflow-hidden bg-gray-900 relative">
+                        <img src="Lexus RX350 Luxury.jpeg" alt="Lexus RX" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Lexus RX 350 Luxury</h3>
+                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">Sophisticated Comfort</p>
+                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
+                    </div>
+                </div>
+
+                 <div class="car-card bg-black border border-gray-800 transition duration-300 group">
+                    <div class="h-64 overflow-hidden bg-gray-900 relative">
+                        <img src="Lexus RX500h F Sport.jpeg" alt="Lexus RX500h" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Lexus RX 500h F Sport</h3>
+                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">High Performance Hybrid</p>
+                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-black py-12 border-t border-gray-800 text-center">
+        <h2 class="text-2xl uppercase tracking-widest mb-8" data-i18n="contact_head">Contact Me</h2>
+        
+        <div class="space-y-4 text-gray-400 font-light">
+            <p class="text-white text-lg font-bold">Mohd Hafiz Bin Mazhanafi</p>
+            <p>Bandar Saujana Putra, Jenjarom, Selangor</p>
+            <p>Email: hafizbinmazhanafi@gmail.com</p>
+            
+            <a href="https://wa.me/601111492290" class="inline-block mt-6 bg-[#25D366] text-white px-6 py-2 rounded font-bold hover:bg-[#128C7E] transition">
+                WhatsApp: +60 11-1149 2290
+            </a>
+        </div>
+        
+        <p class="mt-12 text-xs text-gray-600">© 2026 Hafiz Mazhanafi. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // ==========================================
+        // BANK BAHASA (SILAKAN EDIT DI SINI)
+        // ==========================================
+        const translations = {
+            // BAHASA INGGRIS
+            en: {
+                nav_home: "HOME",
+                nav_about: "PROFILE",
+                nav_cars: "COLLECTION",
+                nav_contact: "CONTACT",
+                
+                hero_title: "EXPERIENCE THE EXTRAORDINARY",
+                hero_desc: "Your trusted partner for Lexus ownership. Serving with integrity and over 10 years of financial expertise.",
+                hero_cta: "VIEW COLLECTION",
+
+                about_title: "Professional Profile",
+                about_p1: "Hello, I am Mohd Hafiz Bin Mazhanafi[cite: 1]. With over 10 years of experience in the premium automotive industry and banking sector, I am dedicated to providing a seamless and transparent car buying experience.",
+                about_p2: "My expertise goes beyond vehicle specs. As a former banker, I specialize in Financial Advisory to help you plan loans, trade-ins, and documentation for the best approval rates.",
+                
+                skill_1: "Financial & Loan Expert",
+                skill_2: "10 Years Sales Experience",
+                skill_3: "End-to-End Service",
+
+                service_head: "WHY CHOOSE ME?",
+                svc_1_title: "Expert Consultation",
+                svc_1_desc: "Objective advice on selecting the perfect Lexus for your lifestyle.",
+                svc_2_title: "Easy Financing",
+                svc_2_desc: "Leveraging my banking background for easier loan approvals.",
+                svc_3_title: "Premium Delivery",
+                svc_3_desc: "A memorable and special car delivery experience directly to you.",
+
+                btn_inquire: "INQUIRE NOW",
+                contact_head: "CONTACT ME"
+            },
+
+            // BAHASA MALAYSIA
+            ms: {
+                nav_home: "UTAMA",
+                nav_about: "PROFIL",
+                nav_cars: "KOLEKSI",
+                nav_contact: "HUBUNGI",
+                
+                hero_title: "ALAMI KEMEWAHAN LUAR BIASA",
+                hero_desc: "Rakan dipercayai anda untuk pemilikan Lexus. Melayani dengan integriti dan pengalaman kewangan lebih 10 tahun.",
+                hero_cta: "LIHAT KOLEKSI",
+
+                about_title: "Profil Profesional",
+                about_p1: "Halo, saya Mohd Hafiz Bin Mazhanafi[cite: 1]. Dengan pengalaman lebih 10 tahun dalam industri automotif premium dan sektor perbankan, saya berdedikasi memberikan pengalaman pembelian kereta yang telus dan lancar.",
+                about_p2: "Kepakaran saya melangkaui spesifikasi kenderaan. Sebagai bekas jurubank, saya pakar dalam Nasihat Kewangan untuk membantu anda merancang pinjaman, trade-in, dan dokumentasi bagi mendapatkan kelulusan terbaik.",
+                
+                skill_1: "Pakar Kewangan & Pinjaman",
+                skill_2: "10 Tahun Pengalaman Jualan",
+                skill_3: "Servis Dari A ke Z",
+
+                service_head: "MENGAPA SAYA?",
+                svc_1_title: "Konsultasi Pakar",
+                svc_1_desc: "Nasihat objektif untuk memilih Lexus yang sesuai dengan gaya hidup anda.",
+                svc_2_title: "Pembiayaan Mudah",
+                svc_2_desc: "Memanfaatkan latar belakang perbankan saya untuk kelulusan pinjaman yang lebih mudah.",
+                svc_3_title: "Penghantaran Premium",
+                svc_3_desc: "Pengalaman penghantaran kereta yang istimewa dan tidak dapat dilupakan terus kepada anda.",
+
+                btn_inquire: "TANYA SEKARANG",
+                contact_head: "HUBUNGI SAYA"
+            }
+        };
+
+        // ==========================================
+        // LOGIC GANTI BAHASA
+        // ==========================================
+        function setLanguage(lang) {
+            // 1. Ambil data bahasa dari 'bank' di atas
+            const data = translations[lang];
+
+            // 2. Cari semua elemen yang punya atribut 'data-i18n'
+            const elements = document.querySelectorAll('[data-i18n]');
+
+            // 3. Ganti teksnya
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (data[key]) {
+                    el.innerText = data[key];
+                }
+            });
+
+            // 4. Update tampilan tombol aktif
+            document.getElementById('btn-en').classList.remove('lang-active');
+            document.getElementById('btn-ms').classList.remove('lang-active');
+            document.getElementById(`btn-${lang}`).classList.add('lang-active');
+        }
+
+        // Set default bahasa ke Inggris saat loading
+        window.onload = () => setLanguage('en');
+    </script>
+</body>
+</html>
