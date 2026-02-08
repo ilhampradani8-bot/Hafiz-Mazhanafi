@@ -23,7 +23,6 @@
         }
     </script>
     <style>
-        /* Tambahan dikit untuk smooth scroll */
         html { scroll-behavior: smooth; }
         .car-card:hover { transform: translateY(-5px); border-color: #C5A059; }
         .lang-active { color: #C5A059; font-weight: bold; }
@@ -31,86 +30,366 @@
 </head>
 <body class="bg-lexusBlack text-white antialiased">
 
-    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold tracking-widest uppercase">
-                Hafiz <span class="text-lexusGold">Mazhanafi</span>
+ <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800 h-20">
+        <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative">
+            
+            <div class="flex items-center gap-4 z-20">
+                <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain"> 
+                
+                <div class="text-lg md:text-xl font-bold tracking-widest uppercase hidden md:block text-white">
+                    Hafiz <span class="text-lexusGold">Mazhanafi</span>
+                </div>
             </div>
             
-            <div class="flex items-center gap-6">
-                <div class="hidden md:flex gap-6 text-sm tracking-widest text-gray-400">
-                    <a href="#home" class="hover:text-white transition" data-i18n="nav_home">HOME</a>
-                    <a href="#about" class="hover:text-white transition" data-i18n="nav_about">PROFILE</a>
-                    <a href="#collection" class="hover:text-white transition" data-i18n="nav_cars">COLLECTION</a>
-                    <a href="#contact" class="hover:text-white transition" data-i18n="nav_contact">CONTACT</a>
+            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
+                
+                <a href="#home" class="group flex flex-col items-center gap-1">
+                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_home">HOME</span>
+                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
+                </a>
+
+                <a href="#about" class="group flex flex-col items-center gap-1">
+                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_about">ABOUT</span>
+                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
+                </a>
+
+                <a href="#experience" class="group flex flex-col items-center gap-1">
+                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_exp">EXPERIENCE</span>
+                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
+                </a>
+
+                <a href="#skills" class="group flex flex-col items-center gap-1">
+                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_skills">SKILLS</span>
+                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
+                </a>
+
+                <a href="#contact" class="group flex flex-col items-center gap-1">
+                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_contact_link">CONTACT</span>
+                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
+                </a>
+
+            </div>
+
+            <div class="flex items-center h-full gap-6 z-20">
+                
+                <div class="flex gap-2 text-[10px] md:text-xs text-gray-500 font-bold tracking-widest">
+                    <button onclick="setLanguage('en')" id="btn-en" class="hover:text-white transition">EN</button>
+                    <span>/</span>
+                    <button onclick="setLanguage('ms')" id="btn-ms" class="hover:text-white transition">MY</button>
                 </div>
 
-                <div class="flex gap-2 text-xs border border-gray-700 rounded px-2 py-1">
-                    <button onclick="setLanguage('en')" id="btn-en" class="hover:text-lexusGold transition">EN</button>
-                    <span class="text-gray-600">|</span>
-                    <button onclick="setLanguage('ms')" id="btn-ms" class="hover:text-lexusGold transition">MY</button>
-                </div>
+                <a href="https://wa.me/601111492290" 
+                   class="h-full bg-lexusGold hover:bg-white text-black px-6 md:px-8 flex items-center justify-center font-bold text-xs md:text-sm tracking-widest uppercase transition-colors duration-300 -mr-4 md:-mr-6"
+                   data-i18n="nav_btn_wa">
+                    WHATSAPP
+                </a>
             </div>
         </div>
     </nav>
+ 
+   <header id="home" class="h-screen w-full bg-black relative overflow-hidden flex flex-col md:flex-row items-center">
+        
+        <div class="absolute inset-0 z-0">
+            <img src="lexushero.jpg" alt="Background" class="w-full h-full object-cover opacity-50 blur-[2px]">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/40"></div>
+        </div>
 
-    <header id="home" class="h-screen flex flex-col justify-center items-center text-center px-4 bg-[url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070')] bg-cover bg-center relative">
-        <div class="absolute inset-0 bg-black/70"></div> <div class="relative z-10 max-w-2xl">
-            <h1 class="text-4xl md:text-6xl font-light tracking-widest mb-6" data-i18n="hero_title">
-                EXPERIENCE THE EXTRAORDINARY
-            </h1>
-            <p class="text-gray-400 text-lg mb-8 font-light" data-i18n="hero_desc">
-                Your trusted partner for Lexus ownership. Serving with integrity and over 10 years of financial expertise.
-            </p>
-            <a href="#collection" class="inline-block px-8 py-3 border border-white text-white font-bold tracking-widest hover:bg-white hover:text-black transition duration-300" data-i18n="hero_cta">
-                VIEW COLLECTION
-            </a>
+        <div class="container mx-auto h-full relative z-20 flex flex-col md:flex-row">
+            
+            <div class="w-full md:w-1/2 h-full flex flex-col justify-center px-6 md:pl-0 z-30 pt-20 md:pt-0 text-center md:text-left">
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-light tracking-[0.15em] mb-4 text-white uppercase leading-tight drop-shadow-lg" data-i18n="hero_title">
+                    Experience The <br> <span class="text-lexusGold font-bold">Extraordinary</span>
+                </h1>
+
+                <div class="w-20 h-1 bg-lexusGold mb-6 mx-auto md:mx-0 shadow-[0_0_10px_#C5A059]"></div>
+
+                <h2 class="text-xl md:text-2xl text-white font-medium tracking-wider mb-2 drop-shadow-md">Hafiz Mazhanafi</h2>
+                <p class="text-gray-300 text-xs md:text-sm uppercase tracking-widest mb-6 font-semibold" data-i18n="skill_1">
+                    Financial & Loan Expert
+                </p>
+
+                <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#collection" class="px-8 py-3 bg-lexusGold text-black font-bold tracking-widest text-xs uppercase hover:bg-white hover:scale-105 transition duration-300 shadow-lg border border-lexusGold">
+                        View Collection
+                    </a>
+                    <a href="#contact" class="px-8 py-3 border border-white text-white font-bold tracking-widest text-xs uppercase hover:bg-white hover:text-black transition duration-300" data-i18n="nav_contact_link">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2 h-full flex items-end justify-center md:justify-end relative z-10 pointer-events-none">
+                
+                <img src="hafiz-pose.png" alt="Hafiz Pose" 
+                     class="h-[85%] md:h-[95%] w-auto object-contain object-bottom drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+            </div>
+
         </div>
     </header>
 
-    <section id="about" class="py-20 px-6 bg-lexusBlack">
-        <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="h-96 bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
-               <span class="text-gray-500">[Photo: profil-hafiz.jpg]</span> 
-               </div>
+    <section id="about" class="relative w-full py-24 flex items-center justify-center overflow-hidden bg-[#111]">
+        
+        <div class="absolute inset-0 opacity-20 z-0" 
+             style="background-image: radial-gradient(black 15%, transparent 16%), radial-gradient(black 15%, transparent 16%); 
+                    background-size: 10px 10px; 
+                    background-position: 0 0, 5px 5px; 
+                    background-color: #222;">
+        </div>
+
+        <svg class="absolute top-0 left-0 w-full h-full pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="0" x2="100%" y2="100%" stroke="#C5A059" stroke-width="0.5" stroke-opacity="0.3">
+                <animate attributeName="x1" from="-100%" to="100%" dur="10s" repeatCount="indefinite" />
+            </line>
+            <line x1="100%" y1="0" x2="0" y2="100%" stroke="#C5A059" stroke-width="0.5" stroke-opacity="0.3">
+                <animate attributeName="x2" from="200%" to="-100%" dur="15s" repeatCount="indefinite" />
+            </line>
+        </svg>
+        
+        <div class="container mx-auto px-6 relative z-10 max-w-4xl text-center">
             
-            <div>
-                <h2 class="text-3xl font-light border-l-4 border-lexusGold pl-6 mb-6" data-i18n="about_title">
-                    Professional Profile
-                </h2>
-                <div class="text-gray-400 space-y-4 text-justify">
-                    <p data-i18n="about_p1">
-                        Hello, I am Mohd Hafiz Bin Mazhanafi. With over 10 years of experience in the premium automotive industry and banking sector, I am dedicated to providing a seamless and transparent car buying experience.
-                    </p>
-                    <p data-i18n="about_p2">
-                        My expertise goes beyond vehicle specs. As a former banker, I specialize in Financial Advisory to help you plan loans, trade-ins, and documentation for the best approval rates.
-                    </p>
-                </div>
+            <h2 class="text-3xl md:text-4xl font-light text-white mb-8 tracking-[0.2em] uppercase" data-i18n="about_title">
+                Professional Summary
+            </h2>
+            
+            <div class="w-16 h-1 bg-lexusGold mx-auto mb-10 shadow-[0_0_15px_#C5A059]"></div>
+
+            <div class="text-gray-300 text-lg md:text-xl leading-relaxed font-light tracking-wide space-y-6">
                 
-                <ul class="mt-8 space-y-2 text-lexusGold text-sm tracking-wide">
-                    <li class="flex items-center gap-2">✓ <span data-i18n="skill_1">Financial & Loan Expert</span></li>
-                    <li class="flex items-center gap-2">✓ <span data-i18n="skill_2">10 Years Sales Experience</span></li>
-                    <li class="flex items-center gap-2">✓ <span data-i18n="skill_3">End-to-End Service</span></li>
-                </ul>
+                <p>
+                    Motivated and experienced professional with over 
+                    <span class="text-lexusGold font-bold border-b border-lexusGold/30 pb-1">
+                        10 years of success in sales, customer service, and financial advisory
+                    </span> 
+                    in telecommunications, banking, and automotive industries.
+                </p>
+
+                <p>
+                    Strong communication skills, excels under pressure, and dedicated to results. 
+                    Recognized for <span class="text-white font-medium">initiative, persistence, and meeting performance KPIs</span>. 
+                    Eager to impact organizational objectives and grow in a fast-paced environment.
+                </p>
+
+            </div>
+
+            <div class="absolute -inset-4 md:-inset-10 border border-lexusGold/20 rounded-xl pointer-events-none transform scale-95 hover:scale-100 transition duration-1000"></div>
+        </div>
+
+    </section>
+
+   <section id="education" class="relative py-24 flex items-center bg-black">
+        
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute inset-0 bg-[url('education-bg.jpg')] bg-cover bg-center bg-fixed opacity-30 blur-[2px]"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-black/50"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            
+            <h2 class="text-3xl md:text-4xl font-light text-white mb-16 text-center tracking-[0.2em] uppercase" data-i18n="edu_title">
+                EDUCATION
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+
+                <div class="relative pl-8 border-l border-lexusGold/50 space-y-6">
+                    <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-lexusGold shadow-[0_0_10px_#C5A059]"></div>
+                    
+                    <div>
+                        <h3 class="text-xl md:text-2xl text-white font-bold">Universiti Teknologi MARA (UiTM)</h3>
+                        <p class="text-lexusGold text-xs uppercase tracking-widest mt-1 mb-4">Dec 2013</p>
+                        
+                        <div class="bg-white/5 p-4 rounded border border-white/10 hover:border-lexusGold/50 transition duration-300">
+                            <p class="text-white font-medium text-lg">Diploma in Business Studies</p>
+                            <div class="w-10 h-[1px] bg-gray-600 my-2"></div>
+                            <p class="text-gray-400 text-sm">Foundation in Law (2008 – 2010)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 border-l border-lexusGold/50 space-y-6">
+                    <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-lexusGold shadow-[0_0_10px_#C5A059]"></div>
+                    
+                    <div>
+                        <h3 class="text-xl md:text-2xl text-white font-bold">Sekolah Sultan Alam Shah</h3>
+                        <p class="text-lexusGold text-xs uppercase tracking-widest mt-1 mb-4">Putrajaya | 2003 – 2007</p>
+                        
+                        <div class="bg-white/5 p-4 rounded border border-white/10 hover:border-lexusGold/50 transition duration-300">
+                            <p class="text-white font-medium text-lg">Sijil Pelajaran Malaysia (SPM)</p>
+                            <div class="mt-3">
+                                <span class="text-[10px] text-lexusGold uppercase tracking-wider border border-lexusGold px-2 py-1 rounded">Results</span>
+                                <p class="text-gray-300 font-mono text-sm mt-2 tracking-wide">
+                                    1A1, 3A2, 2B3, 1B4, 2C5, 1C6
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
+    <section id="experience" class="relative py-24 bg-[#0a0a0a] overflow-hidden">
+        
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:transparent;stop-opacity:0" />
+                        <stop offset="50%" style="stop-color:#C5A059;stop-opacity:1" /> <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
+                    </linearGradient>
+                </defs>
+                <rect x="-100%" y="20%" width="50%" height="1" fill="url(#grad1)">
+                    <animate attributeName="x" from="-100%" to="100%" dur="3s" repeatCount="indefinite" />
+                </rect>
+                <rect x="-100%" y="40%" width="70%" height="1" fill="url(#grad1)">
+                    <animate attributeName="x" from="-100%" to="100%" dur="5s" repeatCount="indefinite" />
+                </rect>
+                <rect x="-100%" y="60%" width="40%" height="1" fill="url(#grad1)">
+                    <animate attributeName="x" from="-100%" to="100%" dur="4s" repeatCount="indefinite" />
+                </rect>
+                 <rect x="-100%" y="80%" width="60%" height="1" fill="url(#grad1)">
+                    <animate attributeName="x" from="-100%" to="100%" dur="6s" repeatCount="indefinite" />
+                </rect>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 max-w-5xl">
+            
+            <h2 class="text-3xl md:text-4xl font-light text-white mb-16 text-center tracking-[0.2em] uppercase" data-i18n="exp_title">
+                WORK EXPERIENCE
+            </h2>
+
+            <div class="space-y-12 border-l border-gray-800 ml-4 md:ml-0 pl-8 md:pl-12 relative">
+                
+                <div class="relative group">
+                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-lexusGold rounded-full group-hover:bg-lexusGold group-hover:shadow-[0_0_15px_#C5A059] transition duration-300"></div>
+                    
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
+                            <img src="logo-bmw.png" alt="BMW" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
+                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">BMW Millennium Welt KL North</h4>
+                            <p class="text-gray-500 text-xs mb-4">2023 – Present</p>
+                            
+                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-lexusGold">
+                                <li>Prospecting and converting leads via online and offline channels.</li>
+                                <li>Handling end-to-end customer engagement, from initial consultation to vehicle delivery.</li>
+                                <li>Coordinating with banks and internal teams for loan and documentation processes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-gray-600 rounded-full group-hover:border-lexusGold group-hover:bg-lexusGold transition duration-300"></div>
+                    
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
+                            <img src="logo-honda.png" alt="Honda" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
+                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">Tenaga Setia Resources Sdn Bhd (Honda)</h4>
+                            <p class="text-gray-500 text-xs mb-4">2018 – 2023</p>
+                            
+                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-gray-600">
+                                <li>Generated leads and managed client relationships across various platforms.</li>
+                                <li>Advised clients on vehicle purchases and facilitated loan and delivery procedures.</li>
+                                <li>Taught new team members the correct procedures for all areas of operations.</li>
+                                <li>Maintained current knowledge of all team position requirements & Cross-trained existing employees.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-gray-600 rounded-full group-hover:border-lexusGold group-hover:bg-lexusGold transition duration-300"></div>
+                    
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
+                            <img src="logo-affin.png" alt="Affin Bank" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white">Sales Executive (Mortgage)</h3>
+                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">Affin Islamic Bank Berhad</h4>
+                            <p class="text-gray-500 text-xs mb-4">2015 – 2016</p>
+                            
+                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-gray-600">
+                                <li>Achieved sales goals and service targets by cultivating and securing new customer relationships.</li>
+                                <li>Boosted sales revenue by cultivating strong client relationships and implementing effective sales strategies.</li>
+                                <li>Delivered exceptional customer service, resulting in a high percentage of repeat business and client referrals.</li>
+                                <li>Demonstrated expert product knowledge during client interactions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-gray-600 rounded-full group-hover:border-lexusGold group-hover:bg-lexusGold transition duration-300"></div>
+                    
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
+                            <img src="logo-rhb.png" alt="RHB" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white">Sales Executive</h3>
+                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">RHB Banking Group</h4>
+                            <p class="text-gray-500 text-xs mb-4">2014 – 2015</p>
+                            
+                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-gray-600">
+                                <li>Sold personal loans, ASB loans, and bank insurance products.</li>
+                                <li>Conducted marketing talks and engaged in field sales.</li>
+                                <li>Drove revenue growth, leveraging in-depth product knowledge to offer customized solutions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="relative group">
+                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-gray-600 rounded-full group-hover:border-lexusGold group-hover:bg-lexusGold transition duration-300"></div>
+                    
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
+                            <img src="logo-cimb.png" alt="CIMB" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white">Personal Financial Consultant A</h3>
+                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">CIMB Bank Berhad</h4>
+                            <p class="text-gray-500 text-xs mb-4">2013 – 2014</p>
+                            
+                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-gray-600">
+                                <li>Examined clients' overall financial situation (income, assets, debts, etc).</li>
+                                <li>Created debt management plans, spending plans, and budgets.</li>
+                                <li>Sold life insurance, retirement instruments, and investments to improve clients' standard of living.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
     <section class="py-20 bg-lexusGray">
         <div class="container mx-auto text-center">
             <h2 class="text-2xl tracking-widest mb-12 uppercase" data-i18n="service_head">Why Choose Me?</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="p-8 border border-gray-700 hover:border-lexusGold transition duration-300">
                     <h3 class="text-lexusGold text-xl mb-4" data-i18n="svc_1_title">Consultation</h3>
-                    <p class="text-gray-400 text-sm" data-i18n="svc_1_desc">Objective advice on selecting the perfect Lexus for your lifestyle.</p>
+                    <p class="text-gray-400 text-sm" data-i18n="svc_1_desc">Objective advice...</p>
                 </div>
                 <div class="p-8 border border-gray-700 hover:border-lexusGold transition duration-300">
                     <h3 class="text-lexusGold text-xl mb-4" data-i18n="svc_2_title">Easy Financing</h3>
-                    <p class="text-gray-400 text-sm" data-i18n="svc_2_desc">Leveraging my banking background for easier loan approvals.</p>
+                    <p class="text-gray-400 text-sm" data-i18n="svc_2_desc">Leveraging my banking background...</p>
                 </div>
                 <div class="p-8 border border-gray-700 hover:border-lexusGold transition duration-300">
                     <h3 class="text-lexusGold text-xl mb-4" data-i18n="svc_3_title">Premium Delivery</h3>
-                    <p class="text-gray-400 text-sm" data-i18n="svc_3_desc">A memorable and special car delivery experience directly to you.</p>
+                    <p class="text-gray-400 text-sm" data-i18n="svc_3_desc">A memorable experience...</p>
                 </div>
             </div>
         </div>
@@ -121,6 +400,7 @@
             <h2 class="text-3xl text-center font-light tracking-[0.2em] mb-12 uppercase" data-i18n="nav_cars">Lexus Collection</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
                 <div class="car-card bg-black border border-gray-800 transition duration-300 group">
                     <div class="h-64 overflow-hidden bg-gray-900 relative">
                         <img src="Lexus LBX Luxury.jpeg" alt="Lexus LBX" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
@@ -196,100 +476,7 @@
         <p class="mt-12 text-xs text-gray-600">© 2026 Hafiz Mazhanafi. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // ==========================================
-        // BANK BAHASA (SILAKAN EDIT DI SINI)
-        // ==========================================
-        const translations = {
-            // BAHASA INGGRIS
-            en: {
-                nav_home: "HOME",
-                nav_about: "PROFILE",
-                nav_cars: "COLLECTION",
-                nav_contact: "CONTACT",
-                
-                hero_title: "EXPERIENCE THE EXTRAORDINARY",
-                hero_desc: "Your trusted partner for Lexus ownership. Serving with integrity and over 10 years of financial expertise.",
-                hero_cta: "VIEW COLLECTION",
+    <script src="lang.js"></script>
 
-                about_title: "Professional Profile",
-                about_p1: "Hello, I am Mohd Hafiz Bin Mazhanafi[cite: 1]. With over 10 years of experience in the premium automotive industry and banking sector, I am dedicated to providing a seamless and transparent car buying experience.",
-                about_p2: "My expertise goes beyond vehicle specs. As a former banker, I specialize in Financial Advisory to help you plan loans, trade-ins, and documentation for the best approval rates.",
-                
-                skill_1: "Financial & Loan Expert",
-                skill_2: "10 Years Sales Experience",
-                skill_3: "End-to-End Service",
-
-                service_head: "WHY CHOOSE ME?",
-                svc_1_title: "Expert Consultation",
-                svc_1_desc: "Objective advice on selecting the perfect Lexus for your lifestyle.",
-                svc_2_title: "Easy Financing",
-                svc_2_desc: "Leveraging my banking background for easier loan approvals.",
-                svc_3_title: "Premium Delivery",
-                svc_3_desc: "A memorable and special car delivery experience directly to you.",
-
-                btn_inquire: "INQUIRE NOW",
-                contact_head: "CONTACT ME"
-            },
-
-            // BAHASA MALAYSIA
-            ms: {
-                nav_home: "UTAMA",
-                nav_about: "PROFIL",
-                nav_cars: "KOLEKSI",
-                nav_contact: "HUBUNGI",
-                
-                hero_title: "ALAMI KEMEWAHAN LUAR BIASA",
-                hero_desc: "Rakan dipercayai anda untuk pemilikan Lexus. Melayani dengan integriti dan pengalaman kewangan lebih 10 tahun.",
-                hero_cta: "LIHAT KOLEKSI",
-
-                about_title: "Profil Profesional",
-                about_p1: "Halo, saya Mohd Hafiz Bin Mazhanafi[cite: 1]. Dengan pengalaman lebih 10 tahun dalam industri automotif premium dan sektor perbankan, saya berdedikasi memberikan pengalaman pembelian kereta yang telus dan lancar.",
-                about_p2: "Kepakaran saya melangkaui spesifikasi kenderaan. Sebagai bekas jurubank, saya pakar dalam Nasihat Kewangan untuk membantu anda merancang pinjaman, trade-in, dan dokumentasi bagi mendapatkan kelulusan terbaik.",
-                
-                skill_1: "Pakar Kewangan & Pinjaman",
-                skill_2: "10 Tahun Pengalaman Jualan",
-                skill_3: "Servis Dari A ke Z",
-
-                service_head: "MENGAPA SAYA?",
-                svc_1_title: "Konsultasi Pakar",
-                svc_1_desc: "Nasihat objektif untuk memilih Lexus yang sesuai dengan gaya hidup anda.",
-                svc_2_title: "Pembiayaan Mudah",
-                svc_2_desc: "Memanfaatkan latar belakang perbankan saya untuk kelulusan pinjaman yang lebih mudah.",
-                svc_3_title: "Penghantaran Premium",
-                svc_3_desc: "Pengalaman penghantaran kereta yang istimewa dan tidak dapat dilupakan terus kepada anda.",
-
-                btn_inquire: "TANYA SEKARANG",
-                contact_head: "HUBUNGI SAYA"
-            }
-        };
-
-        // ==========================================
-        // LOGIC GANTI BAHASA
-        // ==========================================
-        function setLanguage(lang) {
-            // 1. Ambil data bahasa dari 'bank' di atas
-            const data = translations[lang];
-
-            // 2. Cari semua elemen yang punya atribut 'data-i18n'
-            const elements = document.querySelectorAll('[data-i18n]');
-
-            // 3. Ganti teksnya
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (data[key]) {
-                    el.innerText = data[key];
-                }
-            });
-
-            // 4. Update tampilan tombol aktif
-            document.getElementById('btn-en').classList.remove('lang-active');
-            document.getElementById('btn-ms').classList.remove('lang-active');
-            document.getElementById(`btn-${lang}`).classList.add('lang-active');
-        }
-
-        // Set default bahasa ke Inggris saat loading
-        window.onload = () => setLanguage('en');
-    </script>
 </body>
 </html>
