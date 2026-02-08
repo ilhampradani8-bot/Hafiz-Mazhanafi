@@ -54,6 +54,30 @@ const translations = {
         btn_email_send: "SEND EMAIL",
         
         // (Pastikan ft_links dll tetap ada)
+        gal_title: "The Art of L-Style",
+        gal_desc: "Lexus design goes beyond aesthetics; it is an experience. Combining traditional Japanese aesthetics with modern technology, every detail tells a story of hospitality (Omotenashi).",
+        
+        // --- ABOUT SECTION UPDATE ---
+        about_title: "PROFESSIONAL SUMMARY",
+        about_summary_1: "Motivated and experienced professional with over 10 years of success in sales, customer service, and financial advisory in telecommunications, banking, and automotive industries.",
+        about_summary_2: "Strong communication skills, excels under pressure, and dedicated to results. Recognized for initiative, persistence, and meeting performance KPIs. Eager to impact organizational objectives and grow in a fast-paced environment.",
+        
+        // --- WORK EXPERIENCE (EN) ---
+        job_bmw_desc: "<li>Prospecting and converting leads via online and offline channels.</li><li>Handling end-to-end customer engagement, from initial consultation to vehicle delivery.</li><li>Coordinating with banks and internal teams for loan and documentation processes.</li>",
+        
+        job_honda_desc: "<li>Generated leads and managed client relationships across various platforms.</li><li>Advised clients on vehicle purchases and facilitated loan and delivery procedures.</li><li>Taught new team members the correct procedures for all areas of operations.</li><li>Maintained current knowledge of all team position requirements.</li>",
+        
+        job_affin_desc: "<li>Achieved sales goals and service targets by cultivating and securing new customer relationships.</li><li>Boosted sales revenue by cultivating strong client relationships and implementing effective sales strategies.</li><li>Delivered exceptional customer service, resulting in a high percentage of repeat business.</li>",
+        
+        job_rhb_desc: "<li>Sold personal loans, ASB loans, and bank insurance products.</li><li>Conducted marketing talks and engaged in field sales.</li><li>Drove revenue growth, leveraging in-depth product knowledge to offer customized solutions.</li>",
+        
+        job_cimb_desc: "<li>Examine clients' overall financial situation by reviewing income, assets, debts, and expenses.</li><li>Created debt management plans and budgets to assist clients.</li><li>Promoted products and services to improve clients' standard of living.</li>",
+        
+        btn_wa_chat: "SEND VIA WHATSAPP",
+        btn_email_send: "SEND VIA EMAIL",
+   
+   
+   
     },
 
     // BAHASA MALAYSIA (MY)
@@ -106,12 +130,36 @@ const translations = {
         cta_desc: "Jadualkan sesi pandu uji peribadi hari ini. Saya di sini untuk membantu anda dengan pelan kewangan terbaik.",
         btn_wa_chat: "CHAT WHATSAPP",
         btn_email_send: "HANTAR EMEL",
+
+        gal_title: "Seni Gaya-L",
+        gal_desc: "Reka bentuk Lexus melangkaui estetika; ia adalah satu pengalaman. Menggabungkan estetika tradisional Jepun dengan teknologi moden, setiap butiran menceritakan kisah layanan mesra (Omotenashi).",
+        
+        // --- ABOUT SECTION UPDATE ---
+        about_title: "RINGKASAN PROFESIONAL",
+        about_summary_1: "Profesional bermotivasi dan berpengalaman dengan lebih 10 tahun kejayaan dalam jualan, khidmat pelanggan, dan nasihat kewangan dalam industri telekomunikasi, perbankan, dan automotif.",
+        about_summary_2: "Kemahiran komunikasi yang kukuh, cemerlang di bawah tekanan, dan berdedikasi kepada hasil. Diiktiraf atas inisiatif, kegigihan, dan pencapaian KPI prestasi. Berhasrat memberi impak kepada objektif organisasi dan berkembang dalam persekitaran yang pantas.",
+        
+        // --- WORK EXPERIENCE (MS) ---
+        job_bmw_desc: "<li>Mencari dan menukar prospek melalui saluran dalam talian dan luar talian.</li><li>Mengendalikan penglibatan pelanggan dari awal hingga penghantaran kenderaan.</li><li>Berkoordinasi dengan bank dan pasukan dalaman untuk proses pinjaman dan dokumentasi.</li>",
+        
+        job_honda_desc: "<li>Menghasilkan prospek dan mengurus hubungan pelanggan di pelbagai platform.</li><li>Menasihati pelanggan mengenai pembelian kenderaan dan memudahkan prosedur pinjaman.</li><li>Melatih ahli pasukan baru mengenai prosedur operasi yang betul.</li><li>Mengekalkan pengetahuan terkini mengenai keperluan pasukan.</li>",
+        
+        job_affin_desc: "<li>Mencapai sasaran jualan dengan memupuk hubungan pelanggan baru.</li><li>Meningkatkan hasil jualan melalui strategi jualan yang berkesan.</li><li>Memberikan perkhidmatan pelanggan yang luar biasa, menghasilkan perniagaan berulang yang tinggi.</li>",
+        
+        job_rhb_desc: "<li>Menjual pinjaman peribadi, pinjaman ASB, dan produk insurans bank.</li><li>Mengadakan ceramah pemasaran dan terlibat dalam jualan lapangan.</li><li>Memacu pertumbuhan hasil dengan menawarkan penyelesaian tersuai.</li>",
+        
+        job_cimb_desc: "<li>Memeriksa situasi kewangan keseluruhan pelanggan termasuk pendapatan, aset, dan hutang.</li><li>Mewujudkan pelan pengurusan hutang dan belanjawan untuk membantu pelanggan.</li><li>Mempromosikan produk dan perkhidmatan untuk meningkatkan taraf hidup pelanggan.</li>",
+        
+        btn_wa_chat: "HANTAR WHATSAPP",
+        btn_email_send: "HANTAR EMEL",
+    
     }
 };
 
 // ==========================================
 // LOGIC GANTI BAHASA (JANGAN DIUBAH)
 // ==========================================
+// GANTI FUNCTION INI (Agar bisa baca HTML <li>...</li>)
 function setLanguage(lang) {
     const data = translations[lang];
     const elements = document.querySelectorAll('[data-i18n]');
@@ -119,11 +167,11 @@ function setLanguage(lang) {
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (data[key]) {
-            el.innerText = data[key];
+            el.innerHTML = data[key]; // <--- UBAH JADI innerHTML
         }
     });
 
-    // Update tombol aktif
+    // Update tombol aktif... (kode bawahnya tetap sama)
     document.getElementById('btn-en').classList.remove('lang-active');
     document.getElementById('btn-ms').classList.remove('lang-active');
     document.getElementById(`btn-${lang}`).classList.add('lang-active');

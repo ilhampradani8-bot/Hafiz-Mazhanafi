@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hafiz Mazhanafi | Lexus Consultant</title>
-    
+    <link rel="icon" type="image/png" href="lexus-logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -43,6 +43,144 @@
         html { scroll-behavior: smooth; }
         .car-card:hover { transform: translateY(-5px); border-color: #C5A059; }
         .lang-active { color: #C5A059; font-weight: bold; }
+
+        /* --- ANIMASI CARBON FIBER (SISIK BERGERAK) --- */
+        .carbon-bg {
+            background: 
+                linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+                linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+                linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+                linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+                linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+                linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+            background-color: #131313;
+            background-size: 20px 20px;
+            animation: carbonMove 10s linear infinite;
+        }
+
+        @keyframes carbonMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; } /* Gerakan diagonal seperti sisik berjalan */
+        }
+
+        /* --- ANIMASI TIMELINE (Masuk dari Kiri/Kanan) --- */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-left {
+            opacity: 0; /* Mulai invisible */
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-right {
+            opacity: 0; /* Mulai invisible */
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        /* Garis Tengah (Roadmap) */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #C5A059, #C5A059, transparent);
+            z-index: 0;
+        }
+        
+        /* Titik Emas (Node) */
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+            border: 4px solid #C5A059;
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 15px #C5A059;
+        }
+
+        /* Penyesuaian Mobile (Garis pindah ke kiri) */
+        @media (max-width: 768px) {
+            .timeline-line { left: 20px; }
+            .timeline-dot { left: 20px; }
+        }
+
+        /* --- ANIMASI TURBIN (WHY CHOOSE ME) --- */
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .turbine-spin {
+            animation: spinSlow 20s linear infinite;
+            transform-origin: center;
+        }
+
+        /* Hover Card Effect */
+        .service-card {
+            transition: all 0.5s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border-color: #C5A059;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.2);
+        }
+        
+        /* Icon Pulse */
+        .service-card:hover .icon-pulse {
+            animation: pulseGold 1.5s infinite;
+        }
+        @keyframes pulseGold {
+            0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+        }
+
+        /* --- FLOATING CAR ANIMATION --- */
+        @keyframes floatCar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .car-float {
+            animation: floatCar 4s ease-in-out infinite;
+        }
+
+        /* Bayangan Mobil (Agar terlihat menapak tapi melayang) */
+        .car-shadow {
+            height: 20px;
+            width: 80%;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 70%);
+            margin: 0 auto;
+            transform: translateY(-10px);
+            opacity: 0.6;
+        }
+        
+        /* Tombol Warna */
+        .color-btn {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .color-btn:hover, .color-btn.active {
+            transform: scale(1.3);
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
     </style>
 
 </head>
@@ -51,76 +189,59 @@
 <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800 h-20">
         <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative">
             
-            <div class="flex items-center gap-4 z-20">
-                <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain"> 
-                <div class="text-lg md:text-xl font-bold tracking-widest uppercase hidden md:block text-white">
-                    Hafiz <span class="text-lexusGold">Mazhanafi</span>
+            <a href="index.html" class="flex items-center gap-4 z-20 cursor-pointer group">
+                <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition"> 
+                <div class="text-lg md:text-xl font-bold tracking-widest uppercase hidden md:block text-white group-hover:text-lexusGold transition">
+                    Hafiz <span class="text-lexusGold group-hover:text-white transition">Mazhanafi</span>
                 </div>
-            </div>
+            </a>
             
             <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
                 <a href="#home" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_home">HOME</span>
-                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
+                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition" data-i18n="nav_home">HOME</span>
                 </a>
                 <a href="#about" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_about">PROFILE</span>
-                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
+                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition" data-i18n="nav_about">PROFILE</span>
                 </a>
+                
+                <a href="gallery.html" class="group flex flex-col items-center gap-1">
+                    <span class="text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition">GALLERY</span>
+                </a>
+
                 <a href="#experience" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_exp">EXPERIENCE</span>
-                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
-                </a>
-                <a href="#skills" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_skills">SKILLS</span>
-                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
+                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition" data-i18n="nav_exp">EXPERIENCE</span>
                 </a>
                 <a href="#contact" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition duration-300" data-i18n="nav_contact_link">CONTACT</span>
-                    <span class="w-1 h-1 rounded-full bg-lexusGold opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-1 group-hover:translate-y-0"></span>
+                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition" data-i18n="nav_contact_link">CONTACT</span>
                 </a>
             </div>
 
             <div class="hidden md:flex items-center h-full gap-6 z-20">
-                <div class="flex gap-2 text-[10px] md:text-xs text-gray-500 font-bold tracking-widest">
-                    <button onclick="setLanguage('en')" id="btn-en" class="hover:text-white transition">EN</button>
-                    <span>/</span>
-                    <button onclick="setLanguage('ms')" id="btn-ms" class="hover:text-white transition">MY</button>
+                <div class="flex items-center gap-4">
+                    <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">EN</button>
+                    <span class="text-gray-600 text-xs">|</span>
+                    <button onclick="setLanguage('ms')" id="btn-ms" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">MY</button>
                 </div>
-                <a href="https://wa.me/601111492290" 
-                   class="h-full bg-lexusGold hover:bg-white text-black px-8 flex items-center justify-center font-bold text-sm tracking-widest uppercase transition-colors duration-300 -mr-6"
-                   data-i18n="nav_btn_wa">
-                    WHATSAPP
-                </a>
             </div>
 
             <button id="mobile-menu-btn" class="md:hidden text-white z-50 focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
         </div>
 
         <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-black/80 backdrop-blur-md border-b border-gray-800 shadow-2xl md:hidden transition-all duration-300">
             <div class="flex flex-col p-6 space-y-6 text-center">
-                
                 <a href="#home" class="text-white hover:text-lexusGold tracking-widest text-sm" onclick="toggleMenu()" data-i18n="nav_home">HOME</a>
                 <a href="#about" class="text-white hover:text-lexusGold tracking-widest text-sm" onclick="toggleMenu()" data-i18n="nav_about">PROFILE</a>
+                <a href="gallery.html" class="text-lexusGold tracking-widest text-sm font-bold">GALLERY</a>
                 <a href="#experience" class="text-white hover:text-lexusGold tracking-widest text-sm" onclick="toggleMenu()" data-i18n="nav_exp">EXPERIENCE</a>
-                <a href="#skills" class="text-white hover:text-lexusGold tracking-widest text-sm" onclick="toggleMenu()" data-i18n="nav_skills">SKILLS</a>
                 <a href="#contact" class="text-white hover:text-lexusGold tracking-widest text-sm" onclick="toggleMenu()" data-i18n="nav_contact_link">CONTACT</a>
-
-                <div class="h-[1px] bg-gray-700 w-1/2 mx-auto"></div>
-
-                <div class="flex justify-center gap-4 text-xs text-gray-400 font-bold tracking-widest">
+                
+                <div class="flex justify-center gap-6 text-sm text-gray-400 font-bold tracking-widest mt-4 border-t border-gray-700 pt-4 w-1/2 mx-auto">
                     <button onclick="setLanguage('en'); toggleMenu()" class="hover:text-white">EN</button>
                     <span>|</span>
                     <button onclick="setLanguage('ms'); toggleMenu()" class="hover:text-white">MY</button>
                 </div>
-
-                <a href="https://wa.me/601111492290" class="bg-lexusGold text-black py-3 px-6 font-bold tracking-widest uppercase text-xs rounded hover:bg-white transition" data-i18n="nav_btn_wa">
-                    WHATSAPP ME
-                </a>
             </div>
         </div>
     </nav>
@@ -171,53 +292,41 @@
 
         </div>
     </header>
-    <section id="about" class="relative w-full py-24 flex items-center justify-center overflow-hidden bg-[#111]">
-        
-        <div class="absolute inset-0 opacity-20 z-0" 
-             style="background-image: radial-gradient(black 15%, transparent 16%), radial-gradient(black 15%, transparent 16%); 
-                    background-size: 10px 10px; 
-                    background-position: 0 0, 5px 5px; 
-                    background-color: #222;">
-        </div>
 
-        <svg class="absolute top-0 left-0 w-full h-full pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
-            <line x1="0" y1="0" x2="100%" y2="100%" stroke="#C5A059" stroke-width="0.5" stroke-opacity="0.3">
-                <animate attributeName="x1" from="-100%" to="100%" dur="10s" repeatCount="indefinite" />
-            </line>
-            <line x1="100%" y1="0" x2="0" y2="100%" stroke="#C5A059" stroke-width="0.5" stroke-opacity="0.3">
-                <animate attributeName="x2" from="200%" to="-100%" dur="15s" repeatCount="indefinite" />
-            </line>
-        </svg>
-        
-        <div class="container mx-auto px-6 relative z-10 max-w-4xl text-center">
-            
-            <h2 class="text-3xl md:text-4xl font-light text-white mb-8 tracking-[0.2em] uppercase" data-i18n="about_title">
-                Professional Summary
-            </h2>
-            
-            <div class="w-16 h-1 bg-lexusGold mx-auto mb-10 shadow-[0_0_15px_#C5A059]"></div>
 
-            <div class="text-gray-300 text-lg md:text-xl leading-relaxed font-light tracking-wide space-y-6">
+    <section id="about" class="relative py-24 flex items-center justify-center overflow-hidden">
+        
+        <div class="absolute inset-0 carbon-bg opacity-100 z-0"></div>
+        
+        <div class="absolute inset-0 bg-[radial-gradient(circle,transparent_20%,#000_100%)] z-0"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            
+            <div class="max-w-6xl mx-auto bg-black/40 backdrop-blur-xl border border-lexusGold/30 rounded-2xl p-10 md:p-20 shadow-[0_0_50px_rgba(0,0,0,0.8)] transform hover:scale-[1.01] transition duration-500">
                 
-                <p>
-                    Motivated and experienced professional with over 
-                    <span class="text-lexusGold font-bold border-b border-lexusGold/30 pb-1">
-                        10 years of success in sales, customer service, and financial advisory
-                    </span> 
-                    in telecommunications, banking, and automotive industries.
-                </p>
+                <h2 class="text-4xl md:text-6xl font-luxury font-bold text-white mb-12 text-center tracking-[0.1em] uppercase drop-shadow-lg">
+                    <span class="text-lexusGold border-b-4 border-lexusGold pb-2" data-i18n="about_title">Professional Summary</span>
+                </h2>
 
-                <p>
-                    Strong communication skills, excels under pressure, and dedicated to results. 
-                    Recognized for <span class="text-white font-medium">initiative, persistence, and meeting performance KPIs</span>. 
-                    Eager to impact organizational objectives and grow in a fast-paced environment.
-                </p>
+                <div class="text-gray-200 text-lg md:text-2xl leading-relaxed font-light tracking-wide space-y-8 text-center md:text-left">
+                    
+                    <p data-i18n="about_summary_1" class="drop-shadow-md">
+                        Motivated and experienced professional with over <span class="text-lexusGold font-bold">10 years of success</span> in sales, customer service, and financial advisory in telecommunications, banking, and automotive industries.
+                    </p>
+
+                    <p data-i18n="about_summary_2" class="drop-shadow-md border-l-4 border-lexusGold pl-6 md:pl-8 italic bg-white/5 py-4 pr-4 rounded-r-lg">
+                        Strong communication skills, excels under pressure, and dedicated to results. Recognized for <span class="text-white font-bold">initiative, persistence, and meeting performance KPIs</span>. Eager to impact organizational objectives and grow in a fast-paced environment.
+                    </p>
+
+                </div>
+                
+                <div class="absolute top-6 left-6 w-3 h-3 rounded-full bg-gray-600 shadow-inner border border-gray-800"></div>
+                <div class="absolute top-6 right-6 w-3 h-3 rounded-full bg-gray-600 shadow-inner border border-gray-800"></div>
+                <div class="absolute bottom-6 left-6 w-3 h-3 rounded-full bg-gray-600 shadow-inner border border-gray-800"></div>
+                <div class="absolute bottom-6 right-6 w-3 h-3 rounded-full bg-gray-600 shadow-inner border border-gray-800"></div>
 
             </div>
-
-            <div class="absolute -inset-4 md:-inset-10 border border-lexusGold/20 rounded-xl pointer-events-none transform scale-95 hover:scale-100 transition duration-1000"></div>
         </div>
-
     </section>
 
    <section id="education" class="relative py-24 flex items-center bg-black">
@@ -273,142 +382,106 @@
         </div>
     </section>
 
-    <section id="experience" class="relative py-24 bg-[#0a0a0a] overflow-hidden">
+   <section id="experience" class="relative py-24 bg-[#0a0a0a] overflow-hidden">
         
-        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:transparent;stop-opacity:0" />
-                        <stop offset="50%" style="stop-color:#C5A059;stop-opacity:1" /> <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
-                    </linearGradient>
-                </defs>
-                <rect x="-100%" y="20%" width="50%" height="1" fill="url(#grad1)">
-                    <animate attributeName="x" from="-100%" to="100%" dur="3s" repeatCount="indefinite" />
-                </rect>
-                <rect x="-100%" y="40%" width="70%" height="1" fill="url(#grad1)">
-                    <animate attributeName="x" from="-100%" to="100%" dur="5s" repeatCount="indefinite" />
-                </rect>
-                <rect x="-100%" y="60%" width="40%" height="1" fill="url(#grad1)">
-                    <animate attributeName="x" from="-100%" to="100%" dur="4s" repeatCount="indefinite" />
-                </rect>
-                 <rect x="-100%" y="80%" width="60%" height="1" fill="url(#grad1)">
-                    <animate attributeName="x" from="-100%" to="100%" dur="6s" repeatCount="indefinite" />
-                </rect>
-            </svg>
-        </div>
-
-        <div class="container mx-auto px-6 relative z-10 max-w-5xl">
+        <div class="container mx-auto px-6 relative z-10 max-w-6xl">
             
-            <h2 class="text-3xl md:text-4xl font-light text-white mb-16 text-center tracking-[0.2em] uppercase" data-i18n="exp_title">
+            <h2 class="text-4xl md:text-5xl font-luxury text-white mb-20 text-center tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="exp_title">
                 WORK EXPERIENCE
             </h2>
 
-            <div class="space-y-12 border-l border-gray-800 ml-4 md:ml-0 pl-8 md:pl-12 relative">
-                
-                <div class="relative group">
-                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-lexusGold rounded-full group-hover:bg-lexusGold group-hover:shadow-[0_0_15px_#C5A059] transition duration-300"></div>
-                    
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
-                            <img src="logo-bmw.png" alt="BMW" class="max-w-full max-h-full object-contain">
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
-                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">BMW Millennium Welt KL North</h4>
+            <div class="relative">
+                <div class="timeline-line"></div>
+
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div> <div class="timeline-dot"></div> <div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-12 animate-left" style="animation-delay: 0.2s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg group">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-bmw.png" alt="BMW" class="h-12 w-auto bg-white p-1 rounded">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">BMW Millennium Welt KL North</p>
+                                </div>
+                            </div>
                             <p class="text-gray-500 text-xs mb-4">2023 – Present</p>
-                            
-                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-lexusGold">
-                                <li>Prospecting and converting leads via online and offline channels.</li>
-                                <li>Handling end-to-end customer engagement, from initial consultation to vehicle delivery.</li>
-                                <li>Coordinating with banks and internal teams for loan and documentation processes.</li>
-                            </ul>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_bmw_desc">
+                                </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="relative group">
-                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-gray-600 rounded-full group-hover:border-lexusGold group-hover:bg-lexusGold transition duration-300"></div>
+                <div class="flex flex-col md:flex-row-reverse items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="timeline-dot"></div>
                     
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
-                            <img src="logo-honda.png" alt="Honda" class="max-w-full max-h-full object-contain">
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
-                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">Tenaga Setia Resources Sdn Bhd (Honda)</h4>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-12 animate-right" style="animation-delay: 0.4s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-honda.png" alt="Honda" class="h-12 w-auto bg-white p-1 rounded">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">Tenaga Setia Resources (Honda)</p>
+                                </div>
+                            </div>
                             <p class="text-gray-500 text-xs mb-4">2018 – 2023</p>
-                            
-                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-gray-600">
-                                <li>Generated leads and managed client relationships across various platforms.</li>
-                                <li>Advised clients on vehicle purchases and facilitated loan and delivery procedures.</li>
-                                <li>Taught new team members the correct procedures for all areas of operations.</li>
-                                <li>Maintained current knowledge of all team position requirements & Cross-trained existing employees.</li>
-                            </ul>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_honda_desc"></ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="relative group">
-                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-gray-600 rounded-full group-hover:border-lexusGold group-hover:bg-lexusGold transition duration-300"></div>
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="timeline-dot"></div>
                     
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
-                            <img src="logo-affin.png" alt="Affin Bank" class="max-w-full max-h-full object-contain">
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-white">Sales Executive (Mortgage)</h3>
-                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">Affin Islamic Bank Berhad</h4>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-12 animate-left" style="animation-delay: 0.6s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-affin.png" alt="Affin" class="h-12 w-auto bg-white p-1 rounded">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Sales Executive</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">Affin Islamic Bank Berhad</p>
+                                </div>
+                            </div>
                             <p class="text-gray-500 text-xs mb-4">2015 – 2016</p>
-                            
-                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-gray-600">
-                                <li>Achieved sales goals and service targets by cultivating and securing new customer relationships.</li>
-                                <li>Boosted sales revenue by cultivating strong client relationships and implementing effective sales strategies.</li>
-                                <li>Delivered exceptional customer service, resulting in a high percentage of repeat business and client referrals.</li>
-                                <li>Demonstrated expert product knowledge during client interactions.</li>
-                            </ul>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_affin_desc"></ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="relative group">
-                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-gray-600 rounded-full group-hover:border-lexusGold group-hover:bg-lexusGold transition duration-300"></div>
+                <div class="flex flex-col md:flex-row-reverse items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="timeline-dot"></div>
                     
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
-                            <img src="logo-rhb.png" alt="RHB" class="max-w-full max-h-full object-contain">
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-white">Sales Executive</h3>
-                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">RHB Banking Group</h4>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-12 animate-right" style="animation-delay: 0.8s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-rhb.png" alt="RHB" class="h-12 w-auto bg-white p-1 rounded">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Sales Executive</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">RHB Banking Group</p>
+                                </div>
+                            </div>
                             <p class="text-gray-500 text-xs mb-4">2014 – 2015</p>
-                            
-                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-gray-600">
-                                <li>Sold personal loans, ASB loans, and bank insurance products.</li>
-                                <li>Conducted marketing talks and engaged in field sales.</li>
-                                <li>Drove revenue growth, leveraging in-depth product knowledge to offer customized solutions.</li>
-                            </ul>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_rhb_desc"></ul>
                         </div>
                     </div>
                 </div>
 
-                 <div class="relative group">
-                    <div class="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 bg-black border-2 border-gray-600 rounded-full group-hover:border-lexusGold group-hover:bg-lexusGold transition duration-300"></div>
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="timeline-dot"></div>
                     
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="w-16 h-16 bg-white rounded flex items-center justify-center p-2 shadow-lg flex-shrink-0">
-                            <img src="logo-cimb.png" alt="CIMB" class="max-w-full max-h-full object-contain">
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-white">Personal Financial Consultant A</h3>
-                            <h4 class="text-lexusGold text-sm uppercase tracking-wider mb-1">CIMB Bank Berhad</h4>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-12 animate-left" style="animation-delay: 1.0s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-cimb.png" alt="CIMB" class="h-12 w-auto bg-white p-1 rounded">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Financial Consultant</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">CIMB Bank Berhad</p>
+                                </div>
+                            </div>
                             <p class="text-gray-500 text-xs mb-4">2013 – 2014</p>
-                            
-                            <ul class="list-disc list-outside ml-4 text-gray-400 text-sm space-y-1 marker:text-gray-600">
-                                <li>Examined clients' overall financial situation (income, assets, debts, etc).</li>
-                                <li>Created debt management plans, spending plans, and budgets.</li>
-                                <li>Sold life insurance, retirement instruments, and investments to improve clients' standard of living.</li>
-                            </ul>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_cimb_desc"></ul>
                         </div>
                     </div>
                 </div>
@@ -418,123 +491,242 @@
     </section>
 
 
-    <section class="py-20 bg-lexusGray">
-        <div class="container mx-auto text-center">
-            <h2 class="text-2xl tracking-widest mb-12 uppercase" data-i18n="service_head">Why Choose Me?</h2>
+<section class="relative py-24 bg-[#080808] overflow-hidden flex items-center justify-center">
+        
+        <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none overflow-hidden">
+            <svg class="w-[150%] h-[150%] md:w-[80%] md:h-[150%] turbine-spin text-lexusGold" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="250" cy="250" r="200" stroke="currentColor" stroke-width="1" stroke-dasharray="10 10" />
+                <circle cx="250" cy="250" r="150" stroke="currentColor" stroke-width="0.5" />
+                <path d="M250 50 L250 450 M50 250 L450 250" stroke="currentColor" stroke-width="0.5" />
+                <path d="M108 108 L392 392 M108 392 L392 108" stroke="currentColor" stroke-width="0.5" />
+                <path d="M250 250 L250 50 A200 200 0 0 1 450 250 Z" fill="currentColor" fill-opacity="0.1" />
+                <path d="M250 250 L250 450 A200 200 0 0 1 50 250 Z" fill="currentColor" fill-opacity="0.1" />
+            </svg>
+        </div>
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            
+            <h2 class="text-4xl md:text-5xl font-luxury text-white mb-4 text-center tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="service_head">
+                Why Choose Me?
+            </h2>
+            <div class="w-24 h-1 bg-lexusGold mx-auto mb-16 shadow-[0_0_15px_#C5A059]"></div>
+
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 border border-gray-700 hover:border-lexusGold transition duration-300">
-                    <h3 class="text-lexusGold text-xl mb-4" data-i18n="svc_1_title">Consultation</h3>
-                    <p class="text-gray-400 text-sm" data-i18n="svc_1_desc">Objective advice...</p>
-                </div>
-                <div class="p-8 border border-gray-700 hover:border-lexusGold transition duration-300">
-                    <h3 class="text-lexusGold text-xl mb-4" data-i18n="svc_2_title">Easy Financing</h3>
-                    <p class="text-gray-400 text-sm" data-i18n="svc_2_desc">Leveraging my banking background...</p>
-                </div>
-                <div class="p-8 border border-gray-700 hover:border-lexusGold transition duration-300">
-                    <h3 class="text-lexusGold text-xl mb-4" data-i18n="svc_3_title">Premium Delivery</h3>
-                    <p class="text-gray-400 text-sm" data-i18n="svc_3_desc">A memorable experience...</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="collection" class="py-20 px-6">
-        <div class="container mx-auto">
-            <h2 class="text-3xl text-center font-light tracking-[0.2em] mb-12 uppercase" data-i18n="nav_cars">Lexus Collection</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <div class="car-card bg-black border border-gray-800 transition duration-300 group">
-                    <div class="h-64 overflow-hidden bg-gray-900 relative">
-                        <img src="Lexus LBX Luxury.jpeg" alt="Lexus LBX" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="service-card bg-white/5 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-center group">
+                    <div class="icon-pulse w-20 h-20 mx-auto bg-black border border-lexusGold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <svg class="w-8 h-8 text-lexusGold fill-current" viewBox="0 0 24 24"><path d="M18.364 15.536L16.95 14.12l1.414-1.414a5.002 5.002 0 00-7.071-7.071L9.879 7.05 8.464 5.636 9.88 4.222a7 7 0 019.9 9.9l-1.415 1.414zm-2.828 2.828l-1.415 1.414a7 7 0 01-9.9-9.9l1.415-1.414L7.05 9.88l-1.414 1.414a5 5 0 007.07 7.071l1.415-1.414 1.415 1.414zm-.708-10.607l1.415 1.415-7.071 7.07-1.415-1.414 7.071-7.07zm1.414-1.414l1.414 1.414-7.07 7.071-1.415-1.414 7.071-7.071z"/></svg>
                     </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold mb-1">Lexus LBX Luxury</h3>
-                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">Compact Luxury</p>
-                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
-                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-wider group-hover:text-lexusGold transition" data-i18n="svc_1_title">Consultation</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="svc_1_desc">
+                        Objective advice on selecting the perfect Lexus for your lifestyle.
+                    </p>
                 </div>
 
-                <div class="car-card bg-black border border-gray-800 transition duration-300 group">
-                    <div class="h-64 overflow-hidden bg-gray-900 relative">
-                        <img src="Lexus NX350 F Sport.jpeg" alt="Lexus NX350" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="service-card bg-white/5 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-center group">
+                    <div class="icon-pulse w-20 h-20 mx-auto bg-black border border-lexusGold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <svg class="w-8 h-8 text-lexusGold fill-current" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                     </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold mb-1">Lexus NX 350 F Sport</h3>
-                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">Dynamic Performance</p>
-                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
-                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-wider group-hover:text-lexusGold transition" data-i18n="svc_2_title">Easy Financing</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="svc_2_desc">
+                        Leveraging my banking background for easier loan approvals.
+                    </p>
                 </div>
 
-                <div class="car-card bg-black border border-gray-800 transition duration-300 group">
-                    <div class="h-64 overflow-hidden bg-gray-900 relative">
-                        <img src="Lexus NX350h.jpeg" alt="Lexus NX350h" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="service-card bg-white/5 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-center group">
+                    <div class="icon-pulse w-20 h-20 mx-auto bg-black border border-lexusGold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <svg class="w-8 h-8 text-lexusGold fill-current" viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
                     </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold mb-1">Lexus NX 350h</h3>
-                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">Hybrid Efficiency</p>
-                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
-                    </div>
-                </div>
-
-                <div class="car-card bg-black border border-gray-800 transition duration-300 group">
-                    <div class="h-64 overflow-hidden bg-gray-900 relative">
-                        <img src="Lexus RX350 Luxury.jpeg" alt="Lexus RX" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold mb-1">Lexus RX 350 Luxury</h3>
-                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">Sophisticated Comfort</p>
-                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
-                    </div>
-                </div>
-
-                 <div class="car-card bg-black border border-gray-800 transition duration-300 group">
-                    <div class="h-64 overflow-hidden bg-gray-900 relative">
-                        <img src="Lexus RX500h F Sport.jpeg" alt="Lexus RX500h" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold mb-1">Lexus RX 500h F Sport</h3>
-                        <p class="text-lexusGold text-xs uppercase tracking-widest mb-4">High Performance Hybrid</p>
-                        <a href="https://wa.me/601111492290" class="text-xs text-gray-500 border-b border-gray-600 pb-1 hover:text-white hover:border-white transition" data-i18n="btn_inquire">INQUIRE NOW</a>
-                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-wider group-hover:text-lexusGold transition" data-i18n="svc_3_title">Premium Delivery</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="svc_3_desc">
+                        A memorable and special car delivery experience directly to you.
+                    </p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-lexusGray border-t border-gray-800 text-center">
-        <div class="container mx-auto px-6">
+   <section id="collection" class="relative py-24 bg-[#050505] overflow-hidden">
+        
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
             
-            <h2 class="text-3xl md:text-4xl text-white font-light tracking-[0.15em] mb-6 uppercase" data-i18n="cta_title">
+            <h2 class="text-4xl md:text-5xl font-luxury text-white mb-20 text-center tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="nav_cars">
+                Lexus Collection
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-8 justify-center">
+                
+                <div class="group text-center">
+                    <a href="gallery.html" class="block cursor-pointer">
+                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
+                            <img id="image-lbx" src="lbx-default.png" alt="Lexus LBX" 
+                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110">
+                        </div>
+                    </a>
+                    <div class="car-shadow mb-6"></div>
+
+                    <div class="flex justify-center gap-3 mb-6">
+                        <div onclick="changeColor('lbx', 'default')" class="color-btn bg-[#B87333] active" title="Original"></div>
+                        <div onclick="changeColor('lbx', 'black')" class="color-btn bg-black border border-gray-700" title="Black"></div>
+                        <div onclick="changeColor('lbx', 'white')" class="color-btn bg-white" title="White"></div>
+                    </div>
+
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">Lexus LBX</h3>
+                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Compact Luxury</p>
+                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20LBX" class="detail-link">INQUIRE NOW</a>
+                </div>
+
+                <div class="group text-center">
+                    <a href="gallery.html" class="block cursor-pointer">
+                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
+                            <img id="image-nx350f" src="nx350f-default.png" alt="Lexus NX F Sport" 
+                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110" style="animation-delay: 0.2s;">
+                        </div>
+                    </a>
+                    <div class="car-shadow mb-6"></div>
+
+                    <div class="flex justify-center gap-3 mb-6">
+                        <div onclick="changeColor('nx350f', 'default')" class="color-btn bg-white active" title="Original"></div>
+                        <div onclick="changeColor('nx350f', 'black')" class="color-btn bg-black border border-gray-700" title="Black"></div>
+                        <div onclick="changeColor('nx350f', 'blue')" class="color-btn bg-[#003366]" title="Heat Blue"></div>
+                    </div>
+
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">NX 350 F Sport</h3>
+                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Dynamic Sport</p>
+                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20NX%20F%20Sport" class="detail-link">INQUIRE NOW</a>
+                </div>
+
+                <div class="group text-center">
+                    <a href="gallery.html" class="block cursor-pointer">
+                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
+                            <img id="image-nx350h" src="nx350h-default.png" alt="Lexus NX Hybrid" 
+                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110" style="animation-delay: 0.4s;">
+                        </div>
+                    </a>
+                    <div class="car-shadow mb-6"></div>
+
+                    <div class="flex justify-center gap-3 mb-6">
+                        <div onclick="changeColor('nx350h', 'default')" class="color-btn bg-gray-400 active" title="Original"></div>
+                        <div onclick="changeColor('nx350h', 'white')" class="color-btn bg-white" title="White"></div>
+                    </div>
+
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">Lexus NX 350h</h3>
+                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Hybrid Efficiency</p>
+                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20NX%20Hybrid" class="detail-link">INQUIRE NOW</a>
+                </div>
+
+                <div class="group text-center lg:col-start-1 lg:ml-auto"> <a href="gallery.html" class="block cursor-pointer">
+                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
+                            <img id="image-rx350" src="rx350-default.png" alt="Lexus RX" 
+                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110" style="animation-delay: 0.6s;">
+                        </div>
+                    </a>
+                    <div class="car-shadow mb-6"></div>
+
+                    <div class="flex justify-center gap-3 mb-6">
+                        <div onclick="changeColor('rx350', 'default')" class="color-btn bg-gray-300 active" title="Original"></div>
+                        <div onclick="changeColor('rx350', 'black')" class="color-btn bg-black border border-gray-700" title="Black"></div>
+                    </div>
+
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">Lexus RX 350</h3>
+                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Sophisticated Luxury</p>
+                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20RX%20350" class="detail-link">INQUIRE NOW</a>
+                </div>
+
+                <div class="group text-center lg:col-end-4 lg:mr-auto">
+                    <a href="gallery.html" class="block cursor-pointer">
+                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
+                            <img id="image-rx500h" src="rx500h-default.png" alt="Lexus RX F Sport" 
+                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110" style="animation-delay: 0.8s;">
+                        </div>
+                    </a>
+                    <div class="car-shadow mb-6"></div>
+
+                    <div class="flex justify-center gap-3 mb-6">
+                        <div onclick="changeColor('rx500h', 'default')" class="color-btn bg-[#B87333] active" title="Original"></div>
+                        <div onclick="changeColor('rx500h', 'white')" class="color-btn bg-white" title="White"></div>
+                    </div>
+
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">RX 500h F Sport</h3>
+                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Performance Hybrid</p>
+                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20RX%20500h" class="detail-link">INQUIRE NOW</a>
+                </div>
+
+            </div>
+        </div>
+
+        <style>
+            .detail-link {
+                display: inline-block;
+                border-bottom: 1px solid #4b5563;
+                color: #9ca3af;
+                font-size: 0.75rem;
+                padding-bottom: 2px;
+                letter-spacing: 0.1em;
+                transition: all 0.3s;
+            }
+            .detail-link:hover { color: white; border-color: white; }
+        </style>
+    </section>
+
+    <section class="py-20 bg-lexusGray border-t border-gray-800 relative overflow-hidden">
+        
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            
+            <h2 class="text-3xl md:text-4xl text-white font-luxury tracking-[0.15em] mb-4 uppercase" data-i18n="cta_title">
                 Ready to Drive Your Dream?
             </h2>
-            
-            <p class="text-gray-400 mb-10 max-w-2xl mx-auto text-lg font-light" data-i18n="cta_desc">
-                Schedule a private viewing or test drive today. I am here to assist you with the best financial plans.
+            <p class="text-gray-400 mb-10 max-w-2xl mx-auto font-light" data-i18n="cta_desc">
+                Schedule a private viewing or test drive today.
             </p>
 
-            <div class="flex flex-col md:flex-row justify-center gap-6">
+            <div class="max-w-2xl mx-auto bg-[#050505] border border-gray-800 p-8 rounded-xl shadow-2xl">
                 
-                <a href="https://wa.me/601111492290" class="group relative px-8 py-4 bg-[#25D366] text-white font-bold tracking-widest uppercase rounded overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(37,211,102,0.4)]">
-                    <div class="relative z-10 flex items-center gap-3">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                        <span data-i18n="btn_wa_chat">Chat via WhatsApp</span>
+                <div class="space-y-4 text-left">
+                    
+                    <div>
+                        <label class="text-xs text-lexusGold uppercase tracking-widest ml-1 mb-1 block">Name</label>
+                        <input type="text" id="inputName" class="w-full bg-[#111] border border-gray-700 text-white px-4 py-3 text-sm rounded focus:outline-none focus:border-lexusGold transition-colors" placeholder="Type your name...">
                     </div>
-                </a>
 
-                <a href="mailto:hafizbinmazhanafi@gmail.com" class="group relative px-8 py-4 border border-gray-600 text-white font-bold tracking-widest uppercase rounded overflow-hidden transition-all hover:border-white hover:bg-white hover:text-black">
-                    <div class="relative z-10 flex items-center gap-3">
-                        <span class="text-xl">✉️</span>
-                        <span data-i18n="btn_email_send">Send Email</span>
+                    <div>
+                        <label class="text-xs text-lexusGold uppercase tracking-widest ml-1 mb-1 block">Phone Number</label>
+                        <input type="tel" id="inputPhone" class="w-full bg-[#111] border border-gray-700 text-white px-4 py-3 text-sm rounded focus:outline-none focus:border-lexusGold transition-colors" placeholder="+60...">
                     </div>
-                </a>
 
+                    <div>
+                        <label class="text-xs text-lexusGold uppercase tracking-widest ml-1 mb-1 block">Message (Optional)</label>
+                        <textarea id="inputMessage" rows="3" class="w-full bg-[#111] border border-gray-700 text-white px-4 py-3 text-sm rounded focus:outline-none focus:border-lexusGold transition-colors" placeholder="I am interested in Lexus..."></textarea>
+                    </div>
+
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mt-8">
+                    
+                    <button onclick="sendToWA()" class="group w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 px-6 rounded flex items-center justify-center gap-3 transition-all duration-300">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        <span class="font-bold tracking-widest uppercase text-xs" data-i18n="btn_wa_chat">Send via WhatsApp</span>
+                    </button>
+
+                    <button onclick="sendToEmail()" class="group w-full bg-transparent border border-gray-600 hover:border-white hover:bg-white hover:text-black text-white py-4 px-6 rounded flex items-center justify-center gap-3 transition-all duration-300">
+                        <svg class="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <span class="font-bold tracking-widest uppercase text-xs" data-i18n="btn_email_send">Send via Email</span>
+                    </button>
+
+                </div>
             </div>
+
         </div>
     </section>
 
-   <footer id="contact" class="bg-[#050505] pt-16 pb-10 border-t border-gray-900 text-sm">
+  <footer id="contact" class="bg-[#050505] pt-16 pb-10 border-t border-gray-900 text-sm">
         <div class="container mx-auto px-6">
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
@@ -556,6 +748,7 @@
                     <ul class="space-y-4 text-gray-400">
                         <li><a href="#home" class="hover:text-lexusGold transition">Home</a></li>
                         <li><a href="#about" class="hover:text-lexusGold transition">Profile</a></li>
+                        <li><a href="gallery.html" class="hover:text-lexusGold transition">Gallery</a></li>
                         <li><a href="#collection" class="hover:text-lexusGold transition">Lexus Collection</a></li>
                         <li><a href="#experience" class="hover:text-lexusGold transition">Experience</a></li>
                     </ul>
@@ -564,18 +757,28 @@
                 <div>
                     <h3 class="text-white font-bold tracking-widest uppercase mb-6" data-i18n="contact_head">Contact Info</h3>
                     <ul class="space-y-6 text-gray-400">
+                        
                         <li class="flex items-start gap-4 group">
-                            <span class="text-lexusGold text-lg group-hover:scale-110 transition">📍</span>
-                            <span>Bandar Saujana Putra,<br>Jenjarom, Selangor</span>
+                            <div class="mt-1 text-lexusGold group-hover:scale-110 transition duration-300">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>
+                            </div>
+                            <span class="leading-relaxed">Bandar Saujana Putra,<br>Jenjarom, Selangor</span>
                         </li>
+                        
                         <li class="flex items-center gap-4 group">
-                            <span class="text-lexusGold text-lg group-hover:scale-110 transition">✉️</span>
+                            <div class="text-lexusGold group-hover:scale-110 transition duration-300">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-11.174l4.623 5.462zm2.157-1.222l3.22 3.806 3.221-3.806 4.779 5.293h-15.999l4.779-5.293zm9.645-4.409l-5.378 6.353-5.379-6.353h10.757zm-1.047 5.631l4.621-5.462v11.175l-4.621-5.713z"/></svg>
+                            </div>
                             <a href="mailto:hafizbinmazhanafi@gmail.com" class="hover:text-white transition">hafizbinmazhanafi@gmail.com</a>
                         </li>
+                        
                         <li class="flex items-center gap-4 group">
-                            <span class="text-lexusGold text-lg group-hover:scale-110 transition">📞</span>
+                            <div class="text-lexusGold group-hover:scale-110 transition duration-300">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M20.487 17.14c.184.183.332.407.417.653.087.25.132.515.127.784-.002 1.373-1.085 2.503-2.458 2.529-1.289.024-2.585-.316-3.77-.992-3.886-2.217-7.042-5.372-9.261-9.257-.677-1.185-1.018-2.482-.994-3.771.025-1.374 1.156-2.456 2.53-2.458.269-.004.534.041.784.128.246.085.47.233.653.417l3.262 3.262c.365.365.365.957 0 1.322l-1.332 1.332c.502 1.25 1.258 2.396 2.221 3.359.963.963 2.109 1.719 3.359 2.221l1.332-1.332c.365-.365.957-.365 1.322 0l3.262 3.262z"/></svg>
+                            </div>
                             <a href="tel:+601111492290" class="hover:text-white transition">+60 11-1149 2290</a>
                         </li>
+
                     </ul>
                 </div>
 
@@ -585,6 +788,7 @@
                 <p>&copy; 2026 Hafiz Mazhanafi. All Rights Reserved.</p>
                 <div class="flex gap-6 mt-4 md:mt-0">
                     <a href="#" class="hover:text-gray-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-400">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -603,6 +807,65 @@
         // Event Listener saat tombol burger diklik
         btn.addEventListener('click', toggleMenu);
     </script>
+    <script>
+        function sendToWA() {
+            // Ambil data dari input
+            const name = document.getElementById('inputName').value;
+            const phone = document.getElementById('inputPhone').value;
+            const msg = document.getElementById('inputMessage').value;
+            
+            // Format pesan
+            const text = `Hi Hafiz, my name is ${name} (${phone}). ${msg}`;
+            
+            // Buka WhatsApp
+            window.open(`https://wa.me/601111492290?text=${encodeURIComponent(text)}`, '_blank');
+        }
 
+        function sendToEmail() {
+            // Ambil data dari input
+            const name = document.getElementById('inputName').value;
+            const phone = document.getElementById('inputPhone').value;
+            const msg = document.getElementById('inputMessage').value;
+            
+            // Buka Email Client
+            window.open(`mailto:hafizbinmazhanafi@gmail.com?subject=Lexus Inquiry from ${name}&body=Name: ${name}%0D%0APhone: ${phone}%0D%0AMessage: ${msg}`, '_blank');
+        }
+    </script>
+
+<a href="https://wa.me/601111492290" target="_blank" class="fixed bottom-6 right-6 z-50 group">
+        <div class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.5)] hover:scale-110 transition duration-300">
+            <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        </div>
+    </a>
+
+    <script>
+        function changeColor(model, color) {
+            const img = document.getElementById(`image-${model}`);
+            
+            img.style.opacity = '0'; // Efek hilang sejenak
+
+            setTimeout(() => {
+                // Format file: model-warna.png (misal: lbx-black.png)
+                img.src = `${model}-${color}.png`;
+                
+                img.onload = () => { img.style.opacity = '1'; };
+                
+                // Jika gambar warna tsb tidak ada, balik ke default
+                img.onerror = () => {
+                    // Jangan alert terus menerus, cukup log atau fallback diam-diam
+                    console.log(`Gambar ${model}-${color}.png tidak ditemukan.`);
+                    img.src = `${model}-default.png`; 
+                    img.style.opacity = '1';
+                }
+            }, 200);
+
+            // Ganti status tombol aktif
+            const parent = event.target.parentElement;
+            if(parent) {
+                parent.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>

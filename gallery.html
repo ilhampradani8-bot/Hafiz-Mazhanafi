@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-Style Gallery | Hafiz Mazhanafi</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lexusBlack: '#050505',
+                        lexusGold: '#C5A059',
+                        lexusGray: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face { font-family: 'LexusFont'; src: url('regular.ttf') format('truetype'); }
+        .font-luxury { font-family: 'LexusFont', sans-serif; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-lexusBlack text-white antialiased">
+
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800 h-20">
+        <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative">
+            <div class="flex items-center gap-4 z-20">
+                <a href="index.html">
+                    <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain">
+                </a>
+                <div class="text-lg md:text-xl font-bold tracking-widest uppercase hidden md:block text-white">
+                    Hafiz <span class="text-lexusGold">Mazhanafi</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
+                <a href="index.html#home" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">HOME</a>
+                <a href="index.html#about" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">PROFILE</a>
+                
+                <a href="gallery.html" class="text-xs font-medium tracking-[0.15em] text-white border-b border-lexusGold pb-1">GALLERY</a>
+                
+                <a href="index.html#collection" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">COLLECTION</a>
+                <a href="index.html#contact" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">CONTACT</a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-2 text-xs text-gray-500 font-bold tracking-widest z-20">
+                <button onclick="setLanguage('en')" id="btn-en" class="hover:text-white transition">EN</button>
+                <span>/</span>
+                <button onclick="setLanguage('ms')" id="btn-ms" class="hover:text-white transition">MY</button>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-white z-50 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-black/95 backdrop-blur-md border-b border-gray-800 shadow-2xl md:hidden">
+            <div class="flex flex-col p-6 space-y-6 text-center">
+                <a href="index.html" class="text-white hover:text-lexusGold tracking-widest text-sm">HOME</a>
+                <a href="gallery.html" class="text-lexusGold tracking-widest text-sm font-bold">GALLERY</a>
+                <a href="index.html#collection" class="text-white hover:text-lexusGold tracking-widest text-sm">COLLECTION</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="h-[60vh] relative flex items-center justify-center bg-black overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="Lexus RX500h F Sport.jpeg" class="w-full h-full object-cover opacity-40 blur-sm">
+            <div class="absolute inset-0 bg-gradient-to-t from-lexusBlack via-black/50 to-transparent"></div>
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="font-luxury text-4xl md:text-6xl text-white uppercase tracking-widest mb-4" data-i18n="gal_title">The Art of L-Style</h1>
+            <p class="text-lexusGold text-sm md:text-base tracking-[0.2em] uppercase">Takumi Craftsmanship & Design</p>
+        </div>
+    </header>
+
+    <section class="py-20 px-6 bg-lexusBlack">
+        <div class="container mx-auto">
+            
+            <div class="max-w-3xl mx-auto text-center mb-20">
+                <p class="text-gray-400 font-light leading-relaxed text-lg" data-i18n="gal_desc">
+                    Lexus design goes beyond aesthetics; it is an experience. Combining traditional Japanese aesthetics with modern technology, every detail tells a story of hospitality (Omotenashi).
+                </p>
+                <div class="w-20 h-1 bg-lexusGold mx-auto mt-8"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-0 mb-20 border border-gray-800 group hover:border-lexusGold transition duration-500">
+                <div class="h-96 overflow-hidden relative">
+                    <img src="Lexus RX350 Luxury.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-10 md:p-16 flex flex-col justify-center bg-[#0a0a0a]">
+                    <h3 class="text-2xl text-white font-luxury uppercase tracking-widest mb-4">Tazuna Cockpit</h3>
+                    <p class="text-gray-400 font-light leading-relaxed mb-6">
+                        Inspired by the reins of a horse, the Tazuna concept connects driver and vehicle intuitively. Every control is positioned perfectly for focus and control.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-0 mb-20 border border-gray-800 group hover:border-lexusGold transition duration-500">
+                <div class="p-10 md:p-16 flex flex-col justify-center bg-[#0a0a0a] order-2 md:order-1">
+                    <h3 class="text-2xl text-white font-luxury uppercase tracking-widest mb-4">Spindle Body</h3>
+                    <p class="text-gray-400 font-light leading-relaxed mb-6">
+                        The evolution of the iconic Spindle Grille into a Spindle Body creates a seamless, dynamic form that expresses power and elegance in motion.
+                    </p>
+                </div>
+                <div class="h-96 overflow-hidden relative order-1 md:order-2">
+                    <img src="Lexus LBX Luxury.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                </div>
+            </div>
+
+            <h3 class="text-center text-white text-xl tracking-[0.2em] mb-10 uppercase">Gallery Highlights</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="h-64 md:h-80 overflow-hidden relative group">
+                    <img src="Lexus NX350 F Sport.jpeg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105">
+                </div>
+                <div class="h-64 md:h-80 overflow-hidden relative group">
+                    <img src="Lexus NX350h.jpeg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105">
+                </div>
+                <div class="h-64 md:h-80 overflow-hidden relative group">
+                    <img src="Lexus RX500h F Sport.jpeg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-black py-10 text-center border-t border-gray-900">
+        <p class="text-gray-500 text-xs tracking-widest">&copy; 2026 Hafiz Mazhanafi. Lexus Authorized Consultant.</p>
+    </footer>
+
+    <a href="https://wa.me/601111492290" target="_blank" class="fixed bottom-6 right-6 z-50 group">
+        <span class="absolute right-16 top-1/2 -translate-y-1/2 bg-white text-black text-xs font-bold px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none whitespace-nowrap">
+            Chat with Hafiz
+        </span>
+        <div class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.5)] hover:scale-110 transition duration-300">
+            <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        </div>
+    </a>
+
+    <script src="lang.js"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
