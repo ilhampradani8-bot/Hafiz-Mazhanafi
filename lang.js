@@ -21,7 +21,7 @@ const translations = {
         about_p1: "Hello, I am Mohd Hafiz Bin Mazhanafi. With over 10 years of experience in the premium automotive industry and banking sector, I am dedicated to providing a seamless and transparent car buying experience.",
         about_p2: "My expertise goes beyond vehicle specs. As a former banker, I specialize in Financial Advisory to help you plan loans, trade-ins, and documentation for the best approval rates.",
         
-        skill_1: "Financial & Loan Expert",
+        skill_1: "LEXUS AUTHORIZED SALES EXECUTIVE",
         skill_2: "10 Years Sales Experience",
         skill_3: "End-to-End Service",
 
@@ -75,8 +75,27 @@ const translations = {
         
         btn_wa_chat: "SEND VIA WHATSAPP",
         btn_email_send: "SEND VIA EMAIL",
-   
-   
+
+        // --- GALLERY PAGE ---
+        gal_hero_title: "THE ART OF L-FINESSE",
+        gal_hero_sub: "Experience the Takumi Craftsmanship",
+        
+        gal_intro_title: "OMOTENASHI PHILOSOPHY",
+        gal_intro_desc: "Lexus design goes beyond aesthetics; it is an experience. Combining traditional Japanese aesthetics with modern technology, every detail tells a story of hospitality.",
+        
+        gal_item1_title: "TAZUNA COCKPIT",
+        gal_item1_desc: "Inspired by the reins of a horse, the Tazuna concept connects driver and vehicle intuitively. Every control is positioned perfectly for focus.",
+        
+        gal_item2_title: "SPINDLE BODY",
+        gal_item2_desc: "The evolution of the iconic Spindle Grille into a Spindle Body creates a seamless, dynamic form that expresses power and elegance in motion.",
+        
+        gal_item3_title: "TAKUMI CRAFTSMANSHIP",
+        gal_item3_desc: "Mastery that takes decades to achieve. From the hand-pleated door trims to the Kiriko glass ornamentation, every detail is a work of art.",
+        
+        testi_title: "MOMENTS OF JOY",
+        testi_sub: "WELCOMING NEW MEMBERS TO THE LEXUS FAMILY",
+        btn_view_all: "VIEW ALL PHOTOS",
+        btn_close_gal: "CLOSE GALLERY",
    
     },
 
@@ -99,7 +118,7 @@ const translations = {
         about_p1: "Halo, saya Mohd Hafiz Bin Mazhanafi. Dengan pengalaman lebih 10 tahun dalam industri automotif premium dan sektor perbankan, saya berdedikasi memberikan pengalaman pembelian kereta yang telus dan lancar.",
         about_p2: "Kepakaran saya melangkaui spesifikasi kenderaan. Sebagai bekas jurubank, saya pakar dalam Nasihat Kewangan untuk membantu anda merancang pinjaman, trade-in, dan dokumentasi bagi mendapatkan kelulusan terbaik.",
         
-        skill_1: "Pakar Kewangan & Pinjaman",
+        skill_1: "EKSEKUTIF JUALAN LEXUS SAH",
         skill_2: "10 Tahun Pengalaman Jualan",
         skill_3: "Servis Dari A ke Z",
 
@@ -152,7 +171,26 @@ const translations = {
         
         btn_wa_chat: "HANTAR WHATSAPP",
         btn_email_send: "HANTAR EMEL",
-    
+
+        // --- GALLERY PAGE ---
+        gal_hero_title: "SENI L-FINESSE",
+        gal_hero_sub: "Rasai Pertukangan Takumi",
+        
+        gal_intro_title: "FALSAFAH OMOTENASHI",
+        gal_intro_desc: "Reka bentuk Lexus melangkaui estetika; ia adalah satu pengalaman. Menggabungkan estetika tradisional Jepun dengan teknologi moden, setiap butiran menceritakan kisah layanan mesra.",
+        
+        gal_item1_title: "KOKPIT TAZUNA",
+        gal_item1_desc: "Diinspirasikan oleh tali kekang kuda, konsep Tazuna menghubungkan pemandu dan kenderaan secara intuitif. Setiap kawalan diposisikan dengan sempurna untuk fokus.",
+        
+        gal_item2_title: "BADAN SPINDLE",
+        gal_item2_desc: "Evolusi Gril Spindle ikonik kepada Badan Spindle mencipta bentuk dinamik yang lancar, mengekspresikan kuasa dan keanggunan dalam pergerakan.",
+        
+        gal_item3_title: "PERTUKANGAN TAKUMI",
+        gal_item3_desc: "Penguasaan yang mengambil masa beberapa dekad untuk dicapai. Dari kemasan pintu berlipat tangan hingga hiasan kaca Kiriko, setiap butiran adalah karya seni.",
+        testi_title: "MOMENTS OF JOY",
+        testi_sub: "WELCOMING NEW MEMBERS TO THE LEXUS FAMILY",
+        btn_view_all: "LIHAT SEMUA FOTO",
+        btn_close_gal: "TUTUP GALERI",
     }
 };
 

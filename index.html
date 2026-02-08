@@ -181,67 +181,90 @@
             border-color: #fff;
             box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
+
+        /* --- ANIMASI MARQUEE (FOTO BERJALAN) --- */
+    /* --- ANIMASI MARQUEE (UPDATED) --- */
+    @keyframes scrollLeft {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    @keyframes scrollRight {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
+    }
+
+    .marquee-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 1rem; /* Jarak antar baris */
+    }
+
+    .marquee-content {
+        display: flex;
+        width: max-content; /* Agar melebar terus ke samping */
+        gap: 1rem;
+    }
+
+    /* Animasi Jalan */
+    .animate-left { animation: scrollLeft 40s linear infinite; }
+    .animate-right { animation: scrollRight 40s linear infinite; }
+
+    /* Pause saat disentuh */
+    .marquee-wrapper:hover .marquee-content { animation-play-state: paused; }
     </style>
 
 </head>
 <body class="bg-lexusBlack text-white antialiased">
 
-<nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800 h-20">
+<nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800 h-20 transition-all duration-300" id="navbar">
         <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative">
             
-            <a href="index.html" class="flex items-center gap-4 z-20 cursor-pointer group">
+            <button id="mobile-menu-btn" class="md:hidden text-white z-50 focus:outline-none p-2">
+                <div class="w-6 h-6 flex flex-col justify-between items-center relative">
+                    <span id="line1" class="w-full h-[2px] bg-white transition-all duration-300 transform origin-center"></span>
+                    <span id="line2" class="w-full h-[2px] bg-white transition-all duration-300 opacity-100"></span>
+                    <span id="line3" class="w-full h-[2px] bg-white transition-all duration-300 transform origin-center"></span>
+                </div>
+            </button>
+
+            <a href="index.html" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 flex items-center gap-3 z-20 cursor-pointer group">
                 <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition"> 
-                <div class="text-lg md:text-xl font-bold tracking-widest uppercase hidden md:block text-white group-hover:text-lexusGold transition">
+                <div class="text-sm md:text-xl font-bold tracking-widest uppercase text-white group-hover:text-lexusGold transition whitespace-nowrap">
                     Hafiz <span class="text-lexusGold group-hover:text-white transition">Mazhanafi</span>
                 </div>
             </a>
             
             <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
-                <a href="#home" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition" data-i18n="nav_home">HOME</span>
-                </a>
-                <a href="#about" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition" data-i18n="nav_about">PROFILE</span>
-                </a>
-                
-                <a href="gallery.html" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition">GALLERY</span>
-                </a>
-
-                <a href="#experience" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition" data-i18n="nav_exp">EXPERIENCE</span>
-                </a>
-                <a href="#contact" class="group flex flex-col items-center gap-1">
-                    <span class="text-xs font-medium tracking-[0.15em] text-gray-400 group-hover:text-white transition" data-i18n="nav_contact_link">CONTACT</span>
-                </a>
+                <a href="#home" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition" data-i18n="nav_home">HOME</a>
+                <a href="#about" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition" data-i18n="nav_about">PROFILE</a>
+                <a href="gallery.html" class="nav-link text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition">GALLERY</a>
+                <a href="#experience" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition" data-i18n="nav_exp">EXPERIENCE</a>
+                <a href="#contact" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition" data-i18n="nav_contact_link">CONTACT</a>
             </div>
 
-            <div class="hidden md:flex items-center h-full gap-6 z-20">
-                <div class="flex items-center gap-4">
+            <div class="flex items-center gap-6 z-20">
+                <div class="hidden md:flex items-center gap-4">
                     <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">EN</button>
                     <span class="text-gray-600 text-xs">|</span>
                     <button onclick="setLanguage('ms')" id="btn-ms" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">MY</button>
                 </div>
+                <div class="w-6 md:hidden"></div>
             </div>
 
-            <button id="mobile-menu-btn" class="md:hidden text-white z-50 focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
         </div>
 
-        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-black/80 backdrop-blur-md border-b border-gray-800 shadow-2xl md:hidden transition-all duration-300">
-            <div class="flex flex-col p-6 space-y-6 text-center">
-                <a href="#home" class="text-white hover:text-lexusGold tracking-widest text-sm" onclick="toggleMenu()" data-i18n="nav_home">HOME</a>
-                <a href="#about" class="text-white hover:text-lexusGold tracking-widest text-sm" onclick="toggleMenu()" data-i18n="nav_about">PROFILE</a>
-                <a href="gallery.html" class="text-lexusGold tracking-widest text-sm font-bold">GALLERY</a>
-                <a href="#experience" class="text-white hover:text-lexusGold tracking-widest text-sm" onclick="toggleMenu()" data-i18n="nav_exp">EXPERIENCE</a>
-                <a href="#contact" class="text-white hover:text-lexusGold tracking-widest text-sm" onclick="toggleMenu()" data-i18n="nav_contact_link">CONTACT</a>
-                
-                <div class="flex justify-center gap-6 text-sm text-gray-400 font-bold tracking-widest mt-4 border-t border-gray-700 pt-4 w-1/2 mx-auto">
-                    <button onclick="setLanguage('en'); toggleMenu()" class="hover:text-white">EN</button>
-                    <span>|</span>
-                    <button onclick="setLanguage('ms'); toggleMenu()" class="hover:text-white">MY</button>
-                </div>
+        <div id="mobile-menu" class="fixed top-20 left-0 w-full h-screen bg-black/95 backdrop-blur-xl transform -translate-y-[150%] transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center pt-10 z-40">
+            
+            <a href="#home" class="mobile-link text-white hover:text-lexusGold text-lg tracking-widest mb-6" data-i18n="nav_home">HOME</a>
+            <a href="#about" class="mobile-link text-white hover:text-lexusGold text-lg tracking-widest mb-6" data-i18n="nav_about">PROFILE</a>
+            <a href="gallery.html" class="mobile-link text-lexusGold font-bold text-lg tracking-widest mb-6">GALLERY</a>
+            <a href="#experience" class="mobile-link text-white hover:text-lexusGold text-lg tracking-widest mb-6" data-i18n="nav_exp">EXPERIENCE</a>
+            <a href="#contact" class="mobile-link text-white hover:text-lexusGold text-lg tracking-widest mb-8" data-i18n="nav_contact_link">CONTACT</a>
+            
+            <div class="flex justify-center gap-8 text-sm text-gray-400 font-bold tracking-widest border-t border-gray-800 pt-8 w-1/2">
+                <button onclick="setLanguage('en'); closeMenu()" class="hover:text-white">EN</button>
+                <button onclick="setLanguage('ms'); closeMenu()" class="hover:text-white">MY</button>
             </div>
         </div>
     </nav>
@@ -268,9 +291,8 @@
 
                 <div class="w-20 h-1 bg-lexusGold mb-4 md:mb-6 mx-auto md:mx-0 shadow-[0_0_10px_#C5A059]"></div>
 
-                <h2 class="text-xl md:text-2xl text-white font-medium tracking-wider mb-2 drop-shadow-md">Hafiz Mazhanafi</h2>
-                <p class="text-gray-200 text-sm uppercase tracking-widest mb-8 font-semibold" data-i18n="skill_1">
-                    Financial & Loan Expert
+                <p class="text-lexusGold text-sm md:text-base uppercase tracking-[0.2em] mb-8 font-bold" data-i18n="skill_1">
+                    Lexus Authorized Sales Executive
                 </p>
 
                 <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
@@ -294,7 +316,7 @@
     </header>
 
 
-    <section id="about" class="relative py-24 flex items-center justify-center overflow-hidden">
+<section id="about" class="relative py-24 flex items-center justify-center overflow-hidden">
         
         <div class="absolute inset-0 carbon-bg opacity-100 z-0"></div>
         
@@ -302,85 +324,55 @@
 
         <div class="container mx-auto px-4 relative z-10">
             
-            <div class="max-w-6xl mx-auto bg-black/40 backdrop-blur-xl border border-lexusGold/30 rounded-2xl p-10 md:p-20 shadow-[0_0_50px_rgba(0,0,0,0.8)] transform hover:scale-[1.01] transition duration-500">
+            <div class="max-w-6xl mx-auto bg-black/60 backdrop-blur-xl border border-lexusGold/30 rounded-2xl p-8 md:p-16 shadow-[0_0_50px_rgba(0,0,0,0.8)] 
+                        hover:border-lexusGold transition duration-500 group">
                 
-                <h2 class="text-4xl md:text-6xl font-luxury font-bold text-white mb-12 text-center tracking-[0.1em] uppercase drop-shadow-lg">
-                    <span class="text-lexusGold border-b-4 border-lexusGold pb-2" data-i18n="about_title">Professional Summary</span>
-                </h2>
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-luxury font-bold text-white tracking-[0.1em] uppercase drop-shadow-lg inline-block relative">
+                        <span data-i18n="about_title">Professional Summary</span>
+                        <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-lexusGold group-hover:w-full transition-all duration-700"></div>
+                    </h2>
+                </div>
 
-                <div class="text-gray-200 text-lg md:text-2xl leading-relaxed font-light tracking-wide space-y-8 text-center md:text-left">
+                <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
                     
-                    <p data-i18n="about_summary_1" class="drop-shadow-md">
-                        Motivated and experienced professional with over <span class="text-lexusGold font-bold">10 years of success</span> in sales, customer service, and financial advisory in telecommunications, banking, and automotive industries.
-                    </p>
+                    <div class="w-full md:w-1/3 text-center md:text-right">
+                        <div class="inline-block bg-gradient-to-br from-lexusGray to-black border border-lexusGold/50 p-6 rounded-xl shadow-2xl transform hover:scale-105 transition duration-300">
+                            <span class="block text-6xl md:text-7xl font-bold text-white mb-2">10+</span>
+                            <span class="block text-lexusGold text-xs uppercase tracking-[0.3em]">Years Experience</span>
+                        </div>
+                    </div>
 
-                    <p data-i18n="about_summary_2" class="drop-shadow-md border-l-4 border-lexusGold pl-6 md:pl-8 italic bg-white/5 py-4 pr-4 rounded-r-lg">
-                        Strong communication skills, excels under pressure, and dedicated to results. Recognized for <span class="text-white font-bold">initiative, persistence, and meeting performance KPIs</span>. Eager to impact organizational objectives and grow in a fast-paced environment.
-                    </p>
+                    <div class="w-full md:w-2/3 text-gray-300 font-light leading-relaxed space-y-6 text-center md:text-left">
+                        
+                        <p class="text-lg md:text-xl" data-i18n="about_summary_1">
+                            Motivated and experienced professional with over 10 years of success in sales, customer service, and financial advisory in telecommunications, banking, and automotive industries.
+                        </p>
 
+                        <div class="relative bg-white/5 p-6 rounded-lg 
+                                    border-t-2 md:border-t-0 md:border-l-4 border-lexusGold 
+                                    active:scale-95 md:active:scale-100 transition duration-200 cursor-default">
+                            
+                            <p class="italic text-white" data-i18n="about_summary_2">
+                                Strong communication skills, excels under pressure, and dedicated to results. Recognized for initiative, persistence, and meeting performance KPIs. Eager to impact organizational objectives and grow in a fast-paced environment.
+                            </p>
+                            
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 md:left-4 md:translate-x-0 bg-black px-2 text-lexusGold text-2xl">❝</div>
+                        </div>
+
+                    </div>
                 </div>
                 
-                <div class="absolute top-6 left-6 w-3 h-3 rounded-full bg-gray-600 shadow-inner border border-gray-800"></div>
-                <div class="absolute top-6 right-6 w-3 h-3 rounded-full bg-gray-600 shadow-inner border border-gray-800"></div>
-                <div class="absolute bottom-6 left-6 w-3 h-3 rounded-full bg-gray-600 shadow-inner border border-gray-800"></div>
-                <div class="absolute bottom-6 right-6 w-3 h-3 rounded-full bg-gray-600 shadow-inner border border-gray-800"></div>
+                <div class="absolute top-4 left-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
+                <div class="absolute top-4 right-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
+                <div class="absolute bottom-4 left-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
+                <div class="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
 
             </div>
         </div>
     </section>
 
-   <section id="education" class="relative py-24 flex items-center bg-black">
-        
-        <div class="absolute inset-0 z-0 overflow-hidden">
-            <div class="absolute inset-0 bg-[url('education-bg.jpg')] bg-cover bg-center bg-fixed opacity-30 blur-[2px]"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-black/50"></div>
-        </div>
 
-        <div class="container mx-auto px-6 relative z-10">
-            
-            <h2 class="text-3xl md:text-4xl font-light text-white mb-16 text-center tracking-[0.2em] uppercase" data-i18n="edu_title">
-                EDUCATION
-            </h2>
-
-            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-
-                <div class="relative pl-8 border-l border-lexusGold/50 space-y-6">
-                    <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-lexusGold shadow-[0_0_10px_#C5A059]"></div>
-                    
-                    <div>
-                        <h3 class="text-xl md:text-2xl text-white font-bold">Universiti Teknologi MARA (UiTM)</h3>
-                        <p class="text-lexusGold text-xs uppercase tracking-widest mt-1 mb-4">Dec 2013</p>
-                        
-                        <div class="bg-white/5 p-4 rounded border border-white/10 hover:border-lexusGold/50 transition duration-300">
-                            <p class="text-white font-medium text-lg">Diploma in Business Studies</p>
-                            <div class="w-10 h-[1px] bg-gray-600 my-2"></div>
-                            <p class="text-gray-400 text-sm">Foundation in Law (2008 – 2010)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative pl-8 border-l border-lexusGold/50 space-y-6">
-                    <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-lexusGold shadow-[0_0_10px_#C5A059]"></div>
-                    
-                    <div>
-                        <h3 class="text-xl md:text-2xl text-white font-bold">Sekolah Sultan Alam Shah</h3>
-                        <p class="text-lexusGold text-xs uppercase tracking-widest mt-1 mb-4">Putrajaya | 2003 – 2007</p>
-                        
-                        <div class="bg-white/5 p-4 rounded border border-white/10 hover:border-lexusGold/50 transition duration-300">
-                            <p class="text-white font-medium text-lg">Sijil Pelajaran Malaysia (SPM)</p>
-                            <div class="mt-3">
-                                <span class="text-[10px] text-lexusGold uppercase tracking-wider border border-lexusGold px-2 py-1 rounded">Results</span>
-                                <p class="text-gray-300 font-mono text-sm mt-2 tracking-wide">
-                                    1A1, 3A2, 2B3, 1B4, 2C5, 1C6
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
    <section id="experience" class="relative py-24 bg-[#0a0a0a] overflow-hidden">
         
@@ -674,6 +666,154 @@
         </style>
     </section>
 
+<style>
+        /* CSS ANIMASI */
+        .marquee-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            /* PENTING: Agar tidak collapse/gepeng */
+            height: 200px; 
+            display: flex;
+            align-items: center;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content; /* Lebar mengikuti isi */
+            gap: 20px;
+        }
+
+        /* Animasi Kiri & Kanan */
+        @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+        .anim-left { animation: scrollLeft 30s linear infinite; }
+        .anim-right { animation: scrollRight 30s linear infinite; }
+
+        .marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
+    </style>
+
+    <section id="testimonials" class="relative py-24 bg-[#0a0a0a] overflow-hidden">
+        
+        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:30px_30px]"></div>
+
+        <div class="container mx-auto px-0 md:px-6 relative z-10">
+            
+            <div class="text-center mb-12 px-6">
+                <h2 class="text-3xl md:text-5xl font-luxury text-white mb-4 tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="testi_title">
+                    Moments of Joy
+                </h2>
+                <div class="w-20 h-1 bg-lexusGold mx-auto mb-6 shadow-[0_0_15px_#C5A059]"></div>
+                <p class="text-gray-400 text-sm uppercase tracking-widest" data-i18n="testi_sub">
+                    Welcoming New Members to the Lexus Family
+                </p>
+            </div>
+
+            <div id="testi-container" class="w-full mb-12 min-h-[420px]">
+                </div>
+
+            <div class="text-center relative z-20">
+                <button id="toggle-view-btn" onclick="toggleTestiView()" class="group relative inline-flex items-center gap-3 px-8 py-3 bg-black border border-lexusGold rounded-full text-white hover:bg-lexusGold hover:text-black transition duration-500 overflow-hidden shadow-[0_0_20px_rgba(197,160,89,0.3)]">
+                    <span id="btn-text" class="text-xs font-bold tracking-[0.2em] uppercase" data-i18n="btn_view_all">
+                        VIEW ALL PHOTOS
+                    </span>
+                    <svg id="btn-icon" class="w-4 h-4 transition-transform duration-500 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+            </div>
+
+        </div>
+        
+        <div id="fade-overlay" class="absolute inset-0 pointer-events-none z-10">
+            <div class="absolute top-0 left-0 w-12 md:w-32 h-full bg-gradient-to-r from-[#0a0a0a] to-transparent"></div>
+            <div class="absolute top-0 right-0 w-12 md:w-32 h-full bg-gradient-to-l from-[#0a0a0a] to-transparent"></div>
+        </div>
+
+    </section>
+
+    <script>
+        const totalPhotos = 41;      
+        const samplePhotos = 4;     // Kita cuma pakai 4 foto untuk animasi
+        const folderPath = 'testimonials/';
+        const container = document.getElementById('testi-container');
+        const fadeOverlay = document.getElementById('fade-overlay');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+        let isFullView = false;
+
+        function createCard(index, isGrid) {
+            const filePath = `${folderPath}client (${index}).jpg`;
+            // Ukuran card fixed w-64 agar tidak gepeng
+            const sizeClass = isGrid ? 'w-full aspect-square' : 'w-48 h-48 md:w-64 md:h-64 flex-shrink-0';
+            
+            return `
+                <div class="relative ${sizeClass} rounded-xl overflow-hidden border border-gray-800 hover:border-lexusGold transition cursor-pointer group bg-[#111]">
+                    <img src="${filePath}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                </div>
+            `;
+        }
+
+        function renderMarquee() {
+            // 1. Buat batch berisi foto 1, 2, 3, 4
+            let batch = '';
+            for(let i=1; i<=samplePhotos; i++) {
+                batch += createCard(i, false);
+            }
+
+            // 2. DUPLIKASI BATCH 6 KALI (Agar panjangnya melebihi layar monitor manapun)
+            // [1,2,3,4] x 6 = 24 Foto di DOM (Tapi cuma load 4 file)
+            let longContent = batch + batch + batch + batch + batch + batch;
+
+            // 3. Masukkan ke Container (Baris 1 Kiri, Baris 2 Kanan)
+            // Di Baris 2 kita pakai konten yang sama persis agar tidak blank
+            container.innerHTML = `
+                <div class="marquee-wrapper">
+                    <div class="marquee-track anim-left">
+                        ${longContent} ${longContent}
+                    </div>
+                </div>
+                <div class="marquee-wrapper">
+                    <div class="marquee-track anim-right">
+                        ${longContent} ${longContent}
+                    </div>
+                </div>
+            `;
+            
+            container.classList.remove('grid', 'grid-cols-2', 'md:grid-cols-4', 'gap-4', 'px-6');
+            fadeOverlay.style.display = 'block';
+        }
+
+        function renderGrid() {
+            let all = '';
+            for(let i=1; i<=totalPhotos; i++) all += createCard(i, true);
+            container.innerHTML = all;
+            container.classList.add('grid', 'grid-cols-2', 'md:grid-cols-3', 'lg:grid-cols-4', 'gap-4', 'px-6');
+            fadeOverlay.style.display = 'none';
+        }
+
+        function toggleTestiView() {
+            isFullView = !isFullView;
+            const isMalay = document.getElementById('btn-ms')?.classList.contains('text-white') || false;
+            const currentLang = isMalay ? 'ms' : 'en';
+
+            if(isFullView) {
+                renderGrid();
+                btnText.innerText = (typeof translations !== 'undefined') ? translations[currentLang]['btn_close_gal'] : "CLOSE GALLERY";
+                btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>';
+            } else {
+                renderMarquee();
+                btnText.innerText = (typeof translations !== 'undefined') ? translations[currentLang]['btn_view_all'] : "VIEW ALL PHOTOS";
+                btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>';
+                document.getElementById('testimonials').scrollIntoView({behavior: 'smooth', block: 'start'});
+            }
+        }
+
+        // Jalankan
+        setTimeout(renderMarquee, 100);
+    </script>
+
     <section class="py-20 bg-lexusGray border-t border-gray-800 relative overflow-hidden">
         
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:20px_20px]"></div>
@@ -794,78 +934,159 @@
         </div>
     </footer>
 
-    <script src="lang.js"></script>
-    <script>
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        // Fungsi Buka/Tutup Menu
-        function toggleMenu() {
-            menu.classList.toggle('hidden');
-        }
-
-        // Event Listener saat tombol burger diklik
-        btn.addEventListener('click', toggleMenu);
-    </script>
-    <script>
-        function sendToWA() {
-            // Ambil data dari input
-            const name = document.getElementById('inputName').value;
-            const phone = document.getElementById('inputPhone').value;
-            const msg = document.getElementById('inputMessage').value;
-            
-            // Format pesan
-            const text = `Hi Hafiz, my name is ${name} (${phone}). ${msg}`;
-            
-            // Buka WhatsApp
-            window.open(`https://wa.me/601111492290?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        function sendToEmail() {
-            // Ambil data dari input
-            const name = document.getElementById('inputName').value;
-            const phone = document.getElementById('inputPhone').value;
-            const msg = document.getElementById('inputMessage').value;
-            
-            // Buka Email Client
-            window.open(`mailto:hafizbinmazhanafi@gmail.com?subject=Lexus Inquiry from ${name}&body=Name: ${name}%0D%0APhone: ${phone}%0D%0AMessage: ${msg}`, '_blank');
-        }
-    </script>
-
 <a href="https://wa.me/601111492290" target="_blank" class="fixed bottom-6 right-6 z-50 group">
         <div class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.5)] hover:scale-110 transition duration-300">
             <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         </div>
     </a>
 
+    <script src="lang.js"></script>
+
     <script>
+        // --- 1. SETUP VARIABEL NAVIGASI ---
+        // Saya ganti nama variabel 'btn' jadi 'menuBtn' biar tidak error
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
+        
+        // Elemen Garis Burger
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
+
+        let isMenuOpen = false;
+
+        // --- 2. FUNGSI NAVIGASI ---
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                // Buka Menu
+                navMenu.classList.remove('-translate-y-[150%]');
+                // Animasi Burger jadi X
+                if(line1) line1.classList.add('rotate-45', 'translate-y-[8px]');
+                if(line2) line2.classList.add('opacity-0');
+                if(line3) line3.classList.add('-rotate-45', '-translate-y-[8px]');
+            } else {
+                closeMenu();
+            }
+        }
+
+        function closeMenu() {
+            isMenuOpen = false;
+            // Tutup Menu
+            navMenu.classList.add('-translate-y-[150%]');
+            // Animasi X balik jadi Burger
+            if(line1) line1.classList.remove('rotate-45', 'translate-y-[8px]');
+            if(line2) line2.classList.remove('opacity-0');
+            if(line3) line3.classList.remove('-rotate-45', '-translate-y-[8px]');
+        }
+
+        // Event Listeners Navbar
+        if (menuBtn) {
+            menuBtn.addEventListener('click', toggleMenu);
+        }
+
+        // Tutup menu saat link diklik
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Tutup menu saat klik di luar area
+        document.addEventListener('click', function(event) {
+            if (isMenuOpen && menuBtn && navMenu && !menuBtn.contains(event.target) && !navMenu.contains(event.target)) {
+                closeMenu();
+            }
+        });
+
+        // Efek Scroll Navbar
+        window.addEventListener('scroll', () => {
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-lg', 'bg-black');
+                } else {
+                    navbar.classList.remove('shadow-lg', 'bg-black');
+                }
+            }
+        });
+
+
+        // --- 3. FUNGSI GANTI BAHASA ---
+        function setLanguage(lang) {
+            if(typeof translations === 'undefined') return;
+
+            const data = translations[lang];
+            const elements = document.querySelectorAll('[data-i18n]');
+
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (data[key]) {
+                    el.innerHTML = data[key]; 
+                }
+            });
+
+            // Update warna tombol bahasa (hanya jika elemennya ada)
+            const btnEn = document.getElementById('btn-en');
+            const btnMs = document.getElementById('btn-ms');
+            if(btnEn && btnMs) {
+                btnEn.style.color = "#9ca3af";
+                btnMs.style.color = "#9ca3af";
+                if(lang === 'en') btnEn.style.color = "white";
+                if(lang === 'ms') btnMs.style.color = "white";
+            }
+        }
+
+
+        // --- 4. FUNGSI GANTI WARNA MOBIL ---
         function changeColor(model, color) {
             const img = document.getElementById(`image-${model}`);
+            if(!img) return;
             
-            img.style.opacity = '0'; // Efek hilang sejenak
+            img.style.opacity = '0'; 
 
             setTimeout(() => {
-                // Format file: model-warna.png (misal: lbx-black.png)
                 img.src = `${model}-${color}.png`;
-                
                 img.onload = () => { img.style.opacity = '1'; };
-                
-                // Jika gambar warna tsb tidak ada, balik ke default
                 img.onerror = () => {
-                    // Jangan alert terus menerus, cukup log atau fallback diam-diam
                     console.log(`Gambar ${model}-${color}.png tidak ditemukan.`);
                     img.src = `${model}-default.png`; 
                     img.style.opacity = '1';
                 }
             }, 200);
 
-            // Ganti status tombol aktif
+            // Update tombol aktif
             const parent = event.target.parentElement;
             if(parent) {
                 parent.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
                 event.target.classList.add('active');
             }
         }
+
+
+        // --- 5. FUNGSI KONTAK (WA & EMAIL) ---
+        function sendToWA() {
+            const name = document.getElementById('inputName').value;
+            const phone = document.getElementById('inputPhone').value;
+            const msg = document.getElementById('inputMessage').value;
+            
+            const text = `Hi Hafiz, my name is ${name} (${phone}). ${msg}`;
+            window.open(`https://wa.me/601111492290?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function sendToEmail() {
+            const name = document.getElementById('inputName').value;
+            const phone = document.getElementById('inputPhone').value;
+            const msg = document.getElementById('inputMessage').value;
+            
+            window.open(`mailto:hafizbinmazhanafi@gmail.com?subject=Lexus Inquiry from ${name}&body=Name: ${name}%0D%0APhone: ${phone}%0D%0AMessage: ${msg}`, '_blank');
+        }
+
+        // Set bahasa default saat load
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('en'); 
+        });
     </script>
+
+   
 </body>
 </html>
