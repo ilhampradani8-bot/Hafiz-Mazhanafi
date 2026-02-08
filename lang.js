@@ -42,6 +42,18 @@ const translations = {
         edu_title: "EDUCATION",
 
         exp_title: "WORK EXPERIENCE",
+
+        // --- FOOTER ---
+        ft_links: "QUICK LINKS",
+        ft_form_title: "SEND INQUIRY",
+
+        // --- NEW CONTACT SECTION ---
+        cta_title: "READY TO DRIVE YOUR DREAM?",
+        cta_desc: "Schedule a private viewing or test drive today. I am here to assist you with the best financial plans.",
+        btn_wa_chat: "CHAT VIA WHATSAPP",
+        btn_email_send: "SEND EMAIL",
+        
+        // (Pastikan ft_links dll tetap ada)
     },
 
     // BAHASA MALAYSIA (MY)
@@ -84,6 +96,16 @@ const translations = {
         edu_title: "PENDIDIKAN",
 
         exp_title: "PENGALAMAN KERJA",
+
+        // --- FOOTER ---
+        ft_links: "PAUTAN PANTAS",
+        ft_form_title: "HANTAR PERTANYAAN",
+
+        // --- NEW CONTACT SECTION ---
+        cta_title: "SEDIA MEMANDU IMPIAN ANDA?",
+        cta_desc: "Jadualkan sesi pandu uji peribadi hari ini. Saya di sini untuk membantu anda dengan pelan kewangan terbaik.",
+        btn_wa_chat: "CHAT WHATSAPP",
+        btn_email_send: "HANTAR EMEL",
     }
 };
 
