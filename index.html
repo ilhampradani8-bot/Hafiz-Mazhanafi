@@ -268,7 +268,7 @@
 </head>
 <body class="bg-lexusBlack text-white antialiased">
 
-<nav class="fixed top-0 left-0 w-full z-[100] bg-black/20 backdrop-blur-xl border-b border-white/10 h-20" id="navbar">
+<nav class="fixed top-0 left-0 w-full z-[100] bg-black/20 backdrop-blur-xl border-b border-white/10 h-20 transition-all duration-300" id="navbar">
     <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative z-[110]">
         
         <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-white focus:outline-none p-2">
@@ -289,8 +289,11 @@
         <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
             <a href="#home" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_home">HOME</a>
             <a href="#about" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_about">PROFILE</a>
-            <a href="gallery.html" class="nav-link text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition">GALLERY</a>
-            <a href="#experience" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_exp">EXPERIENCE</a>
+            
+            <a href="gallery.html" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">GALLERY</a>
+            
+            <a href="experience.html" class="nav-link text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition" data-i18n="nav_exp">EXPERIENCE</a>
+            
             <a href="#contact" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_contact_link">CONTACT</a>
         </div>
 
@@ -306,8 +309,10 @@
     <div id="mobile-menu" class="fixed top-20 left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 transform -translate-y-[150%] transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center py-8 z-[90] shadow-2xl">
         <a href="#home" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_home">HOME</a>
         <a href="#about" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_about">PROFILE</a>
-        <a href="gallery.html" class="mobile-link text-lexusGold font-bold text-sm tracking-widest mb-6 uppercase">GALLERY</a>
-        <a href="#experience" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_exp">EXPERIENCE</a>
+        <a href="gallery.html" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">GALLERY</a>
+        
+        <a href="experience.html" class="mobile-link text-lexusGold font-bold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_exp">EXPERIENCE</a>
+        
         <a href="#contact" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-8 uppercase" data-i18n="nav_contact_link">CONTACT</a>
         
         <div class="flex gap-8 text-xs text-gray-400 font-bold tracking-widest border-t border-gray-800 pt-6 w-1/2 justify-center">
@@ -346,13 +351,14 @@
                 </p>
 
                 <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
+                    
                     <a href="#collection" class="px-8 py-3 bg-lexusGold text-black font-bold tracking-widest text-xs uppercase hover:bg-white hover:scale-105 transition duration-300 shadow-lg border border-lexusGold" 
                        data-i18n="hero_cta">
                         VIEW COLLECTION
                     </a>
 
-                    <a href="#contact" class="px-8 py-3 border border-white text-white font-bold tracking-widest text-xs uppercase hover:bg-white hover:text-black transition duration-300 backdrop-blur-sm" data-i18n="nav_contact_link">
-                        Contact Me
+                    <a href="#testimonials" class="px-8 py-3 border border-white text-white font-bold tracking-widest text-xs uppercase hover:bg-white hover:text-black transition duration-300 backdrop-blur-sm" data-i18n="btn_delivered">
+                        Car Delivered
                     </a>
                 </div>
             </div>
@@ -417,176 +423,6 @@
                 <div class="absolute top-4 right-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
                 <div class="absolute bottom-4 left-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
                 <div class="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
-
-            </div>
-        </div>
-    </section>
-
-
-
-  <section id="experience" class="relative py-24 bg-[#0a0a0a] overflow-hidden">
-        
-        <div class="container mx-auto px-6 relative z-10 max-w-6xl">
-            
-            <h2 class="text-4xl md:text-5xl font-luxury text-white mb-20 text-center tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="exp_title">
-                WORK EXPERIENCE
-            </h2>
-
-            <div class="relative">
-                <div class="timeline-line"></div>
-
-                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full">
-                    <div class="hidden md:block w-5/12"></div> 
-                    <div class="timeline-dot"></div> 
-                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-12 animate-left" style="animation-delay: 0.2s;">
-                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg group">
-                            <div class="flex items-center gap-4 mb-4">
-                                <img src="logo-bmw.png" alt="BMW" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
-                                <div>
-                                    <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
-                                    <p class="text-lexusGold text-xs uppercase tracking-wider">BMW Millennium Welt KL North</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-500 text-xs mb-4">2023 – Present</p>
-                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_bmw_desc">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row-reverse items-center justify-between mb-16 w-full">
-                    <div class="hidden md:block w-5/12"></div>
-                    <div class="timeline-dot"></div>
-                    
-                    <div class="w-full md:w-5/12 pl-12 md:pl-12 animate-right" style="animation-delay: 0.4s;">
-                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
-                            <div class="flex items-center gap-4 mb-4">
-                                <img src="logo-honda.png" alt="Honda" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
-                                <div>
-                                    <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
-                                    <p class="text-lexusGold text-xs uppercase tracking-wider">Tenaga Setia Resources (Honda)</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-500 text-xs mb-4">2018 – 2023</p>
-                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_honda_desc"></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full">
-                    <div class="hidden md:block w-5/12"></div>
-                    <div class="timeline-dot"></div>
-                    
-                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-12 animate-left" style="animation-delay: 0.6s;">
-                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
-                            <div class="flex items-center gap-4 mb-4">
-                                <img src="logo-affin.png" alt="Affin" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
-                                <div>
-                                    <h3 class="text-xl font-bold text-white">Sales Executive</h3>
-                                    <p class="text-lexusGold text-xs uppercase tracking-wider">Affin Islamic Bank Berhad</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-500 text-xs mb-4">2015 – 2016</p>
-                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_affin_desc"></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row-reverse items-center justify-between mb-16 w-full">
-                    <div class="hidden md:block w-5/12"></div>
-                    <div class="timeline-dot"></div>
-                    
-                    <div class="w-full md:w-5/12 pl-12 md:pl-12 animate-right" style="animation-delay: 0.8s;">
-                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
-                            <div class="flex items-center gap-4 mb-4">
-                                <img src="logo-rhb.png" alt="RHB" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
-                                <div>
-                                    <h3 class="text-xl font-bold text-white">Sales Executive</h3>
-                                    <p class="text-lexusGold text-xs uppercase tracking-wider">RHB Banking Group</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-500 text-xs mb-4">2014 – 2015</p>
-                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_rhb_desc"></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full">
-                    <div class="hidden md:block w-5/12"></div>
-                    <div class="timeline-dot"></div>
-                    
-                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-12 animate-left" style="animation-delay: 1.0s;">
-                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
-                            <div class="flex items-center gap-4 mb-4">
-                                <img src="logo-cimb.png" alt="CIMB" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
-                                <div>
-                                    <h3 class="text-xl font-bold text-white">Financial Consultant</h3>
-                                    <p class="text-lexusGold text-xs uppercase tracking-wider">CIMB Bank Berhad</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-500 text-xs mb-4">2013 – 2014</p>
-                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_cimb_desc"></ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-<section class="relative py-24 bg-[#080808] overflow-hidden flex items-center justify-center">
-        
-        <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none overflow-hidden">
-            <svg class="w-[150%] h-[150%] md:w-[80%] md:h-[150%] turbine-spin text-lexusGold" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="250" cy="250" r="200" stroke="currentColor" stroke-width="1" stroke-dasharray="10 10" />
-                <circle cx="250" cy="250" r="150" stroke="currentColor" stroke-width="0.5" />
-                <path d="M250 50 L250 450 M50 250 L450 250" stroke="currentColor" stroke-width="0.5" />
-                <path d="M108 108 L392 392 M108 392 L392 108" stroke="currentColor" stroke-width="0.5" />
-                <path d="M250 250 L250 50 A200 200 0 0 1 450 250 Z" fill="currentColor" fill-opacity="0.1" />
-                <path d="M250 250 L250 450 A200 200 0 0 1 50 250 Z" fill="currentColor" fill-opacity="0.1" />
-            </svg>
-        </div>
-        
-        <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]"></div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            
-            <h2 class="text-4xl md:text-5xl font-luxury text-white mb-4 text-center tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="service_head">
-                Why Choose Me?
-            </h2>
-            <div class="w-24 h-1 bg-lexusGold mx-auto mb-16 shadow-[0_0_15px_#C5A059]"></div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                
-                <div class="service-card bg-white/5 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-center group">
-                    <div class="icon-pulse w-20 h-20 mx-auto bg-black border border-lexusGold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
-                        <svg class="w-8 h-8 text-lexusGold fill-current" viewBox="0 0 24 24"><path d="M18.364 15.536L16.95 14.12l1.414-1.414a5.002 5.002 0 00-7.071-7.071L9.879 7.05 8.464 5.636 9.88 4.222a7 7 0 019.9 9.9l-1.415 1.414zm-2.828 2.828l-1.415 1.414a7 7 0 01-9.9-9.9l1.415-1.414L7.05 9.88l-1.414 1.414a5 5 0 007.07 7.071l1.415-1.414 1.415 1.414zm-.708-10.607l1.415 1.415-7.071 7.07-1.415-1.414 7.071-7.07zm1.414-1.414l1.414 1.414-7.07 7.071-1.415-1.414 7.071-7.071z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-wider group-hover:text-lexusGold transition" data-i18n="svc_1_title">Consultation</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="svc_1_desc">
-                        Objective advice on selecting the perfect Lexus for your lifestyle.
-                    </p>
-                </div>
-
-                <div class="service-card bg-white/5 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-center group">
-                    <div class="icon-pulse w-20 h-20 mx-auto bg-black border border-lexusGold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
-                        <svg class="w-8 h-8 text-lexusGold fill-current" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-wider group-hover:text-lexusGold transition" data-i18n="svc_2_title">Easy Financing</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="svc_2_desc">
-                        Leveraging my banking background for easier loan approvals.
-                    </p>
-                </div>
-
-                <div class="service-card bg-white/5 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-center group">
-                    <div class="icon-pulse w-20 h-20 mx-auto bg-black border border-lexusGold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
-                        <svg class="w-8 h-8 text-lexusGold fill-current" viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-wider group-hover:text-lexusGold transition" data-i18n="svc_3_title">Premium Delivery</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="svc_3_desc">
-                        A memorable and special car delivery experience directly to you.
-                    </p>
-                </div>
 
             </div>
         </div>
@@ -717,7 +553,8 @@
         </style>
     </section>
 
-<style>
+
+    <style>
         /* CSS ANIMASI */
         .marquee-wrapper {
             position: relative;
@@ -746,121 +583,219 @@
         .marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
     </style>
 
-    <section id="testimonials" class="relative py-24 bg-[#0a0a0a] overflow-hidden">
+<section id="testimonials" class="relative py-24 bg-[#0a0a0a] overflow-hidden">
+    
+    <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:30px_30px]"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
         
-        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:30px_30px]"></div>
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-5xl font-luxury text-white mb-4 tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="testi_title">
+                Moments of Joy
+            </h2>
+            <div class="w-20 h-1 bg-lexusGold mx-auto mb-6 shadow-[0_0_15px_#C5A059]"></div>
+            <p class="text-gray-400 text-sm uppercase tracking-widest" data-i18n="testi_sub">
+                Welcoming New Members to the Lexus Family
+            </p>
+        </div>
+
+        <div id="testi-container" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 min-h-[200px]">
+        </div>
+
+        <div class="text-center relative z-20">
+            <button id="toggle-view-btn" onclick="toggleTestiView()" class="group relative inline-flex items-center gap-3 px-8 py-3 bg-black border border-lexusGold rounded-full text-white hover:bg-lexusGold hover:text-black transition duration-500 overflow-hidden shadow-[0_0_20px_rgba(197,160,89,0.3)]">
+                <span id="btn-text" class="text-xs font-bold tracking-[0.2em] uppercase" data-i18n="btn_view_all">
+                    VIEW ALL PHOTOS
+                </span>
+                <svg id="btn-icon" class="w-4 h-4 transition-transform duration-500 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+    </div>
+
+    <div id="image-modal" onclick="closeImageModal()" class="fixed inset-0 z-[9999] bg-black/95 hidden flex items-center justify-center cursor-zoom-out opacity-0 transition-opacity duration-300">
+        <button class="absolute top-6 right-6 text-white hover:text-lexusGold transition p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        
+        <img id="modal-img" src="" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-[0_0_50px_rgba(197,160,89,0.3)] scale-95 transition-transform duration-300" onclick="event.stopPropagation()"> <p class="absolute bottom-10 text-lexusGold tracking-[0.2em] text-sm uppercase font-bold bg-black/50 px-4 py-2 rounded-full border border-lexusGold/30 backdrop-blur-sm">
+            Lexus Experience
+        </p>
+    </div>
+</section>
+
+   <script>
+    // --- KONFIGURASI ---
+    const totalPhotos = 41;      
+    const previewCount = 4;      
+    const folderPath = 'testimonials/';
+    
+    // --- VARIABEL ---
+    let isFullView = false;
+    const container = document.getElementById('testi-container');
+    const btnText = document.getElementById('btn-text');
+    const btnIcon = document.getElementById('btn-icon');
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+
+    // --- FUNGSI BIKIN KARTU (Dengan Onclick) ---
+    function createCard(index) {
+        const filePath = `${folderPath}client (${index}).jpg`;
+        
+        // Tambahkan onclick="openImageModal(...)"
+        return `
+            <div class="relative aspect-square rounded-xl overflow-hidden border border-gray-800 hover:border-lexusGold transition cursor-zoom-in group bg-[#111]"
+                 onclick="openImageModal('${filePath}')">
+                
+                <img src="${filePath}" 
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500 transform group-hover:scale-110"
+                     loading="lazy"
+                     onerror="this.parentElement.style.display='none'"> 
+                
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                
+                <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end justify-between">
+                    <span class="text-lexusGold text-[10px] font-bold uppercase tracking-widest border-b border-lexusGold pb-1">
+                        View Photo
+                    </span>
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                </div>
+            </div>
+        `;
+    }
+
+    // --- RENDER PHOTOS ---
+    function renderPhotos(count) {
+        let html = '';
+        for(let i=1; i<=count; i++) {
+            html += createCard(i);
+        }
+        container.innerHTML = html;
+    }
+
+    // --- LIGHTBOX CONTROL (Modal) ---
+    function openImageModal(src) {
+        modalImg.src = src;
+        modal.classList.remove('hidden');
+        // Sedikit delay agar transisi opacity jalan
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modalImg.classList.remove('scale-95');
+            modalImg.classList.add('scale-100');
+        }, 10);
+        document.body.style.overflow = 'hidden'; // Kunci scroll belakang
+    }
+
+    function closeImageModal() {
+        modal.classList.add('opacity-0');
+        modalImg.classList.remove('scale-100');
+        modalImg.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modalImg.src = ''; // Bersihkan src
+        }, 300); // Sesuaikan durasi transition CSS
+        document.body.style.overflow = 'auto'; // Buka scroll
+    }
+
+    // --- TOGGLE VIEW ---
+    function toggleTestiView() {
+        isFullView = !isFullView;
+        
+        // Cek Bahasa Aktif (Opsional)
+        const isMalay = document.getElementById('btn-ms')?.classList.contains('text-white') || false;
+        const currentLang = isMalay ? 'ms' : 'en';
+
+        if(isFullView) {
+            renderPhotos(totalPhotos);
+            container.classList.remove('md:grid-cols-4');
+            container.classList.add('md:grid-cols-4', 'lg:grid-cols-5'); 
+            
+            btnText.innerText = (typeof translations !== 'undefined') ? translations[currentLang]['btn_close_gal'] : "CLOSE GALLERY";
+            btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>';
+        } else {
+            renderPhotos(previewCount);
+            container.classList.remove('md:grid-cols-4', 'lg:grid-cols-5');
+            container.classList.add('md:grid-cols-4');
+
+            btnText.innerText = (typeof translations !== 'undefined') ? translations[currentLang]['btn_view_all'] : "VIEW ALL PHOTOS";
+            btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>';
+            
+            document.getElementById('testimonials').scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+    }
+
+    // --- INIT ---
+    renderPhotos(previewCount);
+</script>
+
+<section class="relative py-24 bg-[#080808] overflow-hidden flex items-center justify-center">
+        
+        <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none overflow-hidden">
+            <svg class="w-[150%] h-[150%] md:w-[80%] md:h-[150%] turbine-spin text-lexusGold" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="250" cy="250" r="200" stroke="currentColor" stroke-width="1" stroke-dasharray="10 10" />
+                <circle cx="250" cy="250" r="150" stroke="currentColor" stroke-width="0.5" />
+                <path d="M250 50 L250 450 M50 250 L450 250" stroke="currentColor" stroke-width="0.5" />
+                <path d="M108 108 L392 392 M108 392 L392 108" stroke="currentColor" stroke-width="0.5" />
+                <path d="M250 250 L250 50 A200 200 0 0 1 450 250 Z" fill="currentColor" fill-opacity="0.1" />
+                <path d="M250 250 L250 450 A200 200 0 0 1 50 250 Z" fill="currentColor" fill-opacity="0.1" />
+            </svg>
+        </div>
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]"></div>
 
         <div class="container mx-auto px-6 relative z-10">
             
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-luxury text-white mb-4 tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="testi_title">
-                    Moments of Joy
-                </h2>
-                <div class="w-20 h-1 bg-lexusGold mx-auto mb-6 shadow-[0_0_15px_#C5A059]"></div>
-                <p class="text-gray-400 text-sm uppercase tracking-widest" data-i18n="testi_sub">
-                    Welcoming New Members to the Lexus Family
-                </p>
-            </div>
+            <h2 class="text-4xl md:text-5xl font-luxury text-white mb-4 text-center tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="service_head">
+                Why Choose Me?
+            </h2>
+            <div class="w-24 h-1 bg-lexusGold mx-auto mb-16 shadow-[0_0_15px_#C5A059]"></div>
 
-            <div id="testi-container" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 min-h-[200px]">
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="service-card bg-white/5 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-center group">
+                    <div class="icon-pulse w-20 h-20 mx-auto bg-black border border-lexusGold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <svg class="w-8 h-8 text-lexusGold fill-current" viewBox="0 0 24 24"><path d="M18.364 15.536L16.95 14.12l1.414-1.414a5.002 5.002 0 00-7.071-7.071L9.879 7.05 8.464 5.636 9.88 4.222a7 7 0 019.9 9.9l-1.415 1.414zm-2.828 2.828l-1.415 1.414a7 7 0 01-9.9-9.9l1.415-1.414L7.05 9.88l-1.414 1.414a5 5 0 007.07 7.071l1.415-1.414 1.415 1.414zm-.708-10.607l1.415 1.415-7.071 7.07-1.415-1.414 7.071-7.07zm1.414-1.414l1.414 1.414-7.07 7.071-1.415-1.414 7.071-7.071z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-wider group-hover:text-lexusGold transition" data-i18n="svc_1_title">Consultation</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="svc_1_desc">
+                        Objective advice on selecting the perfect Lexus for your lifestyle.
+                    </p>
                 </div>
 
-            <div class="text-center relative z-20">
-                <button id="toggle-view-btn" onclick="toggleTestiView()" class="group relative inline-flex items-center gap-3 px-8 py-3 bg-black border border-lexusGold rounded-full text-white hover:bg-lexusGold hover:text-black transition duration-500 overflow-hidden shadow-[0_0_20px_rgba(197,160,89,0.3)]">
-                    
-                    <span id="btn-text" class="text-xs font-bold tracking-[0.2em] uppercase" data-i18n="btn_view_all">
-                        VIEW ALL PHOTOS
-                    </span>
-                    
-                    <svg id="btn-icon" class="w-4 h-4 transition-transform duration-500 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-            </div>
+                <div class="service-card bg-white/5 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-center group">
+                    <div class="icon-pulse w-20 h-20 mx-auto bg-black border border-lexusGold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <svg class="w-8 h-8 text-lexusGold fill-current" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-wider group-hover:text-lexusGold transition" data-i18n="svc_2_title">Easy Financing</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="svc_2_desc">
+                        Leveraging my banking background for easier loan approvals.
+                    </p>
+                </div>
 
+                <div class="service-card bg-white/5 backdrop-blur-md border border-gray-800 p-8 rounded-xl text-center group">
+                    <div class="icon-pulse w-20 h-20 mx-auto bg-black border border-lexusGold rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                        <svg class="w-8 h-8 text-lexusGold fill-current" viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-wider group-hover:text-lexusGold transition" data-i18n="svc_3_title">Premium Delivery</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="svc_3_desc">
+                        A memorable and special car delivery experience directly to you.
+                    </p>
+                </div>
+
+            </div>
         </div>
     </section>
+    
 
-    <script>
-        // --- KONFIGURASI ---
-        const totalPhotos = 41;      // Total semua foto
-        const previewCount = 4;      // Mode Awal: Cuma tampil 4 foto (Diam)
-        const folderPath = 'testimonials/';
-        
-        // --- VARIABEL ---
-        let isFullView = false;
-        const container = document.getElementById('testi-container');
-        const btnText = document.getElementById('btn-text');
-        const btnIcon = document.getElementById('btn-icon');
 
-        // --- FUNGSI BIKIN KARTU ---
-        function createCard(index) {
-            const filePath = `${folderPath}client (${index}).jpg`;
-            
-            return `
-                <div class="relative aspect-square rounded-xl overflow-hidden border border-gray-800 hover:border-lexusGold transition cursor-pointer group bg-[#111]">
-                    <img src="${filePath}" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500"
-                         loading="lazy"
-                         onerror="this.parentElement.style.display='none'"> 
-                    
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
-                    
-                    <div class="absolute bottom-2 left-2 opacity-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-lexusGold text-[10px] font-bold uppercase tracking-widest bg-black/80 px-2 py-1 rounded border border-lexusGold/30">
-                            Verified
-                        </span>
-                    </div>
-                </div>
-            `;
-        }
 
-        // --- RENDER PHOTOS ---
-        function renderPhotos(count) {
-            let html = '';
-            // Generate foto sejumlah 'count' (4 atau 41)
-            for(let i=1; i<=count; i++) {
-                html += createCard(i);
-            }
-            container.innerHTML = html;
-        }
 
-        // --- TOGGLE VIEW ---
-        function toggleTestiView() {
-            isFullView = !isFullView;
-            
-            // Cek Bahasa
-            const isMalay = document.getElementById('btn-ms')?.classList.contains('text-white') || false;
-            const currentLang = isMalay ? 'ms' : 'en';
 
-            if(isFullView) {
-                // --> MODE FULL (41 FOTO)
-                renderPhotos(totalPhotos);
-                
-                // Ubah Grid jadi banyak baris (Responsive)
-                container.classList.remove('md:grid-cols-4');
-                container.classList.add('md:grid-cols-4', 'lg:grid-cols-5'); // Lebih rapat saat full
 
-                btnText.innerText = (typeof translations !== 'undefined') ? translations[currentLang]['btn_close_gal'] : "CLOSE GALLERY";
-                btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>';
-            } else {
-                // --> MODE PREVIEW (4 FOTO)
-                renderPhotos(previewCount);
-                
-                // Kembalikan Grid
-                container.classList.remove('md:grid-cols-4', 'lg:grid-cols-5');
-                container.classList.add('md:grid-cols-4');
 
-                btnText.innerText = (typeof translations !== 'undefined') ? translations[currentLang]['btn_view_all'] : "VIEW ALL PHOTOS";
-                btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>';
-                
-                document.getElementById('testimonials').scrollIntoView({behavior: 'smooth', block: 'start'});
-            }
-        }
 
-        // --- JALANKAN SAAT LOAD (TAMPIL 4 SAJA) ---
-        renderPhotos(previewCount);
-    </script>
 
     <style>
         .review-track {

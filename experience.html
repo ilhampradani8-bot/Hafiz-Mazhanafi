@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Experience | Hafiz Mazhanafi</title>
+    <link rel="icon" type="image/png" href="lexus-logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lexusBlack: '#050505',
+                        lexusGold: '#C5A059',
+                        lexusGray: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* --- FONTS & BASIC SETUP --- */
+        @font-face {
+            font-family: 'LexusFont';
+            src: url('regular.ttf') format('truetype');
+        }
+        .font-luxury { font-family: 'LexusFont', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #050505; color: white; }
+
+        /* --- TIMELINE ANIMATIONS (PENTING) --- */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #C5A059, #C5A059, transparent);
+            z-index: 0;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+            border: 4px solid #C5A059;
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 15px #C5A059;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-left { opacity: 0; animation: slideInLeft 0.8s ease-out forwards; }
+        .animate-right { opacity: 0; animation: slideInRight 0.8s ease-out forwards; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .timeline-line { left: 20px; }
+            .timeline-dot { left: 20px; }
+        }
+    </style>
+</head>
+<body class="bg-lexusBlack text-white antialiased">
+
+    <nav class="fixed top-0 left-0 w-full z-[100] bg-black/20 backdrop-blur-xl border-b border-white/10 h-20 transition-all duration-300" id="navbar">
+        <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative z-[110]">
+            
+            <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-white focus:outline-none p-2">
+                <div class="w-6 h-6 flex flex-col justify-between items-center pointer-events-none">
+                    <span id="line1" class="w-full h-[2px] bg-white transition-all duration-300"></span>
+                    <span id="line2" class="w-full h-[2px] bg-white transition-all duration-300"></span>
+                    <span id="line3" class="w-full h-[2px] bg-white transition-all duration-300"></span>
+                </div>
+            </button>
+
+            <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
+                <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition"> 
+                <div class="text-sm md:text-xl font-bold tracking-widest uppercase text-white group-hover:text-lexusGold transition whitespace-nowrap">
+                    Hafiz <span class="text-lexusGold group-hover:text-white transition">Mazhanafi</span>
+                </div>
+            </a>
+            
+            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
+                <a href="index.html" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">HOME</a>
+                <a href="index.html#about" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">PROFILE</a>
+                <a href="gallery.html" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">GALLERY</a>
+                <a href="#" class="nav-link text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition">EXPERIENCE</a>
+                <a href="index.html#contact" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">CONTACT</a>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex items-center gap-4">
+                    <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-medium tracking-[0.15em] text-white transition">EN</button>
+                    <span class="text-gray-600 text-xs">|</span>
+                    <button onclick="setLanguage('ms')" id="btn-ms" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">MY</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="fixed top-20 left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 transform -translate-y-[150%] transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center py-8 z-[90] shadow-2xl">
+            <a href="index.html" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">HOME</a>
+            <a href="index.html#about" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">PROFILE</a>
+            <a href="gallery.html" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">GALLERY</a>
+            <a href="#" class="mobile-link text-lexusGold font-bold text-sm tracking-widest mb-6 uppercase">EXPERIENCE</a>
+            <a href="index.html#contact" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-8 uppercase">CONTACT</a>
+        </div>
+        
+        <div id="mobile-overlay" onclick="closeMenu()" class="fixed inset-0 bg-black/80 hidden z-[80] backdrop-blur-sm cursor-pointer h-screen w-screen"></div>
+    </nav>
+
+    <section id="experience" class="relative py-32 bg-[#0a0a0a] overflow-hidden min-h-screen">
+        
+        <div class="container mx-auto px-6 relative z-10 max-w-6xl">
+            
+            <h2 class="text-4xl md:text-5xl font-luxury text-white mb-20 text-center tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="exp_title">
+                WORK EXPERIENCE
+            </h2>
+
+            <div class="relative">
+                <div class="timeline-line"></div>
+
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div> 
+                    <div class="timeline-dot"></div> 
+                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-12 animate-left" style="animation-delay: 0.2s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg group">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-bmw.png" alt="BMW" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">BMW Millennium Welt KL North</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-4">2023 – Present</p>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_bmw_desc">
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-12 animate-right" style="animation-delay: 0.4s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-honda.png" alt="Honda" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Sales Advisor</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">Tenaga Setia Resources (Honda)</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-4">2018 – 2023</p>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_honda_desc"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-12 animate-left" style="animation-delay: 0.6s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-affin.png" alt="Affin" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Sales Executive</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">Affin Islamic Bank Berhad</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-4">2015 – 2016</p>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_affin_desc"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-12 animate-right" style="animation-delay: 0.8s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-rhb.png" alt="RHB" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Sales Executive</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">RHB Banking Group</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-4">2014 – 2015</p>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_rhb_desc"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full">
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-0 md:pr-12 animate-left" style="animation-delay: 1.0s;">
+                        <div class="bg-white/5 border border-lexusGold/30 p-8 rounded-xl backdrop-blur-sm hover:border-lexusGold transition duration-500 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="logo-cimb.png" alt="CIMB" class="h-12 w-auto bg-white p-1 rounded" onerror="this.style.display='none'">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Financial Consultant</h3>
+                                    <p class="text-lexusGold text-xs uppercase tracking-wider">CIMB Bank Berhad</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-4">2013 – 2014</p>
+                            <ul class="list-disc ml-4 text-gray-300 text-sm space-y-2 marker:text-lexusGold" data-i18n="job_cimb_desc"></ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-8 text-center text-gray-600 text-xs border-t border-gray-900">
+        <p>&copy; 2026 Hafiz Mazhanafi. All Rights Reserved.</p>
+    </footer>
+
+    <script src="lang.js"></script>
+    <script>
+        // 1. NAVIGASI MOBILE
+        const navMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('mobile-overlay');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            if (!isMenuOpen) openMenu();
+            else closeMenu();
+        }
+        function openMenu() {
+            isMenuOpen = true;
+            navMenu.classList.remove('-translate-y-[150%]');
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            isMenuOpen = false;
+            navMenu.classList.add('-translate-y-[150%]');
+            overlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 2. LANGUAGE HANDLER
+        function setLanguage(lang) {
+            if(typeof translations === 'undefined') return;
+            const data = translations[lang];
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (data[key]) el.innerHTML = data[key];
+            });
+
+            // Update warna tombol
+            document.getElementById('btn-en').style.color = (lang === 'en') ? '#fff' : '#9ca3af';
+            document.getElementById('btn-ms').style.color = (lang === 'ms') ? '#fff' : '#9ca3af';
+        }
+
+        // Load Default Language
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('en');
+        });
+    </script>
+</body>
+</html>

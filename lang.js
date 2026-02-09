@@ -109,7 +109,8 @@ const translations = {
         rev_6: "Thank you Hafiz! The handover ceremony was beautiful. My family is very happy.",
         rev_7: "A true Lexus ambassador. Knowledgeable, polite, and efficient. 5-star service!",
         nav_testi: "TESTIMONIALS",
-       
+       // Di bagian 'en' (English):
+btn_delivered: "Car Delivered",
     },
 
     // BAHASA MALAYSIA (MY)
@@ -222,6 +223,8 @@ const translations = {
         rev_6: "Terima kasih Hafiz! Majlis penyerahan kereta sangat indah. Keluarga saya sangat gembira.",
         rev_7: "Duta Lexus sebenar. Berpengetahuan, sopan, dan cekap. Perkhidmatan 5 bintang!",
         nav_testi: "TESTIMONI",
+
+        btn_delivered: "Kereta Diserahkan",
     }
 };
 
