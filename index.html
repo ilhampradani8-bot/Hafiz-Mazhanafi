@@ -268,62 +268,56 @@
 </head>
 <body class="bg-lexusBlack text-white antialiased">
 
-<nav class="fixed w-full z-50 bg-black/20 backdrop-blur-xl border-b border-white/10 h-20 transition-all duration-300" id="navbar">
-        <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative">
-            
-            <button id="mobile-menu-btn" class="md:hidden text-white z-50 focus:outline-none p-2">
-                <div class="w-6 h-6 flex flex-col justify-between items-center relative">
-                    <span id="line1" class="w-full h-[2px] bg-white transition-all duration-300 transform origin-center"></span>
-                    <span id="line2" class="w-full h-[2px] bg-white transition-all duration-300 opacity-100"></span>
-                    <span id="line3" class="w-full h-[2px] bg-white transition-all duration-300 transform origin-center"></span>
-                </div>
-            </button>
-
-            <a href="index.html" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 flex items-center gap-3 z-20 cursor-pointer group">
-                <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition"> 
-                <div class="text-sm md:text-xl font-bold tracking-widest uppercase text-white group-hover:text-lexusGold transition whitespace-nowrap">
-                    Hafiz <span class="text-lexusGold group-hover:text-white transition">Mazhanafi</span>
-                </div>
-            </a>
-            
-            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
-                <a href="#home" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_home">HOME</a>
-                <a href="#about" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_about">PROFILE</a>
-                <a href="gallery.html" class="nav-link text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition">GALLERY</a>
-                <a href="#experience" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_exp">EXPERIENCE</a>
-                
-                <a href="#testimonials" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_testi">TESTIMONIALS</a>
-                
-                <a href="#contact" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_contact_link">CONTACT</a>
+<nav class="fixed top-0 left-0 w-full z-[100] bg-black/20 backdrop-blur-xl border-b border-white/10 h-20" id="navbar">
+    <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative z-[110]">
+        
+        <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-white focus:outline-none p-2">
+            <div class="w-6 h-6 flex flex-col justify-between items-center pointer-events-none">
+                <span id="line1" class="w-full h-[2px] bg-white transition-all duration-300 transform origin-center"></span>
+                <span id="line2" class="w-full h-[2px] bg-white transition-all duration-300 opacity-100"></span>
+                <span id="line3" class="w-full h-[2px] bg-white transition-all duration-300 transform origin-center"></span>
             </div>
+        </button>
 
-            <div class="flex items-center gap-6 z-20">
-                <div class="hidden md:flex items-center gap-4">
-                    <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">EN</button>
-                    <span class="text-gray-600 text-xs">|</span>
-                    <button onclick="setLanguage('ms')" id="btn-ms" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">MY</button>
-                </div>
-                <div class="w-6 md:hidden"></div>
+        <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
+            <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition"> 
+            <div class="text-sm md:text-xl font-bold tracking-widest uppercase text-white group-hover:text-lexusGold transition whitespace-nowrap">
+                Hafiz <span class="text-lexusGold group-hover:text-white transition">Mazhanafi</span>
             </div>
-
+        </a>
+        
+        <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
+            <a href="#home" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_home">HOME</a>
+            <a href="#about" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_about">PROFILE</a>
+            <a href="gallery.html" class="nav-link text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition">GALLERY</a>
+            <a href="#experience" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_exp">EXPERIENCE</a>
+            <a href="#contact" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_contact_link">CONTACT</a>
         </div>
 
-        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-black/95 backdrop-blur-xl transform -translate-y-[150%] transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center justify-center z-40">
-            <a href="#home" class="mobile-link text-white hover:text-lexusGold text-xl tracking-widest mb-6" data-i18n="nav_home">HOME</a>
-            <a href="#about" class="mobile-link text-white hover:text-lexusGold text-xl tracking-widest mb-6" data-i18n="nav_about">PROFILE</a>
-            <a href="gallery.html" class="mobile-link text-lexusGold font-bold text-xl tracking-widest mb-6">GALLERY</a>
-            <a href="#experience" class="mobile-link text-white hover:text-lexusGold text-xl tracking-widest mb-6" data-i18n="nav_exp">EXPERIENCE</a>
-            
-            <a href="#testimonials" class="mobile-link text-white hover:text-lexusGold text-xl tracking-widest mb-6" data-i18n="nav_testi">TESTIMONIALS</a>
-            
-            <a href="#contact" class="mobile-link text-white hover:text-lexusGold text-xl tracking-widest mb-10" data-i18n="nav_contact_link">CONTACT</a>
-            
-            <div class="flex justify-center gap-8 text-sm text-gray-400 font-bold tracking-widest border-t border-gray-800 pt-8 w-1/2">
-                <button onclick="setLanguage('en'); closeMenu()" class="hover:text-white">EN</button>
-                <button onclick="setLanguage('ms'); closeMenu()" class="hover:text-white">MY</button>
+        <div class="flex items-center gap-6">
+            <div class="hidden md:flex items-center gap-4">
+                <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">EN</button>
+                <span class="text-gray-600 text-xs">|</span>
+                <button onclick="setLanguage('ms')" id="btn-ms" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">MY</button>
             </div>
         </div>
-    </nav>
+    </div>
+
+    <div id="mobile-menu" class="fixed top-20 left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 transform -translate-y-[150%] transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center py-8 z-[90] shadow-2xl">
+        <a href="#home" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_home">HOME</a>
+        <a href="#about" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_about">PROFILE</a>
+        <a href="gallery.html" class="mobile-link text-lexusGold font-bold text-sm tracking-widest mb-6 uppercase">GALLERY</a>
+        <a href="#experience" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_exp">EXPERIENCE</a>
+        <a href="#contact" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-8 uppercase" data-i18n="nav_contact_link">CONTACT</a>
+        
+        <div class="flex gap-8 text-xs text-gray-400 font-bold tracking-widest border-t border-gray-800 pt-6 w-1/2 justify-center">
+            <button onclick="setLanguage('en'); closeMenu()" class="hover:text-white">EN</button>
+            <button onclick="setLanguage('ms'); closeMenu()" class="hover:text-white">MY</button>
+        </div>
+    </div>
+
+    <div id="mobile-overlay" onclick="closeMenu()" class="fixed inset-0 bg-black/80 hidden z-[80] backdrop-blur-sm cursor-pointer h-screen w-screen"></div>
+</nav>
  
   <header id="home" class="h-screen w-full bg-black relative overflow-hidden flex flex-col md:flex-row items-center">
         
@@ -1121,156 +1115,78 @@
 
     <script src="lang.js"></script>
 
-    <script>
-        // --- 1. SETUP VARIABEL NAVIGASI ---
-        // Saya ganti nama variabel 'btn' jadi 'menuBtn' biar tidak error
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const navMenu = document.getElementById('mobile-menu');
-        const navbar = document.getElementById('navbar');
+<script>
+    const navMenu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('mobile-overlay');
+    const line1 = document.getElementById('line1');
+    const line2 = document.getElementById('line2');
+    const line3 = document.getElementById('line3');
+    let isMenuOpen = false;
+
+    // FUNGSI UTAMA
+    function toggleMenu() {
+        if (!isMenuOpen) {
+            openMenu();
+        } else {
+            closeMenu();
+        }
+    }
+
+    // FUNGSI BUKA
+    function openMenu() {
+        isMenuOpen = true;
+
+        // 1. Menu Turun
+        navMenu.classList.remove('-translate-y-[150%]');
         
-        // Elemen Garis Burger
-        const line1 = document.getElementById('line1');
-        const line2 = document.getElementById('line2');
-        const line3 = document.getElementById('line3');
+        // 2. Overlay Muncul (Hapus class hidden)
+        overlay.classList.remove('hidden'); 
+        
+        // 3. Ikon Jadi X
+        line1.classList.add('rotate-45', 'translate-y-[8px]');
+        line2.classList.add('opacity-0');
+        line3.classList.add('-rotate-45', '-translate-y-[8px]');
+        
+        // 4. Kunci Scroll
+        document.body.style.overflow = 'hidden';
+    }
 
-        let isMenuOpen = false;
+    // FUNGSI TUTUP
+    function closeMenu() {
+        isMenuOpen = false;
 
-        // --- 2. FUNGSI NAVIGASI ---
-        function toggleMenu() {
-            isMenuOpen = !isMenuOpen;
-            
-            if (isMenuOpen) {
-                // Buka Menu
-                navMenu.classList.remove('-translate-y-[150%]');
-                // Animasi Burger jadi X
-                if(line1) line1.classList.add('rotate-45', 'translate-y-[8px]');
-                if(line2) line2.classList.add('opacity-0');
-                if(line3) line3.classList.add('-rotate-45', '-translate-y-[8px]');
-            } else {
-                closeMenu();
-            }
+        // 1. Menu Naik
+        navMenu.classList.add('-translate-y-[150%]');
+        
+        // 2. Overlay Hilang (Tambah class hidden)
+        overlay.classList.add('hidden');
+        
+        // 3. Ikon Jadi Burger
+        line1.classList.remove('rotate-45', 'translate-y-[8px]');
+        line2.classList.remove('opacity-0');
+        line3.classList.remove('-rotate-45', '-translate-y-[8px]');
+        
+        // 4. Buka Scroll
+        document.body.style.overflow = 'auto';
+    }
+
+    // Klik Link -> Tutup
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Efek Scroll Navbar
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('bg-black/90', 'shadow-lg');
+            navbar.classList.remove('bg-black/20');
+        } else {
+            navbar.classList.remove('bg-black/90', 'shadow-lg');
+            navbar.classList.add('bg-black/20');
         }
-
-        function closeMenu() {
-            isMenuOpen = false;
-            // Tutup Menu
-            navMenu.classList.add('-translate-y-[150%]');
-            // Animasi X balik jadi Burger
-            if(line1) line1.classList.remove('rotate-45', 'translate-y-[8px]');
-            if(line2) line2.classList.remove('opacity-0');
-            if(line3) line3.classList.remove('-rotate-45', '-translate-y-[8px]');
-        }
-
-        // Event Listeners Navbar
-        if (menuBtn) {
-            menuBtn.addEventListener('click', toggleMenu);
-        }
-
-        // Tutup menu saat link diklik
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-
-        // Tutup menu saat klik di luar area
-        document.addEventListener('click', function(event) {
-            if (isMenuOpen && menuBtn && navMenu && !menuBtn.contains(event.target) && !navMenu.contains(event.target)) {
-                closeMenu();
-            }
-        });
-
-        // Efek Scroll Navbar
-        // Efek Scroll Navbar (Glass Effect Preserved)
-        window.addEventListener('scroll', () => {
-            if (navbar) {
-                if (window.scrollY > 50) {
-                    // Saat scroll: Lebih gelap sedikit, tapi tetap blur (Glass)
-                    navbar.classList.add('shadow-lg', 'bg-black/60');
-                    navbar.classList.remove('bg-black/20');
-                } else {
-                    // Saat di atas: Sangat bening
-                    navbar.classList.remove('shadow-lg', 'bg-black/60');
-                    navbar.classList.add('bg-black/20');
-                }
-            }
-        });
-
-
-        // --- 3. FUNGSI GANTI BAHASA ---
-        function setLanguage(lang) {
-            if(typeof translations === 'undefined') return;
-
-            const data = translations[lang];
-            const elements = document.querySelectorAll('[data-i18n]');
-
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (data[key]) {
-                    el.innerHTML = data[key]; 
-                }
-            });
-
-            // Update warna tombol bahasa (hanya jika elemennya ada)
-            const btnEn = document.getElementById('btn-en');
-            const btnMs = document.getElementById('btn-ms');
-            if(btnEn && btnMs) {
-                btnEn.style.color = "#9ca3af";
-                btnMs.style.color = "#9ca3af";
-                if(lang === 'en') btnEn.style.color = "white";
-                if(lang === 'ms') btnMs.style.color = "white";
-            }
-        }
-
-
-        // --- 4. FUNGSI GANTI WARNA MOBIL ---
-        function changeColor(model, color) {
-            const img = document.getElementById(`image-${model}`);
-            if(!img) return;
-            
-            img.style.opacity = '0'; 
-
-            setTimeout(() => {
-                img.src = `${model}-${color}.png`;
-                img.onload = () => { img.style.opacity = '1'; };
-                img.onerror = () => {
-                    console.log(`Gambar ${model}-${color}.png tidak ditemukan.`);
-                    img.src = `${model}-default.png`; 
-                    img.style.opacity = '1';
-                }
-            }, 200);
-
-            // Update tombol aktif
-            const parent = event.target.parentElement;
-            if(parent) {
-                parent.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
-            }
-        }
-
-
-        // --- 5. FUNGSI KONTAK (WA & EMAIL) ---
-        function sendToWA() {
-            const name = document.getElementById('inputName').value;
-            const phone = document.getElementById('inputPhone').value;
-            const msg = document.getElementById('inputMessage').value;
-            
-            const text = `Hi Hafiz, my name is ${name} (${phone}). ${msg}`;
-            window.open(`https://wa.me/601111492290?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        function sendToEmail() {
-            const name = document.getElementById('inputName').value;
-            const phone = document.getElementById('inputPhone').value;
-            const msg = document.getElementById('inputMessage').value;
-            
-            window.open(`mailto:hafizbinmazhanafi@gmail.com?subject=Lexus Inquiry from ${name}&body=Name: ${name}%0D%0APhone: ${phone}%0D%0AMessage: ${msg}`, '_blank');
-        }
-
-        // Set bahasa default saat load
-        document.addEventListener('DOMContentLoaded', () => {
-            setLanguage('en'); 
-        });
-    </script>
-
+    });
+</script>
    
 </body>
 </html>

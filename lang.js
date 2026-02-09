@@ -96,7 +96,20 @@ const translations = {
         testi_sub: "WELCOMING NEW MEMBERS TO THE LEXUS FAMILY",
         btn_view_all: "VIEW ALL PHOTOS",
         btn_close_gal: "CLOSE GALLERY",
-   
+
+        // --- TEXT REVIEWS ---
+        rev_title: "WHAT THEY SAY ABOUT OUR SERVICE",
+        rev_sub: "REAL FEEDBACK FROM OUR VALUED CLIENTS",
+        
+        rev_1: "Hafiz provided exceptional service! The delivery of my RX350 was seamless and truly a VIP experience.",
+        rev_2: "Very professional and transparent. He helped me secure a special interest rate. Highly recommended!",
+        rev_3: "I was confused about Hybrid vs Petrol, but Hafiz explained it perfectly. Loving my new NX350h.",
+        rev_4: "Fast response and very patient. He handled the trade-in of my old car very smoothly.",
+        rev_5: "The best car buying experience I've ever had. No hidden costs, just pure honesty.",
+        rev_6: "Thank you Hafiz! The handover ceremony was beautiful. My family is very happy.",
+        rev_7: "A true Lexus ambassador. Knowledgeable, polite, and efficient. 5-star service!",
+        nav_testi: "TESTIMONIALS",
+       
     },
 
     // BAHASA MALAYSIA (MY)
@@ -191,6 +204,24 @@ const translations = {
         testi_sub: "WELCOMING NEW MEMBERS TO THE LEXUS FAMILY",
         btn_view_all: "LIHAT SEMUA FOTO",
         btn_close_gal: "TUTUP GALERI",
+
+        testi_title: "DETIK KEGEMBIRAAN",
+        testi_sub: "MENGALU-ALUKAN AHLI BARU KELUARGA LEXUS",
+        btn_view_all: "LIHAT SEMUA FOTO",
+        btn_close_gal: "TUTUP GALERI",
+
+        // --- TEXT REVIEWS ---
+        rev_title: "APA KATA MEREKA TENTANG PERKHIDMATAN KAMI",
+        rev_sub: "MAKLUM BALAS SEBENAR DARIPADA PELANGGAN KAMI",
+        
+        rev_1: "Hafiz memberikan perkhidmatan luar biasa! Penyerahan RX350 saya sangat lancar dan pengalaman VIP sebenar.",
+        rev_2: "Sangat profesional dan telus. Beliau membantu saya mendapatkan kadar faedah istimewa. Sangat disyorkan!",
+        rev_3: "Saya keliru tentang Hibrid vs Petrol, tapi Hafiz menerangkannya dengan sempurna. Suka NX350h baru saya.",
+        rev_4: "Respons pantas dan sangat sabar. Beliau menguruskan 'trade-in' kereta lama saya dengan sangat lancar.",
+        rev_5: "Pengalaman membeli kereta terbaik yang pernah saya lalui. Tiada kos tersembunyi, hanya kejujuran.",
+        rev_6: "Terima kasih Hafiz! Majlis penyerahan kereta sangat indah. Keluarga saya sangat gembira.",
+        rev_7: "Duta Lexus sebenar. Berpengetahuan, sopan, dan cekap. Perkhidmatan 5 bintang!",
+        nav_testi: "TESTIMONI",
     }
 };
 
