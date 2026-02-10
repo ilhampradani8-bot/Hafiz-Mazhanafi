@@ -940,18 +940,18 @@
                 
                 <div class="space-y-4 text-left">
                     <div>
-                        <label class="text-xs text-lexusGold uppercase tracking-widest ml-1 mb-1 block">Name</label>
-                        <input type="text" id="inputName" class="w-full bg-[#111] border border-gray-700 text-white px-4 py-3 text-sm rounded focus:outline-none focus:border-lexusGold transition-colors" placeholder="Type your name...">
+                        <label class="text-xs text-lexusGold uppercase tracking-widest ml-1 mb-1 block" data-i18n="form_label_name">Name</label>
+                        <input type="text" id="inputName" data-i18n-ph="form_ph_name" class="w-full bg-[#111] border border-gray-700 text-white px-4 py-3 text-sm rounded focus:outline-none focus:border-lexusGold transition-colors" placeholder="Type your name...">
                     </div>
 
                     <div>
-                        <label class="text-xs text-lexusGold uppercase tracking-widest ml-1 mb-1 block">Phone Number</label>
-                        <input type="tel" id="inputPhone" class="w-full bg-[#111] border border-gray-700 text-white px-4 py-3 text-sm rounded focus:outline-none focus:border-lexusGold transition-colors" placeholder="+60...">
+                        <label class="text-xs text-lexusGold uppercase tracking-widest ml-1 mb-1 block" data-i18n="form_label_phone">Phone Number</label>
+                        <input type="tel" id="inputPhone" data-i18n-ph="form_ph_phone" class="w-full bg-[#111] border border-gray-700 text-white px-4 py-3 text-sm rounded focus:outline-none focus:border-lexusGold transition-colors" placeholder="+60...">
                     </div>
 
                     <div>
-                        <label class="text-xs text-lexusGold uppercase tracking-widest ml-1 mb-1 block">Message (Optional)</label>
-                        <textarea id="inputMessage" rows="3" class="w-full bg-[#111] border border-gray-700 text-white px-4 py-3 text-sm rounded focus:outline-none focus:border-lexusGold transition-colors" placeholder="I am interested in Lexus..."></textarea>
+                        <label class="text-xs text-lexusGold uppercase tracking-widest ml-1 mb-1 block" data-i18n="form_label_msg">Message (Optional)</label>
+                        <textarea id="inputMessage" rows="3" data-i18n-ph="form_ph_msg" class="w-full bg-[#111] border border-gray-700 text-white px-4 py-3 text-sm rounded focus:outline-none focus:border-lexusGold transition-colors" placeholder="I am interested in Lexus..."></textarea>
                     </div>
                 </div>
 
@@ -971,7 +971,7 @@
         </div>
     </section>
 
-  <footer id="contact" class="bg-[#050505] pt-16 pb-10 border-t border-gray-900 text-sm">
+   <footer id="contact" class="bg-[#050505] pt-16 pb-10 border-t border-gray-900 text-sm">
         <div class="container mx-auto px-6">
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
@@ -983,19 +983,19 @@
                             Hafiz <span class="text-lexusGold">Mazhanafi</span>
                         </div>
                     </div>
-                    <p class="text-gray-500 leading-relaxed pr-6">
-                        Professional Sales Advisor dedicated to providing the ultimate Lexus ownership experience with integrity and financial expertise.
+                    <p class="text-gray-500 leading-relaxed pr-6" data-i18n="footer_bio">
+                        Professional Sales Consultant dedicated to providing the ultimate Lexus ownership experience with integrity.
                     </p>
                 </div>
 
                 <div class="md:pl-10">
                     <h3 class="text-white font-bold tracking-widest uppercase mb-6" data-i18n="ft_links">Quick Links</h3>
                     <ul class="space-y-4 text-gray-400">
-                        <li><a href="#home" class="hover:text-lexusGold transition">Home</a></li>
-                        <li><a href="#about" class="hover:text-lexusGold transition">Profile</a></li>
-                        <li><a href="gallery.html" class="hover:text-lexusGold transition">Gallery</a></li>
-                        <li><a href="#collection" class="hover:text-lexusGold transition">Lexus Collection</a></li>
-                        <li><a href="#experience" class="hover:text-lexusGold transition">Experience</a></li>
+                        <li><a href="#home" class="hover:text-lexusGold transition" data-i18n="nav_home">Home</a></li>
+                        <li><a href="#about" class="hover:text-lexusGold transition" data-i18n="nav_about">Profile</a></li>
+                        <li><a href="gallery.html" class="hover:text-lexusGold transition" data-i18n="nav_gallery">Gallery</a></li>
+                        <li><a href="#collection" class="hover:text-lexusGold transition" data-i18n="nav_cars">Lexus Collection</a></li>
+                        <li><a href="#experience" class="hover:text-lexusGold transition" data-i18n="nav_exp">Experience</a></li>
                     </ul>
                 </div>
 
@@ -1007,7 +1007,9 @@
                             <div class="mt-1 text-lexusGold group-hover:scale-110 transition duration-300">
                                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>
                             </div>
-                            <span class="leading-relaxed">Bandar Saujana Putra,<br>Jenjarom, Selangor</span>
+                            <span class="leading-relaxed" data-i18n="contact_address">
+                                Lexus Subang (PCM Subang Motor)<br>Lot 61716, Jalan SS16/1,<br>47500 Subang Jaya, Selangor
+                            </span>
                         </li>
                         
                         <li class="flex items-center gap-4 group">
@@ -1045,80 +1047,138 @@
         </div>
     </a>
 
-    <script src="lang.js"></script>
+ <script src="lang.js"></script>
 
-<script>
-    const navMenu = document.getElementById('mobile-menu');
-    const overlay = document.getElementById('mobile-overlay');
-    const line1 = document.getElementById('line1');
-    const line2 = document.getElementById('line2');
-    const line3 = document.getElementById('line3');
-    let isMenuOpen = false;
+    <script>
+        // ==========================================
+        // 1. LOGIKA NAVIGASI MOBILE (BURGER MENU)
+        // ==========================================
+        const navMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('mobile-overlay');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
+        let isMenuOpen = false;
 
-    // FUNGSI UTAMA
-    function toggleMenu() {
-        if (!isMenuOpen) {
-            openMenu();
-        } else {
-            closeMenu();
+        function toggleMenu() {
+            if (!isMenuOpen) openMenu();
+            else closeMenu();
         }
-    }
 
-    // FUNGSI BUKA
-    function openMenu() {
-        isMenuOpen = true;
-
-        // 1. Menu Turun
-        navMenu.classList.remove('-translate-y-[150%]');
-        
-        // 2. Overlay Muncul (Hapus class hidden)
-        overlay.classList.remove('hidden'); 
-        
-        // 3. Ikon Jadi X
-        line1.classList.add('rotate-45', 'translate-y-[8px]');
-        line2.classList.add('opacity-0');
-        line3.classList.add('-rotate-45', '-translate-y-[8px]');
-        
-        // 4. Kunci Scroll
-        document.body.style.overflow = 'hidden';
-    }
-
-    // FUNGSI TUTUP
-    function closeMenu() {
-        isMenuOpen = false;
-
-        // 1. Menu Naik
-        navMenu.classList.add('-translate-y-[150%]');
-        
-        // 2. Overlay Hilang (Tambah class hidden)
-        overlay.classList.add('hidden');
-        
-        // 3. Ikon Jadi Burger
-        line1.classList.remove('rotate-45', 'translate-y-[8px]');
-        line2.classList.remove('opacity-0');
-        line3.classList.remove('-rotate-45', '-translate-y-[8px]');
-        
-        // 4. Buka Scroll
-        document.body.style.overflow = 'auto';
-    }
-
-    // Klik Link -> Tutup
-    document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-
-    // Efek Scroll Navbar
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('bg-black/90', 'shadow-lg');
-            navbar.classList.remove('bg-black/20');
-        } else {
-            navbar.classList.remove('bg-black/90', 'shadow-lg');
-            navbar.classList.add('bg-black/20');
+        function openMenu() {
+            if(!navMenu) return; // Aman karena di dalam fungsi
+            isMenuOpen = true;
+            navMenu.classList.remove('-translate-y-[150%]');
+            overlay.classList.remove('hidden');
+            line1.classList.add('rotate-45', 'translate-y-[8px]');
+            line2.classList.add('opacity-0');
+            line3.classList.add('-rotate-45', '-translate-y-[8px]');
+            document.body.style.overflow = 'hidden';
         }
-    });
-</script>
-   
+
+        function closeMenu() {
+            if(!navMenu) return; // Aman karena di dalam fungsi
+            isMenuOpen = false;
+            navMenu.classList.add('-translate-y-[150%]');
+            overlay.classList.add('hidden');
+            line1.classList.remove('rotate-45', 'translate-y-[8px]');
+            line2.classList.remove('opacity-0');
+            line3.classList.remove('-rotate-45', '-translate-y-[8px]');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Tutup menu saat link diklik
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Efek Scroll Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if(!navbar) return; // Aman
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/90', 'shadow-lg');
+                navbar.classList.remove('bg-black/20');
+            } else {
+                navbar.classList.remove('bg-black/90', 'shadow-lg');
+                navbar.classList.add('bg-black/20');
+            }
+        });
+
+        // ==========================================
+        // 2. LOGIKA BAHASA (SETLANGUAGE)
+        // ==========================================
+        function setLanguage(lang) {
+            // "return" di sini AMAN karena di dalam function setLanguage
+            if(typeof translations === 'undefined') {
+                console.error("Error: lang.js belum termuat.");
+                return; 
+            }
+
+            // Simpan pilihan
+            localStorage.setItem('selected_lang', lang);
+
+            const data = translations[lang];
+            
+            // 1. Update Teks Biasa (innerHTML)
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (data[key]) {
+                    el.innerHTML = data[key]; 
+                }
+            });
+
+            // 2. Update Placeholder Input (data-i18n-ph)
+            const inputs = document.querySelectorAll('[data-i18n-ph]');
+            inputs.forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (data[key]) {
+                    el.placeholder = data[key];
+                }
+            });
+
+            // Update Warna Tombol
+            const btnEn = document.getElementById('btn-en');
+            const btnMs = document.getElementById('btn-ms');
+            
+            if(btnEn && btnMs) {
+                btnEn.style.color = '#9ca3af'; 
+                btnMs.style.color = '#9ca3af'; 
+                if(lang === 'en') btnEn.style.color = '#ffffff';
+                if(lang === 'ms') btnMs.style.color = '#ffffff';
+            }
+        }
+
+        // ==========================================
+        // 3. FUNGSI KONTAK (WA & EMAIL)
+        // ==========================================
+        function sendToWA() {
+            const name = document.getElementById('inputName').value;
+            const phone = document.getElementById('inputPhone').value;
+            const message = document.getElementById('inputMessage').value;
+            
+            const text = `Hi Hafiz, my name is ${name} (${phone}). ${message}`;
+            const url = `https://wa.me/601111492290?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function sendToEmail() {
+            const name = document.getElementById('inputName').value;
+            const message = document.getElementById('inputMessage').value;
+            const subject = `Inquiry from ${name}`;
+            window.location.href = `mailto:hafizbinmazhanafi@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+        }
+
+        // ==========================================
+        // 4. INIT SAAT LOAD
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('selected_lang') || 'en';
+            // Panggil fungsi setLanguage
+            setLanguage(savedLang);
+        });
+
+    </script>
 </body>
 </html>
