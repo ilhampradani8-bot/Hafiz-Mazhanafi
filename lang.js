@@ -17,11 +17,15 @@ const translations = {
         hero_desc: "Your trusted partner for Lexus ownership. Serving with integrity and over 10 years of financial expertise.",
         hero_cta: "VIEW COLLECTION",
 
-        about_title: "Professional Profile",
-        about_p1: "Hello, I am Mohd Hafiz Bin Mazhanafi. With over 10 years of experience in the premium automotive industry and banking sector, I am dedicated to providing a seamless and transparent car buying experience.",
-        about_p2: "My expertise goes beyond vehicle specs. As a former banker, I specialize in Financial Advisory to help you plan loans, trade-ins, and documentation for the best approval rates.",
-        
-        skill_1: "LEXUS AUTHORIZED SALES EXECUTIVE",
+        // Hapus class 'italic' dan 'text-lexusGold', ganti dengan 'font-bold'
+        about_headline: "I match every car to your values—<br><span class='font-bold text-white mt-2 block'>so you never have to compromise.</span>",
+
+        about_testi_1: "\"Honestly, this is the only dealer who actually listened to what matters to me.\"",
+        about_client_1: "THE GREEN FAMILY",
+        about_testi_2: "\"Greatest integrity I’ve found in the industry. No shady tactics.\"",
+        about_client_2: "MARCUS D., GOOGLE REVIEWS",
+
+        skill_1: "Dedicated to the Best Deals for New Lexus Performance Models",
         skill_2: "10 Years Sales Experience",
         skill_3: "End-to-End Service",
 
@@ -93,7 +97,8 @@ const translations = {
         gal_item3_desc: "Mastery that takes decades to achieve. From the hand-pleated door trims to the Kiriko glass ornamentation, every detail is a work of art.",
         
         testi_title: "MOMENTS OF JOY",
-        testi_sub: "WELCOMING NEW MEMBERS TO THE LEXUS FAMILY",
+        testi_sub: "Trusted by over 50 distinguished clients",
+// Atau: "Over 50 Successful Deliveries to Satisfied Owners"
         btn_view_all: "VIEW ALL PHOTOS",
         btn_close_gal: "CLOSE GALLERY",
 
@@ -110,7 +115,7 @@ const translations = {
         rev_7: "A true Lexus ambassador. Knowledgeable, polite, and efficient. 5-star service!",
         nav_testi: "TESTIMONIALS",
        // Di bagian 'en' (English):
-btn_delivered: "Car Delivered",
+        btn_sold: "Sold Cars",
     },
 
     // BAHASA MALAYSIA (MY)
@@ -128,11 +133,15 @@ btn_delivered: "Car Delivered",
         hero_desc: "Rakan dipercayai anda untuk pemilikan Lexus. Melayani dengan integriti dan pengalaman kewangan lebih 10 tahun.",
         hero_cta: "LIHAT KOLEKSI",
 
-        about_title: "Profil Profesional",
-        about_p1: "Halo, saya Mohd Hafiz Bin Mazhanafi. Dengan pengalaman lebih 10 tahun dalam industri automotif premium dan sektor perbankan, saya berdedikasi memberikan pengalaman pembelian kereta yang telus dan lancar.",
-        about_p2: "Kepakaran saya melangkaui spesifikasi kenderaan. Sebagai bekas jurubank, saya pakar dalam Nasihat Kewangan untuk membantu anda merancang pinjaman, trade-in, dan dokumentasi bagi mendapatkan kelulusan terbaik.",
-        
-        skill_1: "EKSEKUTIF JUALAN LEXUS SAH",
+        about_headline: "Saya padankan kereta dengan nilai anda—<br><span class='font-bold text-white mt-2 block'>supaya anda tidak perlu berkompromi.</span>",
+
+            about_testi_1: "\"Jujur, ini satu-satunya wakil jualan yang benar-benar mendengar apa yang penting bagi saya.\"",
+            about_client_1: "KELUARGA GREEN",
+            about_testi_2: "\"Integriti terbaik yang saya temui dalam industri ini. Tiada taktik kotor.\"",
+            about_client_2: "MARCUS D., ULASAN GOOGLE",
+
+
+        skill_1: "Berdedikasi untuk Tawaran Terbaik bagi Model Prestasi Lexus Baru",
         skill_2: "10 Tahun Pengalaman Jualan",
         skill_3: "Servis Dari A ke Z",
 
@@ -207,7 +216,8 @@ btn_delivered: "Car Delivered",
         btn_close_gal: "TUTUP GALERI",
 
         testi_title: "DETIK KEGEMBIRAAN",
-        testi_sub: "MENGALU-ALUKAN AHLI BARU KELUARGA LEXUS",
+        testi_sub: "Dipercayai oleh lebih 50 pelanggan istimewa",
+// Atau: "Lebih 50 penyerahan kereta kepada pemilik yang berpuas hati"
         btn_view_all: "LIHAT SEMUA FOTO",
         btn_close_gal: "TUTUP GALERI",
 
@@ -224,7 +234,7 @@ btn_delivered: "Car Delivered",
         rev_7: "Duta Lexus sebenar. Berpengetahuan, sopan, dan cekap. Perkhidmatan 5 bintang!",
         nav_testi: "TESTIMONI",
 
-        btn_delivered: "Kereta Diserahkan",
+        btn_sold: "Kereta Terjual",
     }
 };
 

@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hafiz Mazhanafi | Lexus Consultant</title>
+    <title>Your Car Expert - Hafiz Mazhanafi</title>
     <link rel="icon" type="image/png" href="lexus-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        lexusBlack: '#050505',
-                        lexusGold: '#C5A059',
-                        lexusGray: '#1a1a1a',
-                    },
-                    fontFamily: {
-                        sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
-                    }
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    lexusBlack: '#050505',
+                    lexusGold: '#C5A059',
+                    lexusGray: '#1a1a1a',
+                },
+                fontFamily: {
+                    // INI KUNCINYA: Mengubah font default seluruh web jadi Poppins
+                    sans: ['Poppins', 'sans-serif'], 
+                    
+                    // Font Luxury tetap ada jika ingin dipakai khusus untuk judul besar
+                    luxury: ['LexusFont', 'serif'], 
                 }
             }
         }
-    </script>
+    }
+</script>
     <style>
         html { scroll-behavior: smooth; }
         .car-card:hover { transform: translateY(-5px); border-color: #C5A059; }
@@ -263,6 +270,44 @@
             .timeline-line { left: 20px; }
             .timeline-dot { left: 20px; }
         }
+
+        /* --- DIAMOND / TILTED CHECKERBOARD BACKGROUND --- */
+.diamond-bg {
+    background-color: #050505; /* Warna dasar hitam pekat */
+    background-image: 
+        linear-gradient(135deg, #111 25%, transparent 25%),
+        linear-gradient(225deg, #111 25%, transparent 25%),
+        linear-gradient(45deg, #111 25%, transparent 25%),
+        linear-gradient(315deg, #111 25%, transparent 25%);
+    background-position: 20px 0, 20px 0, 0 0, 0 0;
+    background-size: 40px 40px; /* Ukuran kotak wajik */
+    background-repeat: repeat;
+}
+
+/* Hover effect untuk kartu mobil (tanpa tombol warna) */
+/* Update: Card Mobil Tanpa Border */
+.collection-card {
+    transition: all 0.5s ease;
+    border: none; /* Hapus border */
+    background: transparent; /* Hapus background kotak */
+    position: relative;
+}
+
+.collection-card:hover {
+    transform: translateY(-10px);
+    /* Tidak ada border atau background saat hover, cuma mobil naik */
+}
+
+/* Update: Hover pada Mobil langsung */
+.collection-card img {
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    transition: all 0.5s ease;
+}
+
+.collection-card:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+}
     </style>
 
 </head>
@@ -347,19 +392,21 @@
                 <div class="w-20 h-1 bg-lexusGold mb-4 md:mb-6 mx-auto md:mx-0 shadow-[0_0_10px_#C5A059]"></div>
 
                 <p class="text-lexusGold text-sm md:text-base uppercase tracking-[0.2em] mb-8 font-bold" data-i18n="skill_1">
-                    Lexus Authorized Sales Executive
+                    Dedicated to the Best Deals for New Lexus Performance Models
                 </p>
 
                 <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                    
+    
                     <a href="#collection" class="px-8 py-3 bg-lexusGold text-black font-bold tracking-widest text-xs uppercase hover:bg-white hover:scale-105 transition duration-300 shadow-lg border border-lexusGold" 
-                       data-i18n="hero_cta">
+                    data-i18n="hero_cta">
                         VIEW COLLECTION
                     </a>
 
-                    <a href="#testimonials" class="px-8 py-3 border border-white text-white font-bold tracking-widest text-xs uppercase hover:bg-white hover:text-black transition duration-300 backdrop-blur-sm" data-i18n="btn_delivered">
-                        Car Delivered
+                    <a href="#testimonials" class="px-8 py-3 border border-white text-white font-bold tracking-widest text-xs uppercase hover:bg-white hover:text-black transition duration-300 backdrop-blur-sm" 
+                    data-i18n="btn_sold">
+                        Sold Cars
                     </a>
+
                 </div>
             </div>
 
@@ -372,187 +419,138 @@
     </header>
 
 
-<section id="about" class="relative py-24 flex items-center justify-center overflow-hidden">
+<section id="about" class="relative py-32 bg-[#050505] flex items-center justify-center overflow-hidden">
         
-        <div class="absolute inset-0 carbon-bg opacity-100 z-0"></div>
-        
-        <div class="absolute inset-0 bg-[radial-gradient(circle,transparent_20%,#000_100%)] z-0"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[radial-gradient(circle,rgba(197,160,89,0.05)_0%,transparent_70%)] pointer-events-none"></div>
 
-        <div class="container mx-auto px-4 relative z-10">
+        <div class="container mx-auto px-6 relative z-10 max-w-5xl text-center">
             
-            <div class="max-w-6xl mx-auto bg-black/60 backdrop-blur-xl border border-lexusGold/30 rounded-2xl p-8 md:p-16 shadow-[0_0_50px_rgba(0,0,0,0.8)] 
-                        hover:border-lexusGold transition duration-500 group">
-                
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-5xl font-luxury font-bold text-white tracking-[0.1em] uppercase drop-shadow-lg inline-block relative">
-                        <span data-i18n="about_title">Professional Summary</span>
-                        <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-lexusGold group-hover:w-full transition-all duration-700"></div>
-                    </h2>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
-                    
-                    <div class="w-full md:w-1/3 text-center md:text-right">
-                        <div class="inline-block bg-gradient-to-br from-lexusGray to-black border border-lexusGold/50 p-6 rounded-xl shadow-2xl transform hover:scale-105 transition duration-300">
-                            <span class="block text-6xl md:text-7xl font-bold text-white mb-2">10+</span>
-                            <span class="block text-lexusGold text-xs uppercase tracking-[0.3em]">Years Experience</span>
-                        </div>
-                    </div>
-
-                    <div class="w-full md:w-2/3 text-gray-300 font-light leading-relaxed space-y-6 text-center md:text-left">
-                        
-                        <p class="text-lg md:text-xl" data-i18n="about_summary_1">
-                            Motivated and experienced professional with over 10 years of success in sales, customer service, and financial advisory in telecommunications, banking, and automotive industries.
-                        </p>
-
-                        <div class="relative bg-white/5 p-6 rounded-lg 
-                                    border-t-2 md:border-t-0 md:border-l-4 border-lexusGold 
-                                    active:scale-95 md:active:scale-100 transition duration-200 cursor-default">
-                            
-                            <p class="italic text-white" data-i18n="about_summary_2">
-                                Strong communication skills, excels under pressure, and dedicated to results. Recognized for initiative, persistence, and meeting performance KPIs. Eager to impact organizational objectives and grow in a fast-paced environment.
-                            </p>
-                            
-                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 md:left-4 md:translate-x-0 bg-black px-2 text-lexusGold text-2xl">❝</div>
-                        </div>
-
-                    </div>
-                </div>
-                
-                <div class="absolute top-4 left-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
-                <div class="absolute top-4 right-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
-                <div class="absolute bottom-4 left-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
-                <div class="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-gray-500 shadow-inner"></div>
-
-            </div>
-        </div>
-    </section>
-
-   <section id="collection" class="relative py-24 bg-[#050505] overflow-hidden">
-        
-        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-[#0a0a0a] to-black z-0"></div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            
-            <h2 class="text-4xl md:text-5xl font-luxury text-white mb-20 text-center tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="nav_cars">
-                Lexus Collection
+            <h2 class="text-3xl md:text-5xl font-sans text-white leading-tight mb-20" data-i18n="about_headline">
+                I match every car to your values—<br>
+                <span class="font-bold text-white mt-2 block">so you never have to compromise.</span>
             </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-8 justify-center">
+            <div class="grid md:grid-cols-2 gap-16 md:gap-24">
                 
-                <div class="group text-center">
-                    <a href="gallery.html" class="block cursor-pointer">
-                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
-                            <img id="image-lbx" src="lbx-default.png" alt="Lexus LBX" 
-                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110">
-                        </div>
-                    </a>
-                    <div class="car-shadow mb-6"></div>
-
-                    <div class="flex justify-center gap-3 mb-6">
-                        <div onclick="changeColor('lbx', 'default')" class="color-btn bg-[#B87333] active" title="Original"></div>
-                        <div onclick="changeColor('lbx', 'black')" class="color-btn bg-black border border-gray-700" title="Black"></div>
-                        <div onclick="changeColor('lbx', 'white')" class="color-btn bg-white" title="White"></div>
+                <div class="flex flex-col items-center group">
+                    <div class="text-lexusGold text-3xl mb-6 opacity-50">
+                        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16H9.01703V12H14.017V0H0.0170288V12C0.0170288 16.9706 4.04647 21 9.01703 21H14.017ZM23.017 21L23.017 18C23.017 16.8954 22.1216 16 21.017 16H18.017V12H23.017V0H9.01703V12C9.01703 16.9706 13.0465 21 18.017 21H23.017Z"/></svg>
                     </div>
-
-                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">Lexus LBX</h3>
-                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Compact Luxury</p>
-                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20LBX" class="detail-link">INQUIRE NOW</a>
+                    <p class="text-gray-300 font-sans text-lg leading-relaxed mb-6" data-i18n="about_testi_1">
+                        "Honestly, this is the only dealer who actually listened to what matters to me."
+                    </p>
+                    <div class="h-px w-12 bg-gray-700 mb-4"></div>
+                    <p class="text-xs font-bold text-lexusGold tracking-[0.2em] uppercase" data-i18n="about_client_1">
+                        THE GREEN FAMILY
+                    </p>
                 </div>
 
-                <div class="group text-center">
-                    <a href="gallery.html" class="block cursor-pointer">
-                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
-                            <img id="image-nx350f" src="nx350f-default.png" alt="Lexus NX F Sport" 
-                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110" style="animation-delay: 0.2s;">
-                        </div>
-                    </a>
-                    <div class="car-shadow mb-6"></div>
-
-                    <div class="flex justify-center gap-3 mb-6">
-                        <div onclick="changeColor('nx350f', 'default')" class="color-btn bg-white active" title="Original"></div>
-                        <div onclick="changeColor('nx350f', 'black')" class="color-btn bg-black border border-gray-700" title="Black"></div>
-                        <div onclick="changeColor('nx350f', 'blue')" class="color-btn bg-[#003366]" title="Heat Blue"></div>
+                <div class="flex flex-col items-center group">
+                    <div class="text-lexusGold text-3xl mb-6 opacity-50">
+                        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16H9.01703V12H14.017V0H0.0170288V12C0.0170288 16.9706 4.04647 21 9.01703 21H14.017ZM23.017 21L23.017 18C23.017 16.8954 22.1216 16 21.017 16H18.017V12H23.017V0H9.01703V12C9.01703 16.9706 13.0465 21 18.017 21H23.017Z"/></svg>
                     </div>
-
-                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">NX 350 F Sport</h3>
-                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Dynamic Sport</p>
-                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20NX%20F%20Sport" class="detail-link">INQUIRE NOW</a>
-                </div>
-
-                <div class="group text-center">
-                    <a href="gallery.html" class="block cursor-pointer">
-                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
-                            <img id="image-nx350h" src="nx350h-default.png" alt="Lexus NX Hybrid" 
-                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110" style="animation-delay: 0.4s;">
-                        </div>
-                    </a>
-                    <div class="car-shadow mb-6"></div>
-
-                    <div class="flex justify-center gap-3 mb-6">
-                        <div onclick="changeColor('nx350h', 'default')" class="color-btn bg-gray-400 active" title="Original"></div>
-                        <div onclick="changeColor('nx350h', 'white')" class="color-btn bg-white" title="White"></div>
-                    </div>
-
-                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">Lexus NX 350h</h3>
-                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Hybrid Efficiency</p>
-                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20NX%20Hybrid" class="detail-link">INQUIRE NOW</a>
-                </div>
-
-                <div class="group text-center lg:col-start-1 lg:ml-auto"> <a href="gallery.html" class="block cursor-pointer">
-                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
-                            <img id="image-rx350" src="rx350-default.png" alt="Lexus RX" 
-                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110" style="animation-delay: 0.6s;">
-                        </div>
-                    </a>
-                    <div class="car-shadow mb-6"></div>
-
-                    <div class="flex justify-center gap-3 mb-6">
-                        <div onclick="changeColor('rx350', 'default')" class="color-btn bg-gray-300 active" title="Original"></div>
-                        <div onclick="changeColor('rx350', 'black')" class="color-btn bg-black border border-gray-700" title="Black"></div>
-                    </div>
-
-                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">Lexus RX 350</h3>
-                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Sophisticated Luxury</p>
-                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20RX%20350" class="detail-link">INQUIRE NOW</a>
-                </div>
-
-                <div class="group text-center lg:col-end-4 lg:mr-auto">
-                    <a href="gallery.html" class="block cursor-pointer">
-                        <div class="relative h-48 md:h-56 mb-4 flex items-end justify-center">
-                            <img id="image-rx500h" src="rx500h-default.png" alt="Lexus RX F Sport" 
-                                 class="car-float w-auto h-full max-w-full object-contain transition-opacity duration-500 hover:scale-110" style="animation-delay: 0.8s;">
-                        </div>
-                    </a>
-                    <div class="car-shadow mb-6"></div>
-
-                    <div class="flex justify-center gap-3 mb-6">
-                        <div onclick="changeColor('rx500h', 'default')" class="color-btn bg-[#B87333] active" title="Original"></div>
-                        <div onclick="changeColor('rx500h', 'white')" class="color-btn bg-white" title="White"></div>
-                    </div>
-
-                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1">RX 500h F Sport</h3>
-                    <p class="text-lexusGold text-xs uppercase tracking-[0.2em] mb-6">Performance Hybrid</p>
-                    <a href="https://wa.me/601111492290?text=I%20am%20interested%20in%20Lexus%20RX%20500h" class="detail-link">INQUIRE NOW</a>
+                    <p class="text-gray-300 font-sans text-lg leading-relaxed mb-6" data-i18n="about_testi_2">
+                        "Greatest integrity I’ve found in the industry. No shady tactics."
+                    </p>
+                    <div class="h-px w-12 bg-gray-700 mb-4"></div>
+                    <p class="text-xs font-bold text-lexusGold tracking-[0.2em] uppercase" data-i18n="about_client_2">
+                        MARCUS D., GOOGLE REVIEWS
+                    </p>
                 </div>
 
             </div>
-        </div>
 
-        <style>
-            .detail-link {
-                display: inline-block;
-                border-bottom: 1px solid #4b5563;
-                color: #9ca3af;
-                font-size: 0.75rem;
-                padding-bottom: 2px;
-                letter-spacing: 0.1em;
-                transition: all 0.3s;
-            }
-            .detail-link:hover { color: white; border-color: white; }
-        </style>
+        </div>
     </section>
 
+
+   <section id="collection" class="relative py-24 diamond-bg overflow-hidden">
+    
+    <div class="absolute inset-0 bg-[radial-gradient(circle,transparent_20%,#000_100%)] z-0 pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-luxury text-white mb-4 tracking-[0.2em] uppercase drop-shadow-lg" data-i18n="nav_cars">
+                Lexus Collection
+            </h2>
+            <div class="w-24 h-1 bg-lexusGold mx-auto shadow-[0_0_15px_#C5A059]"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 justify-center items-end">
+            
+            <div class="collection-card group text-center">
+                <a href="gallery.html" class="block cursor-pointer">
+                    <div class="relative h-40 md:h-48 mb-4 flex items-end justify-center">
+                        <img src="lbx-default.png" alt="Lexus LBX" class="w-auto h-full max-w-full object-contain">
+                    </div>
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1 group-hover:text-lexusGold transition">Lexus LBX</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-[0.2em]">Compact Luxury</p>
+                </a>
+            </div>
+
+            <div class="collection-card group text-center">
+                <a href="gallery.html" class="block cursor-pointer">
+                    <div class="relative h-40 md:h-48 mb-4 flex items-end justify-center">
+                        <img src="nx350f-default.png" alt="Lexus NX F Sport" class="w-auto h-full max-w-full object-contain">
+                    </div>
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1 group-hover:text-lexusGold transition">NX 350 F Sport</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-[0.2em]">Dynamic Sport</p>
+                </a>
+            </div>
+
+            <div class="collection-card group text-center">
+                <a href="gallery.html" class="block cursor-pointer">
+                    <div class="relative h-40 md:h-48 mb-4 flex items-end justify-center">
+                        <img src="nx350h-default.png" alt="Lexus NX Hybrid" class="w-auto h-full max-w-full object-contain">
+                    </div>
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1 group-hover:text-lexusGold transition">NX 350h</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-[0.2em]">Hybrid Efficiency</p>
+                </a>
+            </div>
+
+            <div class="collection-card group text-center">
+                <a href="gallery.html" class="block cursor-pointer">
+                    <div class="relative h-40 md:h-48 mb-4 flex items-end justify-center">
+                        <img src="rx350-default.png" alt="Lexus RX" class="w-auto h-full max-w-full object-contain">
+                    </div>
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1 group-hover:text-lexusGold transition">RX 350</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-[0.2em]">Sophisticated Luxury</p>
+                </a>
+            </div>
+
+            <div class="collection-card group text-center">
+                <a href="gallery.html" class="block cursor-pointer">
+                    <div class="relative h-40 md:h-48 mb-4 flex items-end justify-center">
+                        <img src="rx500h-default.png" alt="Lexus RX F Sport" class="w-auto h-full max-w-full object-contain">
+                    </div>
+                    <h3 class="text-2xl text-white font-luxury tracking-widest uppercase mb-1 group-hover:text-lexusGold transition">RX 500h F Sport</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-[0.2em]">Performance Hybrid</p>
+                </a>
+            </div>
+
+            <div class="collection-card group text-center h-full flex flex-col justify-end pb-8">
+                <a href="gallery.html" class="block cursor-pointer group">
+                    <div class="w-20 h-20 mx-auto rounded-full border border-gray-700 flex items-center justify-center group-hover:border-lexusGold group-hover:bg-lexusGold transition duration-500 mb-6 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-white/10 scale-0 group-hover:scale-150 rounded-full transition duration-500"></div>
+                        
+                        <svg class="w-8 h-8 text-gray-500 group-hover:text-black transition duration-500 transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 5l7 7-7 7M5 12h15"></path>
+                        </svg>
+                    </div>
+
+                    <h3 class="text-xl text-white font-luxury tracking-[0.2em] uppercase mb-1 group-hover:text-lexusGold transition">
+                        View Gallery
+                    </h3>
+                    <p class="text-gray-600 text-[10px] uppercase tracking-[0.3em] group-hover:text-gray-400 transition">
+                        See All Models
+                    </p>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <style>
         /* CSS ANIMASI */
@@ -595,7 +593,7 @@
             </h2>
             <div class="w-20 h-1 bg-lexusGold mx-auto mb-6 shadow-[0_0_15px_#C5A059]"></div>
             <p class="text-gray-400 text-sm uppercase tracking-widest" data-i18n="testi_sub">
-                Welcoming New Members to the Lexus Family
+                Trusted by over 50 distinguished clients
             </p>
         </div>
 
