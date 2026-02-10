@@ -35,7 +35,7 @@
         
         body { background-color: #050505; color: white; overflow-x: hidden; }
 
-        /* MOTIF BACKGROUND */
+        /* BACKGROUND MOTIF */
         .diamond-bg {
             background-color: #050505;
             background-image: 
@@ -48,27 +48,20 @@
             background-repeat: repeat;
         }
 
-        /* 1. GERBANG AWAL (ATAS - BAWAH) */
+        /* 1. HEADER GERBANG (ANIMASI PEMBUKA) */
         .gate-vertical {
             position: fixed; left: 0; width: 100%; height: 50%; 
             background: #000; z-index: 60;
-            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+            transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1); /* Durasi lebih lambat biar elegan */
             display: flex; align-items: flex-end; justify-content: center;
         }
         #gate-top { top: 0; border-bottom: 2px solid #C5A059; }
         #gate-bottom { bottom: 0; border-top: 2px solid #C5A059; align-items: flex-start; }
-        .gate-logo-part { opacity: 1; transition: opacity 0.5s; }
-
-        /* 2. STYLE UTAMA */
-        #gallery-container {
-            min-height: 100vh;
-            display: flex; align-items: center; position: relative;
-            padding-top: 80px; 
-        }
-
-        /* SLIDER KIRI */
+        
+        /* 2. STYLE SLIDER VERTIKAL */
         .slider-wrapper {
             height: 60vh; overflow: hidden; position: relative;
+            /* Efek pudar atas bawah */
             mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
             -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
         }
@@ -82,35 +75,24 @@
             opacity: 0.4; transform: scale(0.8);
             transition: all 0.5s ease; cursor: pointer;
         }
-        .car-item.active { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 30px rgba(197,160,89,0.3)); }
+        .car-item.active { 
+            opacity: 1; transform: scale(1.2); 
+            filter: drop-shadow(0 0 30px rgba(197,160,89,0.3)); 
+        }
         .car-item img { max-height: 100%; max-width: 80%; object-fit: contain; }
 
-        /* INFO PANEL KANAN */
+        /* 3. INFO PANEL (KANAN) */
         .info-panel { opacity: 0; transform: translateX(50px); transition: all 0.6s ease; }
         .info-panel.visible { opacity: 1; transform: translateX(0); }
 
-        /* 3. GERBANG PENUTUP (TIRAI KANAN KIRI) */
-        .curtain-side {
-            position: fixed; top: 0; bottom: 0; width: 50%;
-            background: #000; z-index: 90; /* Z-Index tinggi menutupi konten */
-            transition: transform 0.8s ease; pointer-events: none;
-            display: flex; align-items: center; justify-content: center;
-        }
-        #curtain-left { left: 0; transform: translateX(-100%); border-right: 1px solid #333; }
-        #curtain-right { right: 0; transform: translateX(100%); border-left: 1px solid #333; }
-        
-        .curtains-closed #curtain-left { transform: translateX(0); }
-        .curtains-closed #curtain-right { transform: translateX(0); }
-
-        /* FULLSCREEN MODAL */
+        /* 4. MODAL FULLSCREEN */
         #fs-modal {
-            position: fixed; inset: 0; z-index: 100;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
-            opacity: 0; pointer-events: none; transition: opacity 0.4s;
-            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.4s;
         }
         #fs-modal.active { opacity: 1; pointer-events: auto; }
-        #fs-img { max-height: 80vh; max-width: 90vw; transform: scale(0.9); transition: transform 0.4s; }
+        #fs-modal:not(.active) { opacity: 0; pointer-events: none; }
+        
+        #fs-img { transition: transform 0.4s; transform: scale(0.9); }
         #fs-modal.active #fs-img { transform: scale(1); }
     </style>
 </head>
@@ -125,19 +107,22 @@
                     <span id="line3" class="w-full h-[2px] bg-white transition-all duration-300"></span>
                 </div>
             </button>
+
             <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
                 <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition"> 
                 <div class="text-sm md:text-xl font-bold tracking-widest uppercase text-white group-hover:text-lexusGold transition whitespace-nowrap">
                     Hafiz <span class="text-lexusGold group-hover:text-white transition">Mazhanafi</span>
                 </div>
             </a>
+            
             <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
-                <a href="index.html" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">HOME</a>
-                <a href="index.html#about" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">PROFILE</a>
-                <a href="#" class="nav-link text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition">GALLERY</a>
-                <a href="experience.html" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">EXPERIENCE</a>
-                <a href="index.html#contact" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">CONTACT</a>
+                <a href="index.html" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_home">HOME</a>
+                <a href="index.html#about" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_about">PROFILE</a>
+                <a href="#" class="nav-link text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition" data-i18n="nav_cars">COLLECTION</a>
+                <a href="experience.html" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_exp">EXPERIENCE</a>
+                <a href="index.html#contact" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition" data-i18n="nav_contact_link">CONTACT</a>
             </div>
+
             <div class="flex items-center gap-6">
                 <div class="hidden md:flex items-center gap-4">
                     <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-medium tracking-[0.15em] text-white transition">EN</button>
@@ -146,27 +131,30 @@
                 </div>
             </div>
         </div>
+
         <div id="mobile-menu" class="fixed top-20 left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 transform -translate-y-[150%] transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center py-8 z-[90] shadow-2xl">
-            <a href="index.html" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">HOME</a>
-            <a href="index.html#about" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">PROFILE</a>
-            <a href="#" class="mobile-link text-lexusGold font-bold text-sm tracking-widest mb-6 uppercase">GALLERY</a>
-            <a href="experience.html" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">EXPERIENCE</a>
-            <a href="index.html#contact" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-8 uppercase">CONTACT</a>
+            <a href="index.html" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_home">HOME</a>
+            <a href="index.html#about" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_about">PROFILE</a>
+            <a href="#" class="mobile-link text-lexusGold font-bold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_cars">COLLECTION</a>
+            <a href="experience.html" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase" data-i18n="nav_exp">EXPERIENCE</a>
+            <a href="index.html#contact" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-8 uppercase" data-i18n="nav_contact_link">CONTACT</a>
         </div>
         <div id="mobile-overlay" onclick="closeMenu()" class="fixed inset-0 bg-black/80 hidden z-[80] backdrop-blur-sm cursor-pointer h-screen w-screen"></div>
     </nav>
 
-    <div id="gate-top" class="gate-vertical">
-        <h1 class="font-luxury text-4xl md:text-6xl text-white tracking-[0.3em] uppercase mb-4 gate-logo-part">LEXUS</h1>
-    </div>
-    <div id="gate-bottom" class="gate-vertical">
-        <p class="text-gray-400 tracking-[0.5em] text-xs mt-4 uppercase gate-logo-part">Gallery Collection</p>
-    </div>
+    <header id="gate-header" class="relative z-[90]">
+        <div id="gate-top" class="gate-vertical">
+            <h1 class="font-luxury text-4xl md:text-6xl text-white tracking-[0.3em] uppercase mb-4 gate-logo-part">LEXUS</h1>
+        </div>
+        <div id="gate-bottom" class="gate-vertical">
+            <p class="text-gray-400 tracking-[0.5em] text-xs mt-4 uppercase gate-logo-part">Gallery Collection</p>
+        </div>
+    </header>
 
-    <section id="gallery-container" class="container mx-auto px-6">
+    <section id="gallery-container" class="container mx-auto px-6 min-h-screen flex items-center pt-20">
         <div class="grid grid-cols-1 md:grid-cols-2 w-full h-full items-center gap-10">
             
-            <div class="relative w-full flex flex-col items-center justify-center">
+            <div class="relative w-full flex flex-col items-center justify-center order-2 md:order-1">
                 <div class="slider-wrapper w-full md:w-[80%]">
                     <div id="slider-track" class="slider-track">
                         </div>
@@ -177,24 +165,24 @@
                 </div>
             </div>
 
-            <div class="info-panel relative z-20 text-center md:text-left pl-0 md:pl-10 px-6 md:px-0" id="info-panel">
+            <div class="info-panel relative z-20 text-center md:text-left pl-0 md:pl-10 order-1 md:order-2" id="info-panel">
                 
-                <h3 class="text-lexusGold text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-2" id="info-tag">CATEGORY</h3>
+                <h3 class="text-lexusGold text-xs font-bold tracking-[0.3em] uppercase mb-2" id="info-tag">CATEGORY</h3>
                 
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-luxury text-white mb-6 uppercase leading-tight break-words" id="info-name">MODEL</h1>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-luxury text-white mb-6 uppercase leading-tight" id="info-name">MODEL NAME</h1>
                 
                 <p class="text-gray-400 font-light leading-relaxed mb-8 max-w-md mx-auto md:mx-0 text-sm md:text-base" id="info-desc">
-                    Description goes here.
+                    Description loading...
                 </p>
 
-                <div class="flex flex-wrap gap-6 md:gap-8 mb-10 justify-center md:justify-start">
+                <div class="flex flex-wrap gap-8 mb-10 justify-center md:justify-start">
                     <div>
                         <span class="block text-[10px] text-gray-500 uppercase tracking-widest">Engine</span>
-                        <span class="text-lg md:text-xl text-white font-luxury" id="info-engine">---</span>
+                        <span class="text-xl text-white font-luxury" id="info-engine">---</span>
                     </div>
                     <div>
                         <span class="block text-[10px] text-gray-500 uppercase tracking-widest">Power</span>
-                        <span class="text-lg md:text-xl text-white font-luxury" id="info-power">---</span>
+                        <span class="text-xl text-white font-luxury" id="info-power">---</span>
                     </div>
                 </div>
 
@@ -222,113 +210,189 @@
         </div>
     </section>
 
-    <div id="footer-trigger" class="h-[20vh] w-full"></div>
+    <footer class="bg-black pt-16 pb-10 text-center relative z-50 border-t border-gray-900">
+        <h2 class="text-2xl font-luxury text-white mb-4">EXPERIENCE AMAZING</h2>
+        <p class="text-gray-600 text-xs">&copy; 2026 Hafiz Mazhanafi. All Rights Reserved.</p>
+    </footer>
 
-    <div id="curtain-left" class="curtain-side"></div>
-    <div id="curtain-right" class="curtain-side"></div>
-
-    <div id="fs-modal" onclick="if(event.target === this) closeFullscreen()">
+    <div id="fs-modal" class="fixed inset-0 z-[200] bg-black/95 backdrop-blur flex items-center justify-center" onclick="if(event.target === this) closeFullscreen()">
         
-        <button onclick="closeFullscreen()" class="absolute top-6 right-6 text-white hover:text-lexusGold z-50 p-4">
-            <svg class="w-10 h-10 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        <button onclick="closeFullscreen()" class="absolute top-6 right-6 text-white hover:text-lexusGold p-4 z-50">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
 
-        <img id="fs-img" src="" alt="Full View" class="object-contain max-h-[85vh] max-w-[95vw] shadow-2xl">
+        <img id="fs-img" src="" alt="Full View" class="object-contain max-h-[85vh] max-w-[95vw]">
         
         <div class="absolute bottom-10 left-0 w-full text-center pointer-events-none">
-            <h2 id="fs-title" class="text-2xl md:text-3xl font-luxury text-white uppercase drop-shadow-lg tracking-widest"></h2>
+            <h2 id="fs-title" class="text-2xl font-luxury text-white uppercase drop-shadow-lg tracking-widest"></h2>
         </div>
     </div>
 
     <script src="lang.js"></script>
+
     <script>
-        // ============================================
-        // 1. DATA MOBIL (UPDATE DISINI)
-        // ============================================
-        const carData = [
-            { name: "Lexus LBX", tag: "Compact Luxury", engine: "1.5L HEV", power: "136 HP", img: "lbx-default.png", desc: "The LBX breaks boundaries as a compact SUV that doesn't compromise on luxury." },
-            { name: "NX 350 F Sport", tag: "Dynamic Sport", engine: "2.4L Turbo", power: "275 HP", img: "nx350f-default.png", desc: "Experience the thrill of the NX F SPORT with its turbo engine and adaptive suspension." },
-            { name: "NX 350h", tag: "Hybrid", engine: "2.5L HEV", power: "240 HP", img: "nx350h-default.png", desc: "Efficiency meets power. The NX Hybrid delivers smooth acceleration." },
-            { name: "RX 350", tag: "Luxury SUV", engine: "2.4L Turbo", power: "279 HP", img: "rx350-default.png", desc: "The iconic RX, reinvented. Spacious, sophisticated, and powerful for every journey." },
-            { name: "RX 500h", tag: "F Sport Perf.", engine: "2.4L Turbo Hyb", power: "366 HP", img: "rx500h-default.png", desc: "The most powerful RX ever. Direct4 AWD system ensures incredible handling and speed." }
+        // --- DATA GAMBAR (Teks diambil dari lang.js) ---
+        const carVisuals = [
+            { img: "lbx-default.png" },
+            { img: "nx350f-default.png" },
+            { img: "nx350h-default.png" },
+            { img: "rx350-default.png" },
+            { img: "rx500h-default.png" },
+            { img: "lbx-default.png" }
         ];
 
         let currentIndex = 0;
+        let currentLang = localStorage.getItem('selected_lang') || 'en';
+
+        // --- DOM ELEMENTS ---
         const track = document.getElementById('slider-track');
         const infoPanel = document.getElementById('info-panel');
+        const gateTop = document.getElementById('gate-top');
+        const gateBottom = document.getElementById('gate-bottom');
 
-        // --- INIT ---
+        // --- INIT FUNCTION (Aman dari error) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initGallery();
+        });
+
         function initGallery() {
-            track.innerHTML = '';
-            carData.forEach((car, index) => {
-                const el = document.createElement('div');
-                el.className = `car-item ${index === 0 ? 'active' : ''}`;
-                el.innerHTML = `<img src="${car.img}" onerror="this.src='https://placehold.co/400x250/FFFFFF/000000?text=${car.name}'" alt="${car.name}">`;
-                el.onclick = () => goToCar(index);
-                track.appendChild(el);
-            });
-            updateView();
-            
-            // Buka Gerbang Awal
+            // 1. Render Gambar Slider
+            if(track) {
+                track.innerHTML = '';
+                carVisuals.forEach((car, index) => {
+                    const el = document.createElement('div');
+                    el.className = `car-item ${index === 0 ? 'active' : ''}`;
+                    el.innerHTML = `<img src="${car.img}" onerror="this.src='https://placehold.co/400x250/333333/C5A059?text=Lexus'" alt="Car">`;
+                    el.onclick = () => goToCar(index);
+                    track.appendChild(el);
+                });
+            }
+
+            // 2. Set Bahasa Awal (Try-Catch agar tidak crash)
+            try {
+                if(typeof setLanguage === 'function') {
+                    setLanguage(currentLang);
+                } else {
+                    console.warn("setLanguage function not found in lang.js");
+                    updateView(); // Fallback update manual
+                }
+            } catch (e) {
+                console.error("Language Error:", e);
+                updateView();
+            }
+
+            // 3. Buka Gerbang (Delay sedikit agar assets load)
             setTimeout(() => {
-                document.getElementById('gate-top').style.transform = 'translateY(-100%)';
-                document.getElementById('gate-bottom').style.transform = 'translateY(100%)';
-                document.querySelectorAll('.gate-logo-part').forEach(el => el.style.opacity = '0');
-            }, 1000);
+                if(gateTop && gateBottom) {
+                    gateTop.style.transform = 'translateY(-100%)';
+                    gateBottom.style.transform = 'translateY(100%)';
+                    
+                    // Hilangkan logo text
+                    document.querySelectorAll('.gate-logo-part').forEach(el => el.style.opacity = '0');
+                }
+            }, 500);
         }
 
-        // --- LOGIC GESER MOBIL ---
+        // --- UPDATE VIEW LOGIC ---
         function updateView() {
+            if(!track) return;
+
+            // 1. Geser Slider Vertikal
             const itemHeightVh = 20; 
             const offset = (1 - currentIndex) * itemHeightVh; 
             track.style.transform = `translateY(${offset}vh)`;
 
+            // 2. Highlight Gambar Aktif
             document.querySelectorAll('.car-item').forEach((item, i) => {
                 if (i === currentIndex) item.classList.add('active');
                 else item.classList.remove('active');
             });
 
-            // Update Info
-            infoPanel.classList.remove('visible');
-            setTimeout(() => {
-                const data = carData[currentIndex];
-                document.getElementById('info-name').innerText = data.name;
-                document.getElementById('info-tag').innerText = data.tag;
-                document.getElementById('info-desc').innerText = data.desc;
-                document.getElementById('info-engine').innerText = data.engine;
-                document.getElementById('info-power').innerText = data.power;
-                infoPanel.classList.add('visible');
-            }, 300);
+            // 3. Update Teks Info (Ambil dari translations)
+            if(infoPanel) {
+                infoPanel.classList.remove('visible');
+                
+                setTimeout(() => {
+                    // Ambil data bahasa
+                    let langData = {};
+                    if(typeof translations !== 'undefined' && translations[currentLang]) {
+                        langData = translations[currentLang];
+                    } else {
+                        // Fallback Text jika lang.js bermasalah
+                        langData = {
+                            [`car_${currentIndex}_name`]: "Lexus Model",
+                            [`car_${currentIndex}_tag`]: "Category",
+                            [`car_${currentIndex}_desc`]: "Loading description...",
+                            [`car_${currentIndex}_engine`]: "-",
+                            [`car_${currentIndex}_power`]: "-"
+                        };
+                    }
 
-            // Update Garis Scroll
+                    // Isi HTML dengan teks
+                    document.getElementById('info-name').innerText = langData[`car_${currentIndex}_name`];
+                    document.getElementById('info-tag').innerText = langData[`car_${currentIndex}_tag`];
+                    document.getElementById('info-desc').innerHTML = langData[`car_${currentIndex}_desc`]; // innerHTML untuk <li>
+                    document.getElementById('info-engine').innerText = langData[`car_${currentIndex}_engine`];
+                    document.getElementById('info-power').innerText = langData[`car_${currentIndex}_power`];
+                    
+                    infoPanel.classList.add('visible');
+                }, 300);
+            }
+
+            // 4. Update Garis Scroll
             const bar = document.getElementById('scroll-bar');
-            const pct = (currentIndex / (carData.length - 1)) * 100;
-            if(bar) bar.style.top = `${pct}%`;
-            if(bar && pct > 80) bar.style.top = `auto`, bar.style.bottom = `0`; 
+            if(bar) {
+                const pct = (currentIndex / (carVisuals.length - 1)) * 100;
+                bar.style.top = `${pct}%`;
+                if(pct > 85) { bar.style.top = 'auto'; bar.style.bottom = '0'; }
+            }
         }
 
-        function nextCar() { if (currentIndex < carData.length - 1) { currentIndex++; updateView(); } }
+        // --- NAVIGASI ---
+        function nextCar() { if (currentIndex < carVisuals.length - 1) { currentIndex++; updateView(); } }
         function prevCar() { if (currentIndex > 0) { currentIndex--; updateView(); } }
         function goToCar(index) { currentIndex = index; updateView(); }
 
-        // Scroll Mouse di area kiri
-        document.querySelector('.slider-wrapper').addEventListener('wheel', (e) => {
-            e.preventDefault();
-            if (e.deltaY > 0) nextCar(); else prevCar();
-        });
-
-        // --- ANIMASI TIRAI PENUTUP (FOOTER) ---
-        const observerFooter = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    document.body.classList.add('curtains-closed');
-                } else {
-                    document.body.classList.remove('curtains-closed');
-                }
+        // Scroll Mouse di area Slider
+        const sliderWrap = document.querySelector('.slider-wrapper');
+        if(sliderWrap) {
+            sliderWrap.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                if (e.deltaY > 0) nextCar(); else prevCar();
             });
-        }, { threshold: 0.5 });
+        }
 
-        observerFooter.observe(document.getElementById('footer-trigger'));
+        // --- OVERRIDE SETLANGUAGE (Agar update galeri juga) ---
+        // Kita timpa fungsi global agar bisa refresh galeri
+        const originalSetLanguage = window.setLanguage; 
+        window.setLanguage = function(lang) {
+            currentLang = lang;
+            localStorage.setItem('selected_lang', lang);
+
+            // Panggil fungsi asli di lang.js (untuk navbar dll)
+            if(typeof originalSetLanguage === 'function') {
+                originalSetLanguage(lang);
+            } else {
+                // Manual update jika fungsi asli tidak ada
+                if(typeof translations !== 'undefined') {
+                    const data = translations[lang];
+                    document.querySelectorAll('[data-i18n]').forEach(el => {
+                        const key = el.getAttribute('data-i18n');
+                        if(data[key]) el.innerHTML = data[key];
+                    });
+                    // Update warna tombol
+                    const btnEn = document.getElementById('btn-en');
+                    const btnMs = document.getElementById('btn-ms');
+                    if(btnEn && btnMs) {
+                        btnEn.style.color = (lang === 'en') ? '#ffffff' : '#9ca3af';
+                        btnMs.style.color = (lang === 'ms') ? '#ffffff' : '#9ca3af';
+                    }
+                }
+            }
+
+            // Update Konten Galeri
+            updateView();
+        }
 
         // --- FULLSCREEN ---
         const modal = document.getElementById('fs-modal');
@@ -336,12 +400,19 @@
         const fsTitle = document.getElementById('fs-title');
 
         function openFullscreen() {
-            const data = carData[currentIndex];
-            fsImg.src = data.img;
-            fsTitle.innerText = data.name;
+            if(!modal) return;
+            const visual = carVisuals[currentIndex];
+            let titleText = "Lexus";
+            if(typeof translations !== 'undefined' && translations[currentLang]) {
+                titleText = translations[currentLang][`car_${currentIndex}_name`];
+            }
+            fsImg.src = visual.img;
+            fsTitle.innerText = titleText;
             modal.classList.add('active');
         }
-        function closeFullscreen() { modal.classList.remove('active'); }
+        function closeFullscreen() { 
+            if(modal) modal.classList.remove('active'); 
+        }
 
         // --- MOBILE MENU ---
         const navMenu = document.getElementById('mobile-menu');
@@ -350,21 +421,25 @@
         const line2 = document.getElementById('line2');
         const line3 = document.getElementById('line3');
         let isMenuOpen = false;
+
         function toggleMenu() {
             isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                navMenu.classList.remove('-translate-y-[150%]'); overlay.classList.remove('hidden');
-                line1.classList.add('rotate-45', 'translate-y-[8px]'); line2.classList.add('opacity-0'); line3.classList.add('-rotate-45', '-translate-y-[8px]');
+            if (isMenuOpen && navMenu) {
+                navMenu.classList.remove('-translate-y-[150%]'); 
+                if(overlay) overlay.classList.remove('hidden');
+                if(line1) line1.classList.add('rotate-45', 'translate-y-[8px]'); 
+                if(line2) line2.classList.add('opacity-0'); 
+                if(line3) line3.classList.add('-rotate-45', '-translate-y-[8px]');
             } else { closeMenu(); }
         }
         function closeMenu() {
             isMenuOpen = false;
-            navMenu.classList.add('-translate-y-[150%]'); overlay.classList.add('hidden');
-            line1.classList.remove('rotate-45', 'translate-y-[8px]'); line2.classList.remove('opacity-0'); line3.classList.remove('-rotate-45', '-translate-y-[8px]');
+            if(navMenu) navMenu.classList.add('-translate-y-[150%]'); 
+            if(overlay) overlay.classList.add('hidden');
+            if(line1) line1.classList.remove('rotate-45', 'translate-y-[8px]'); 
+            if(line2) line2.classList.remove('opacity-0'); 
+            if(line3) line3.classList.remove('-rotate-45', '-translate-y-[8px]');
         }
-
-        // START
-        initGallery();
     </script>
 </body>
 </html>
