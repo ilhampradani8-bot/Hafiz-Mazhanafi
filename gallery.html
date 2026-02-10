@@ -35,7 +35,7 @@
         
         body { background-color: #050505; color: white; overflow-x: hidden; }
 
-        /* --- BACKGROUND MOTIF (DIAMOND) --- */
+        /* MOTIF BACKGROUND */
         .diamond-bg {
             background-color: #050505;
             background-image: 
@@ -48,7 +48,7 @@
             background-repeat: repeat;
         }
 
-        /* --- 1. GERBANG AWAL (ATAS - BAWAH) --- */
+        /* 1. GERBANG AWAL (ATAS - BAWAH) */
         .gate-vertical {
             position: fixed; left: 0; width: 100%; height: 50%; 
             background: #000; z-index: 60;
@@ -57,63 +57,52 @@
         }
         #gate-top { top: 0; border-bottom: 2px solid #C5A059; }
         #gate-bottom { bottom: 0; border-top: 2px solid #C5A059; align-items: flex-start; }
-        
         .gate-logo-part { opacity: 1; transition: opacity 0.5s; }
 
-        /* --- 2. MAIN SECTION --- */
+        /* 2. STYLE UTAMA */
         #gallery-container {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-top: 80px; /* Space for navbar */
+            display: flex; align-items: center; position: relative;
+            padding-top: 80px; 
         }
 
-        /* VERTICAL CAR SLIDER (LEFT) */
+        /* SLIDER KIRI */
         .slider-wrapper {
-            height: 60vh; /* Tinggi area scroll */
-            overflow: hidden;
-            position: relative;
-            /* Masking agar atas bawah pudar */
+            height: 60vh; overflow: hidden; position: relative;
             mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
             -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
         }
-
         .slider-track {
             display: flex; flex-direction: column; align-items: center;
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-
         .car-item {
-            height: 20vh; /* 60vh / 3 items = 20vh per item */
-            width: 100%;
+            height: 20vh; width: 100%;
             display: flex; align-items: center; justify-content: center;
             opacity: 0.4; transform: scale(0.8);
-            transition: all 0.5s ease;
-            cursor: pointer;
+            transition: all 0.5s ease; cursor: pointer;
         }
         .car-item.active { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 30px rgba(197,160,89,0.3)); }
         .car-item img { max-height: 100%; max-width: 80%; object-fit: contain; }
 
-        /* RIGHT INFO PANEL */
+        /* INFO PANEL KANAN */
         .info-panel { opacity: 0; transform: translateX(50px); transition: all 0.6s ease; }
         .info-panel.visible { opacity: 1; transform: translateX(0); }
 
-        /* --- 3. GERBANG FOOTER (KANAN - KIRI) --- */
+        /* 3. GERBANG PENUTUP (TIRAI KANAN KIRI) */
         .curtain-side {
             position: fixed; top: 0; bottom: 0; width: 50%;
-            background: #080808; z-index: 40;
-            transition: transform 0.8s ease;
-            pointer-events: none; /* Supaya bisa scroll lewat */
+            background: #000; z-index: 90; /* Z-Index tinggi menutupi konten */
+            transition: transform 0.8s ease; pointer-events: none;
+            display: flex; align-items: center; justify-content: center;
         }
         #curtain-left { left: 0; transform: translateX(-100%); border-right: 1px solid #333; }
         #curtain-right { right: 0; transform: translateX(100%); border-left: 1px solid #333; }
         
-        /* Class active untuk menutup tirai */
         .curtains-closed #curtain-left { transform: translateX(0); }
         .curtains-closed #curtain-right { transform: translateX(0); }
 
-        /* --- FULLSCREEN MODAL --- */
+        /* FULLSCREEN MODAL */
         #fs-modal {
             position: fixed; inset: 0; z-index: 100;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
@@ -175,7 +164,6 @@
     </div>
 
     <section id="gallery-container" class="container mx-auto px-6">
-        
         <div class="grid grid-cols-1 md:grid-cols-2 w-full h-full items-center gap-10">
             
             <div class="relative w-full flex flex-col items-center justify-center">
@@ -189,28 +177,29 @@
                 </div>
             </div>
 
-            <div class="info-panel relative z-20 text-center md:text-left pl-0 md:pl-10" id="info-panel">
+            <div class="info-panel relative z-20 text-center md:text-left pl-0 md:pl-10 px-6 md:px-0" id="info-panel">
                 
-                <h3 class="text-lexusGold text-sm font-bold tracking-[0.3em] uppercase mb-2" id="info-tag">CATEGORY</h3>
-                <h1 class="text-5xl md:text-7xl font-luxury text-white mb-6 uppercase leading-tight" id="info-name">MODEL</h1>
+                <h3 class="text-lexusGold text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-2" id="info-tag">CATEGORY</h3>
                 
-                <p class="text-gray-400 font-light leading-relaxed mb-8 max-w-md mx-auto md:mx-0" id="info-desc">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-luxury text-white mb-6 uppercase leading-tight break-words" id="info-name">MODEL</h1>
+                
+                <p class="text-gray-400 font-light leading-relaxed mb-8 max-w-md mx-auto md:mx-0 text-sm md:text-base" id="info-desc">
                     Description goes here.
                 </p>
 
-                <div class="flex flex-wrap gap-8 mb-10 justify-center md:justify-start">
+                <div class="flex flex-wrap gap-6 md:gap-8 mb-10 justify-center md:justify-start">
                     <div>
                         <span class="block text-[10px] text-gray-500 uppercase tracking-widest">Engine</span>
-                        <span class="text-xl text-white font-luxury" id="info-engine">---</span>
+                        <span class="text-lg md:text-xl text-white font-luxury" id="info-engine">---</span>
                     </div>
                     <div>
                         <span class="block text-[10px] text-gray-500 uppercase tracking-widest">Power</span>
-                        <span class="text-xl text-white font-luxury" id="info-power">---</span>
+                        <span class="text-lg md:text-xl text-white font-luxury" id="info-power">---</span>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-4 justify-center md:justify-start">
-                    <div class="flex gap-2">
+                <div class="flex flex-col md:flex-row items-center gap-6 justify-center md:justify-start">
+                    <div class="flex gap-4">
                         <button onclick="prevCar()" class="w-12 h-12 border border-gray-700 rounded-full flex items-center justify-center hover:bg-lexusGold hover:border-lexusGold hover:text-black transition duration-300">
                             <svg class="w-5 h-5 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         </button>
@@ -219,7 +208,7 @@
                         </button>
                     </div>
 
-                    <div class="h-px w-10 bg-gray-700"></div>
+                    <div class="hidden md:block h-px w-10 bg-gray-700"></div>
 
                     <button onclick="openFullscreen()" class="group flex items-center gap-3 text-white hover:text-lexusGold transition">
                         <span class="text-xs font-bold uppercase tracking-widest">View Full Image</span>
@@ -230,9 +219,7 @@
                 </div>
 
             </div>
-
         </div>
-
     </section>
 
     <div id="footer-trigger" class="h-[20vh] w-full"></div>
@@ -240,33 +227,28 @@
     <div id="curtain-left" class="curtain-side"></div>
     <div id="curtain-right" class="curtain-side"></div>
 
-    <footer class="bg-black pt-16 pb-10 text-center relative z-50 border-t border-gray-900">
-        <h2 class="text-2xl font-luxury text-white mb-4">EXPERIENCE AMAZING</h2>
-        <div class="flex justify-center gap-6 mb-8">
-            <a href="#" class="text-gray-500 hover:text-lexusGold text-xl"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-gray-500 hover:text-lexusGold text-xl"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="text-gray-500 hover:text-lexusGold text-xl"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <p class="text-gray-600 text-xs">&copy; 2026 Hafiz Mazhanafi. All Rights Reserved.</p>
-    </footer>
-
-    <div id="fs-modal">
-        <button onclick="closeFullscreen()" class="absolute top-6 right-6 text-white hover:text-lexusGold z-50">
-            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <div id="fs-modal" onclick="if(event.target === this) closeFullscreen()">
+        
+        <button onclick="closeFullscreen()" class="absolute top-6 right-6 text-white hover:text-lexusGold z-50 p-4">
+            <svg class="w-10 h-10 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        <img id="fs-img" src="" alt="Full View" class="object-contain">
-        <div class="absolute bottom-10 left-0 w-full text-center">
-            <h2 id="fs-title" class="text-3xl font-luxury text-white uppercase drop-shadow-lg"></h2>
+
+        <img id="fs-img" src="" alt="Full View" class="object-contain max-h-[85vh] max-w-[95vw] shadow-2xl">
+        
+        <div class="absolute bottom-10 left-0 w-full text-center pointer-events-none">
+            <h2 id="fs-title" class="text-2xl md:text-3xl font-luxury text-white uppercase drop-shadow-lg tracking-widest"></h2>
         </div>
     </div>
 
     <script src="lang.js"></script>
     <script>
-        // --- DATA MOBIL ---
+        // ============================================
+        // 1. DATA MOBIL (UPDATE DISINI)
+        // ============================================
         const carData = [
-            { name: "Lexus LBX", tag: "Compact Luxury", engine: "1.5L HEV", power: "136 HP", img: "lbx-default.png", desc: "The LBX breaks boundaries as a compact SUV that doesn't compromise on luxury. Perfect for the city." },
+            { name: "Lexus LBX", tag: "Compact Luxury", engine: "1.5L HEV", power: "136 HP", img: "lbx-default.png", desc: "The LBX breaks boundaries as a compact SUV that doesn't compromise on luxury." },
             { name: "NX 350 F Sport", tag: "Dynamic Sport", engine: "2.4L Turbo", power: "275 HP", img: "nx350f-default.png", desc: "Experience the thrill of the NX F SPORT with its turbo engine and adaptive suspension." },
-            { name: "NX 350h", tag: "Hybrid", engine: "2.5L HEV", power: "240 HP", img: "nx350h-default.png", desc: "Efficiency meets power. The NX Hybrid delivers smooth acceleration with class-leading fuel economy." },
+            { name: "NX 350h", tag: "Hybrid", engine: "2.5L HEV", power: "240 HP", img: "nx350h-default.png", desc: "Efficiency meets power. The NX Hybrid delivers smooth acceleration." },
             { name: "RX 350", tag: "Luxury SUV", engine: "2.4L Turbo", power: "279 HP", img: "rx350-default.png", desc: "The iconic RX, reinvented. Spacious, sophisticated, and powerful for every journey." },
             { name: "RX 500h", tag: "F Sport Perf.", engine: "2.4L Turbo Hyb", power: "366 HP", img: "rx500h-default.png", desc: "The most powerful RX ever. Direct4 AWD system ensures incredible handling and speed." }
         ];
@@ -275,20 +257,19 @@
         const track = document.getElementById('slider-track');
         const infoPanel = document.getElementById('info-panel');
 
-        // --- 1. INIT & RENDER ---
+        // --- INIT ---
         function initGallery() {
             track.innerHTML = '';
             carData.forEach((car, index) => {
                 const el = document.createElement('div');
                 el.className = `car-item ${index === 0 ? 'active' : ''}`;
-                // Pakai placeholder kalau gambar error
                 el.innerHTML = `<img src="${car.img}" onerror="this.src='https://placehold.co/400x250/FFFFFF/000000?text=${car.name}'" alt="${car.name}">`;
                 el.onclick = () => goToCar(index);
                 track.appendChild(el);
             });
             updateView();
             
-            // Buka Gerbang Awal setelah load
+            // Buka Gerbang Awal
             setTimeout(() => {
                 document.getElementById('gate-top').style.transform = 'translateY(-100%)';
                 document.getElementById('gate-bottom').style.transform = 'translateY(100%)';
@@ -296,32 +277,18 @@
             }, 1000);
         }
 
-        // --- 2. LOGIC SCROLL & UPDATE UI ---
+        // --- LOGIC GESER MOBIL ---
         function updateView() {
-            // A. Geser Track Vertikal
-            // Item height = 20vh. Kita mau item aktif di tengah (posisi ke-2 dari 3 slot).
-            // Jadi offsetnya: index * 20vh.
-            // Tapi karena kita mau active di tengah, kita perlu logic offset sedikit.
-            // Anggap container 60vh. Item 20vh.
-            // Index 0 -> TranslateY 20vh (Biar turun ke tengah)
-            // Index 1 -> TranslateY 0vh
-            // Index 2 -> TranslateY -20vh
-            
             const itemHeightVh = 20; 
             const offset = (1 - currentIndex) * itemHeightVh; 
             track.style.transform = `translateY(${offset}vh)`;
 
-            // B. Update Class Active
-            const items = document.querySelectorAll('.car-item');
-            items.forEach((item, i) => {
-                if (i === currentIndex) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
+            document.querySelectorAll('.car-item').forEach((item, i) => {
+                if (i === currentIndex) item.classList.add('active');
+                else item.classList.remove('active');
             });
 
-            // C. Update Text Info (Fade effect)
+            // Update Info
             infoPanel.classList.remove('visible');
             setTimeout(() => {
                 const data = carData[currentIndex];
@@ -333,56 +300,37 @@
                 infoPanel.classList.add('visible');
             }, 300);
 
-            // D. Update Scroll Bar Indicator
+            // Update Garis Scroll
             const bar = document.getElementById('scroll-bar');
             const pct = (currentIndex / (carData.length - 1)) * 100;
             if(bar) bar.style.top = `${pct}%`;
             if(bar && pct > 80) bar.style.top = `auto`, bar.style.bottom = `0`; 
         }
 
-        function nextCar() {
-            if (currentIndex < carData.length - 1) {
-                currentIndex++;
-                updateView();
-            }
-        }
+        function nextCar() { if (currentIndex < carData.length - 1) { currentIndex++; updateView(); } }
+        function prevCar() { if (currentIndex > 0) { currentIndex--; updateView(); } }
+        function goToCar(index) { currentIndex = index; updateView(); }
 
-        function prevCar() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateView();
-            }
-        }
-
-        function goToCar(index) {
-            currentIndex = index;
-            updateView();
-        }
-
-        // --- 3. SCROLL MOUSE (WHEEL) PADA AREA KIRI ---
-        // Biar user bisa scroll mouse di area mobil untuk ganti mobil
+        // Scroll Mouse di area kiri
         document.querySelector('.slider-wrapper').addEventListener('wheel', (e) => {
             e.preventDefault();
-            if (e.deltaY > 0) nextCar();
-            else prevCar();
+            if (e.deltaY > 0) nextCar(); else prevCar();
         });
 
-        // --- 4. ANIMASI FOOTER (TIRAI SAMPING) ---
+        // --- ANIMASI TIRAI PENUTUP (FOOTER) ---
         const observerFooter = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                const body = document.body;
                 if (entry.isIntersecting) {
-                    body.classList.add('curtains-closed');
+                    document.body.classList.add('curtains-closed');
                 } else {
-                    body.classList.remove('curtains-closed');
+                    document.body.classList.remove('curtains-closed');
                 }
             });
         }, { threshold: 0.5 });
 
         observerFooter.observe(document.getElementById('footer-trigger'));
 
-
-        // --- 5. FULLSCREEN MODAL ---
+        // --- FULLSCREEN ---
         const modal = document.getElementById('fs-modal');
         const fsImg = document.getElementById('fs-img');
         const fsTitle = document.getElementById('fs-title');
@@ -390,18 +338,12 @@
         function openFullscreen() {
             const data = carData[currentIndex];
             fsImg.src = data.img;
-            // Gunakan placeholder jika error
-            fsImg.onerror = function() { this.src = `https://placehold.co/800x600/FFFFFF/000000?text=${data.name}`; };
-            
             fsTitle.innerText = data.name;
             modal.classList.add('active');
         }
+        function closeFullscreen() { modal.classList.remove('active'); }
 
-        function closeFullscreen() {
-            modal.classList.remove('active');
-        }
-
-        // --- 6. MOBILE MENU (Standard) ---
+        // --- MOBILE MENU ---
         const navMenu = document.getElementById('mobile-menu');
         const overlay = document.getElementById('mobile-overlay');
         const line1 = document.getElementById('line1');
@@ -421,9 +363,8 @@
             line1.classList.remove('rotate-45', 'translate-y-[8px]'); line2.classList.remove('opacity-0'); line3.classList.remove('-rotate-45', '-translate-y-[8px]');
         }
 
-        // RUN INIT
+        // START
         initGallery();
-
     </script>
 </body>
 </html>
