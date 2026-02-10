@@ -6,7 +6,6 @@
     <title>Gallery | Hafiz Mazhanafi</title>
     
     <link rel="icon" type="image/png" href="lexus-logo.png">
-
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
@@ -19,571 +18,412 @@
                         lexusGray: '#1a1a1a',
                     },
                     fontFamily: {
-                        sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+                        sans: ['Poppins', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         @font-face { font-family: 'LexusFont'; src: url('regular.ttf') format('truetype'); }
         .font-luxury { font-family: 'LexusFont', sans-serif; }
         
-        /* Animasi Fade In Up */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, visibility;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: none;
+        body { background-color: #050505; color: white; overflow-x: hidden; }
+
+        /* --- BACKGROUND MOTIF (DIAMOND) --- */
+        .diamond-bg {
+            background-color: #050505;
+            background-image: 
+                linear-gradient(135deg, #0a0a0a 25%, transparent 25%),
+                linear-gradient(225deg, #0a0a0a 25%, transparent 25%),
+                linear-gradient(45deg, #0a0a0a 25%, transparent 25%),
+                linear-gradient(315deg, #0a0a0a 25%, transparent 25%);
+            background-position: 20px 0, 20px 0, 0 0, 0 0;
+            background-size: 40px 40px;
+            background-repeat: repeat;
         }
 
-        /* Hover Zoom untuk Gambar */
-        .img-zoom-container { overflow: hidden; }
-        .img-zoom { transition: transform 0.7s ease; }
-        .img-zoom:hover { transform: scale(1.1); }
+        /* --- 1. GERBANG AWAL (ATAS - BAWAH) --- */
+        .gate-vertical {
+            position: fixed; left: 0; width: 100%; height: 50%; 
+            background: #000; z-index: 60;
+            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+            display: flex; align-items: flex-end; justify-content: center;
+        }
+        #gate-top { top: 0; border-bottom: 2px solid #C5A059; }
+        #gate-bottom { bottom: 0; border-top: 2px solid #C5A059; align-items: flex-start; }
+        
+        .gate-logo-part { opacity: 1; transition: opacity 0.5s; }
+
+        /* --- 2. MAIN SECTION --- */
+        #gallery-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px; /* Space for navbar */
+        }
+
+        /* VERTICAL CAR SLIDER (LEFT) */
+        .slider-wrapper {
+            height: 60vh; /* Tinggi area scroll */
+            overflow: hidden;
+            position: relative;
+            /* Masking agar atas bawah pudar */
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+        }
+
+        .slider-track {
+            display: flex; flex-direction: column; align-items: center;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .car-item {
+            height: 20vh; /* 60vh / 3 items = 20vh per item */
+            width: 100%;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0.4; transform: scale(0.8);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        .car-item.active { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 30px rgba(197,160,89,0.3)); }
+        .car-item img { max-height: 100%; max-width: 80%; object-fit: contain; }
+
+        /* RIGHT INFO PANEL */
+        .info-panel { opacity: 0; transform: translateX(50px); transition: all 0.6s ease; }
+        .info-panel.visible { opacity: 1; transform: translateX(0); }
+
+        /* --- 3. GERBANG FOOTER (KANAN - KIRI) --- */
+        .curtain-side {
+            position: fixed; top: 0; bottom: 0; width: 50%;
+            background: #080808; z-index: 40;
+            transition: transform 0.8s ease;
+            pointer-events: none; /* Supaya bisa scroll lewat */
+        }
+        #curtain-left { left: 0; transform: translateX(-100%); border-right: 1px solid #333; }
+        #curtain-right { right: 0; transform: translateX(100%); border-left: 1px solid #333; }
+        
+        /* Class active untuk menutup tirai */
+        .curtains-closed #curtain-left { transform: translateX(0); }
+        .curtains-closed #curtain-right { transform: translateX(0); }
+
+        /* --- FULLSCREEN MODAL --- */
+        #fs-modal {
+            position: fixed; inset: 0; z-index: 100;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
+            opacity: 0; pointer-events: none; transition: opacity 0.4s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        #fs-modal.active { opacity: 1; pointer-events: auto; }
+        #fs-img { max-height: 80vh; max-width: 90vw; transform: scale(0.9); transition: transform 0.4s; }
+        #fs-modal.active #fs-img { transform: scale(1); }
     </style>
 </head>
-<body class="bg-lexusBlack text-white antialiased">
+<body class="antialiased diamond-bg">
 
-    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800 h-20 transition-all duration-300" id="navbar">
-        <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative">
-            
-            <button id="mobile-menu-btn" class="md:hidden text-white z-50 focus:outline-none p-2">
-                <div class="w-6 h-6 flex flex-col justify-between items-center relative">
-                    <span id="line1" class="w-full h-[2px] bg-white transition-all duration-300 transform origin-center"></span>
-                    <span id="line2" class="w-full h-[2px] bg-white transition-all duration-300 opacity-100"></span>
-                    <span id="line3" class="w-full h-[2px] bg-white transition-all duration-300 transform origin-center"></span>
+    <nav class="fixed top-0 left-0 w-full z-[100] bg-black/80 backdrop-blur-xl border-b border-white/10 h-20 transition-all duration-300" id="navbar">
+        <div class="container mx-auto h-full px-4 md:px-6 flex justify-between items-center relative z-[110]">
+            <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-white focus:outline-none p-2">
+                <div class="w-6 h-6 flex flex-col justify-between items-center pointer-events-none">
+                    <span id="line1" class="w-full h-[2px] bg-white transition-all duration-300"></span>
+                    <span id="line2" class="w-full h-[2px] bg-white transition-all duration-300"></span>
+                    <span id="line3" class="w-full h-[2px] bg-white transition-all duration-300"></span>
                 </div>
             </button>
-
-            <a href="index.html" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 flex items-center gap-3 z-20 cursor-pointer group">
+            <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
                 <img src="lexus-logo.png" alt="Lexus" class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition"> 
-                <div class="text-sm md:text-xl font-bold tracking-widest uppercase hidden md:block text-white group-hover:text-lexusGold transition">
+                <div class="text-sm md:text-xl font-bold tracking-widest uppercase text-white group-hover:text-lexusGold transition whitespace-nowrap">
                     Hafiz <span class="text-lexusGold group-hover:text-white transition">Mazhanafi</span>
                 </div>
             </a>
-            
             <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8">
-                <a href="index.html#home" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">HOME</a>
-                <a href="index.html#about" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">PROFILE</a>
-                <a href="#" class="text-xs font-medium tracking-[0.15em] text-lexusGold font-bold border-b border-lexusGold pb-1 transition">GALLERY</a>
-                <a href="index.html#experience" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">EXPERIENCE</a>
-                <a href="index.html#contact" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">CONTACT</a>
+                <a href="index.html" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">HOME</a>
+                <a href="index.html#about" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">PROFILE</a>
+                <a href="#" class="nav-link text-xs font-medium tracking-[0.15em] text-lexusGold font-bold transition">GALLERY</a>
+                <a href="experience.html" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">EXPERIENCE</a>
+                <a href="index.html#contact" class="nav-link text-xs font-medium tracking-[0.15em] text-gray-300 hover:text-white transition">CONTACT</a>
             </div>
-
-            <div class="flex items-center gap-6 z-20">
+            <div class="flex items-center gap-6">
                 <div class="hidden md:flex items-center gap-4">
-                    <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">EN</button>
+                    <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-medium tracking-[0.15em] text-white transition">EN</button>
                     <span class="text-gray-600 text-xs">|</span>
                     <button onclick="setLanguage('ms')" id="btn-ms" class="text-xs font-medium tracking-[0.15em] text-gray-400 hover:text-white transition">MY</button>
                 </div>
-                <div class="w-6 md:hidden"></div> </div>
-        </div>
-
-        <div id="mobile-menu" class="fixed top-20 left-0 w-full h-screen bg-black/95 backdrop-blur-xl transform -translate-y-[150%] transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center pt-10 z-40">
-            <a href="index.html" class="mobile-link text-white hover:text-lexusGold text-lg tracking-widest mb-6">HOME</a>
-            <a href="index.html#about" class="mobile-link text-white hover:text-lexusGold text-lg tracking-widest mb-6">PROFILE</a>
-            <a href="#" class="mobile-link text-lexusGold font-bold text-lg tracking-widest mb-6">GALLERY</a>
-            <a href="index.html#experience" class="mobile-link text-white hover:text-lexusGold text-lg tracking-widest mb-6">EXPERIENCE</a>
-            <a href="index.html#contact" class="mobile-link text-white hover:text-lexusGold text-lg tracking-widest mb-8">CONTACT</a>
-            
-            <div class="flex justify-center gap-8 text-sm text-gray-400 font-bold tracking-widest border-t border-gray-800 pt-8 w-1/2">
-                <button onclick="setLanguage('en'); closeMenu()" class="hover:text-white">EN</button>
-                <button onclick="setLanguage('ms'); closeMenu()" class="hover:text-white">MY</button>
             </div>
         </div>
+        <div id="mobile-menu" class="fixed top-20 left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 transform -translate-y-[150%] transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center py-8 z-[90] shadow-2xl">
+            <a href="index.html" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">HOME</a>
+            <a href="index.html#about" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">PROFILE</a>
+            <a href="#" class="mobile-link text-lexusGold font-bold text-sm tracking-widest mb-6 uppercase">GALLERY</a>
+            <a href="experience.html" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-6 uppercase">EXPERIENCE</a>
+            <a href="index.html#contact" class="mobile-link text-white hover:text-lexusGold text-sm tracking-widest mb-8 uppercase">CONTACT</a>
+        </div>
+        <div id="mobile-overlay" onclick="closeMenu()" class="fixed inset-0 bg-black/80 hidden z-[80] backdrop-blur-sm cursor-pointer h-screen w-screen"></div>
     </nav>
 
-
-<header id="hero-gate" class="fixed inset-0 w-full h-screen z-[9999] pointer-events-auto bg-transparent">
-    
-    <div id="gate-left" class="gate-panel">
-        <img src="gate-left.png" alt="Lexus Left half" onerror="this.src='lexushero.jpg'">
-        <div class="gate-overlay"></div>
+    <div id="gate-top" class="gate-vertical">
+        <h1 class="font-luxury text-4xl md:text-6xl text-white tracking-[0.3em] uppercase mb-4 gate-logo-part">LEXUS</h1>
+    </div>
+    <div id="gate-bottom" class="gate-vertical">
+        <p class="text-gray-400 tracking-[0.5em] text-xs mt-4 uppercase gate-logo-part">Gallery Collection</p>
     </div>
 
-    <div id="gate-right" class="gate-panel">
-        <img src="gate-right.png" alt="Lexus Right half" onerror="this.src='lexushero.jpg'">
-        <div class="gate-overlay"></div>
-    </div>
-
-    <div id="gate-content" class="absolute inset-0 z-[10000] flex flex-col items-center justify-center text-center px-6 transition-all duration-1000">
-        <h1 class="font-luxury text-4xl md:text-7xl text-white tracking-[0.3em] uppercase mb-4">
-            The Art of <span class="text-lexusGold">L-Finesse</span>
-        </h1>
-        <div class="w-24 h-1 bg-lexusGold mb-6 shadow-[0_0_15px_#C5A059]"></div>
-        <p class="text-gray-300 tracking-[0.5em] uppercase text-[10px] md:text-xs">
-            Experience the Takumi Craftsmanship
-        </p>
-    </div>
-</header>
-
-<section id="gallery-showcase" class="relative min-h-screen bg-[#050505] pt-32">
-    <div class="container mx-auto px-6 text-center">
-        <h2 class="text-white font-luxury text-3xl md:text-5xl tracking-widest uppercase mb-4" data-i18n="gal_showcase_title">
-            Lexus 3D Showcase
-        </h2>
-        <div class="w-20 h-1 bg-lexusGold mx-auto mb-16"></div>
+    <section id="gallery-container" class="container mx-auto px-6">
         
-        <div id="carousel-area" class="w-full h-[60vh] flex items-center justify-center border border-gray-900 rounded-3xl bg-black/40">
-             <p class="text-gray-600 tracking-widest text-xs animate-pulse">READY FOR EXPLORATION</p>
-        </div>
-    </div>
-</section>
-<style>
-    body {
-        overflow: hidden; /* Dikunci saat pertama masuk */
-        background-color: #050505;
-        margin: 0;
-    }
-
-    /* Hilangkan scrollbar agar transisi bersih */
-    body::-webkit-scrollbar { display: none; }
-
-    /* Panel Gerbang */
-    .gate-panel {
-        position: absolute;
-        top: 0;
-        width: 50%; /* Tepat 50% layar */
-        height: 100%;
-        overflow: hidden;
-        transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
-        background: #000; /* Panel tetap memiliki dasar hitam */
-    }
-
-    #gate-left {
-        left: 0;
-        /* Menghilangkan celah garis putih dengan offset 1px */
-        border-right: 1px solid rgba(197, 160, 89, 0.1);
-    }
-    #gate-left img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Mengisi penuh panel kiri */
-    }
-
-    #gate-right {
-        right: 0;
-        border-left: 1px solid rgba(197, 160, 89, 0.1);
-    }
-    #gate-right img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Mengisi penuh panel kanan */
-    }
-
-    .gate-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.4);
-    }
-</style>
-<script>
-    const gateLeft = document.getElementById('gate-left');
-    const gateRight = document.getElementById('gate-right');
-    const gateContent = document.getElementById('gate-content');
-    const heroGate = document.getElementById('hero-gate');
-    let isGateOpen = false;
-
-    function openGate() {
-        if (isGateOpen) return;
-        isGateOpen = true;
-
-        // 1. Jalankan animasi terbelah
-        gateLeft.style.transform = 'translateX(-100%)';
-        gateRight.style.transform = 'translateX(100%)';
-        
-        // 2. Buat teks memudar
-        gateContent.style.opacity = '0';
-        gateContent.style.transform = 'translateY(-40px) scale(0.9)';
-
-        // 3. Matikan pointer-events agar section di bawah bisa diklik
-        // Kita matikan lebih awal (di detik ke-0.5) agar transisi terasa cepat
-        setTimeout(() => {
-            document.body.style.overflow = 'auto'; // Unlock scroll
-            heroGate.style.pointerEvents = 'none'; 
-        }, 500);
-    }
-
-    function closeGate() {
-        if (!isGateOpen) return;
-        isGateOpen = false;
-
-        document.body.style.overflow = 'hidden';
-        heroGate.style.pointerEvents = 'auto'; // Kunci kembali klik
-        
-        gateLeft.style.transform = 'translateX(0)';
-        gateRight.style.transform = 'translateX(0)';
-        gateContent.style.opacity = '1';
-        gateContent.style.transform = 'translateY(0) scale(1)';
-    }
-
-    // Trigger Scroll Roda Mouse
-    window.addEventListener('wheel', (e) => {
-        if (window.scrollY === 0 && e.deltaY > 0 && !isGateOpen) {
-            openGate();
-        }
-    });
-
-    // Otomatis tutup saat kembali ke paling atas
-    window.addEventListener('scroll', () => {
-        if (window.scrollY === 0 && isGateOpen) {
-            closeGate();
-        }
-    });
-
-    // Klik Gerbang untuk Membuka
-    heroGate.addEventListener('click', openGate);
-</script>
-
-
-
-<div id="next-section-container">
-    </div>
-
-
-
-
-    <section class="py-20 px-6 bg-lexusBlack relative">
-        <div class="container mx-auto max-w-4xl text-center fade-in-section">
-            <div class="text-lexusGold text-4xl mb-6">❝</div>
-            <h2 class="text-2xl md:text-3xl text-white font-luxury tracking-[0.15em] mb-8 uppercase" data-i18n="gal_intro_title">
-                Omotenashi Philosophy
-            </h2>
-            <p class="text-gray-400 font-light leading-loose text-lg md:text-xl" data-i18n="gal_intro_desc">
-                Lexus design goes beyond aesthetics; it is an experience. Combining traditional Japanese aesthetics with modern technology, every detail tells a story of hospitality.
-            </p>
-        </div>
-    </section>
-
-<style>
-        .scene-3d-full {
-            perspective: 2000px;
-            position: relative;
-            width: 100%;
-            height: 80vh; /* Dikurangi agar ada ruang untuk info di bawah */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            transition: height 0.8s ease;
-        }
-
-        /* Saat mobil dipilih, panggung mengecil */
-        .scene-3d-full.minimized {
-            height: 40vh;
-        }
-
-        .carousel-3d-full {
-            width: 400px;
-            height: 250px;
-            position: absolute;
-            transform-style: preserve-3d;
-            /* Transisi Smooth saat ganti posisi */
-            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: rotateX(-2deg) rotateY(0deg);
-        }
-
-        .carousel-item-img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            -webkit-box-reflect: below 15px linear-gradient(transparent, transparent, rgba(0,0,0,0.2));
-            transition: opacity 0.8s ease;
-        }
-
-        /* Mobil yang tidak di depan akan agak transparan */
-        .carousel-item-img.not-focused {
-            opacity: 0.3;
-        }
-
-        .carousel-item-img img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(197, 160, 89, 0.2));
-        }
-
-        /* INFO SECTION (MUNCUL DI BAWAH) */
-        #car-info-section {
-            display: none; /* Awalnya sembunyi */
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        #car-info-section.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Posisi 3D Tetap Sama */
-        .pos-1 { transform: rotateY(0deg) translateZ(500px); }
-        .pos-2 { transform: rotateY(60deg) translateZ(500px); }
-        .pos-3 { transform: rotateY(120deg) translateZ(500px); }
-        .pos-4 { transform: rotateY(180deg) translateZ(500px); }
-        .pos-5 { transform: rotateY(240deg) translateZ(500px); }
-        .pos-6 { transform: rotateY(300deg) translateZ(500px); }
-
-        @media (max-width: 768px) {
-            .carousel-3d-full { width: 250px; }
-            .pos-1 { transform: rotateY(0deg) translateZ(280px); }
-            .pos-2 { transform: rotateY(60deg) translateZ(280px); }
-            .pos-3 { transform: rotateY(120deg) translateZ(280px); }
-            .pos-4 { transform: rotateY(180deg) translateZ(280px); }
-            .pos-5 { transform: rotateY(240deg) translateZ(280px); }
-            .pos-6 { transform: rotateY(300deg) translateZ(280px); }
-        }
-    </style>
-
-
-<section class="w-full min-h-screen bg-black overflow-x-hidden relative">
-        
-        <div id="main-scene" class="scene-3d-full">
-            <div id="carousel" class="carousel-3d-full">
-                <div class="carousel-item-img pos-1" onclick="showInfo(0)">
-                    <img src="lbx-default.png" alt="LBX">
-                </div>
-                <div class="carousel-item-img pos-2" onclick="showInfo(1)">
-                    <img src="nx350f-default.png" alt="NX 350 F Sport">
-                </div>
-                <div class="carousel-item-img pos-3" onclick="showInfo(2)">
-                    <img src="nx350h-default.png" alt="NX 350h">
-                </div>
-                <div class="carousel-item-img pos-4" onclick="showInfo(3)">
-                    <img src="rx350-default.png" alt="RX 350">
-                </div>
-                <div class="carousel-item-img pos-5" onclick="showInfo(4)">
-                    <img src="rx500h-default.png" alt="RX 500h">
-                </div>
-                <div class="carousel-item-img pos-6" onclick="showInfo(5)">
-                    <img src="lbx-default.png" alt="Lexus Lineup">
-                </div>
-            </div>
-        </div>
-
-        <div id="car-info-section" class="container mx-auto px-6 py-20 border-t border-lexusGold/20">
-            <div class="flex flex-col md:flex-row gap-12 items-center">
-                <div class="w-full md:w-1/2">
-                    <h2 id="info-name" class="text-4xl md:text-6xl font-luxury text-white mb-4 uppercase tracking-tighter">Lexus Model</h2>
-                    <p id="info-tag" class="text-lexusGold font-bold tracking-[0.3em] mb-8 uppercase">Loading Category...</p>
-                    <div class="w-20 h-1 bg-lexusGold mb-8"></div>
-                    <p id="info-desc" class="text-gray-400 leading-relaxed text-lg italic">Select a car to see the details.</p>
-                </div>
-                <div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
-                    <div class="p-6 bg-white/5 border border-gray-800 rounded-xl text-center">
-                        <span class="block text-lexusGold text-xs mb-2">ENGINE</span>
-                        <span id="info-engine" class="text-white font-bold">---</span>
-                    </div>
-                    <div class="p-6 bg-white/5 border border-gray-800 rounded-xl text-center">
-                        <span class="block text-lexusGold text-xs mb-2">POWER</span>
-                        <span id="info-power" class="text-white font-bold">---</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        const carData = [
-            { name: "Lexus LBX", tag: "Compact Luxury", engine: "1.5L HEV", power: "136 HP", desc: "Experience the perfect blend of luxury and compact agility for the urban pioneer." },
-            { name: "NX 350 F Sport", tag: "Dynamic Performance", engine: "2.4L Turbo", power: "275 HP", desc: "Aggressive styling meets exhilarating performance for those who dare to lead." },
-            { name: "NX 350h Luxury", tag: "Hybrid Efficiency", engine: "2.5L HEV", power: "240 HP", desc: "Refined hybrid technology providing a smooth and powerful eco-conscious drive." },
-            { name: "Lexus RX 350", tag: "Iconic Luxury", engine: "2.4L Turbo", power: "279 HP", desc: "The definitive luxury SUV, redesigned to offer unmatched comfort and presence." },
-            { name: "RX 500h F Sport", tag: "Direct4 Performance", engine: "2.4L Turbo Hybrid", power: "366 HP", desc: "The most powerful RX ever built, featuring DIRECT4 all-wheel drive technology." },
-            { name: "Lexus Excellence", tag: "VVIP Service", engine: "All Variants", power: "Infinite", desc: "Our commitment to Omotenashi ensures your ownership is as premium as the drive." }
-        ];
-
-        let currentAngle = 0;
-        let carIndex = 0;
-        let isPaused = false;
-        const carousel = document.getElementById('carousel');
-
-        // 1. ROTASI OTOMATIS SETIAP 2 DETIK
-        function rotateCarousel() {
-            if (!isPaused) {
-                currentAngle -= 60; // Ganti ke mobil berikutnya (60 derajat)
-                carIndex = (carIndex + 1) % 6;
-                carousel.style.transform = `rotateX(-2deg) rotateY(${currentAngle}deg)`;
-            }
-        }
-
-        let autoRotate = setInterval(rotateCarousel, 2000); // Ganti setiap 2 detik
-
-        // 2. FUNGSI KLIK MOBIL
-        function showInfo(index) {
-            isPaused = true; // Berhenti berputar saat user melihat info
-            clearInterval(autoRotate);
-
-            // Ganti Angle agar mobil yang diklik pindah ke paling depan
-            currentAngle = index * -60;
-            carousel.style.transform = `rotateX(-2deg) rotateY(${currentAngle}deg)`;
-
-            // Perkecil panggung 3D
-            document.getElementById('main-scene').classList.add('minimized');
-
-            // Tampilkan Info
-            const infoSec = document.getElementById('car-info-section');
-            infoSec.style.display = 'block';
-            setTimeout(() => infoSec.classList.add('active'), 100);
-
-            // Update Konten
-            const data = carData[index];
-            document.getElementById('info-name').innerText = data.name;
-            document.getElementById('info-tag').innerText = data.tag;
-            document.getElementById('info-desc').innerText = `"${data.desc}"`;
-            document.getElementById('info-engine').innerText = data.engine;
-            document.getElementById('info-power').innerText = data.power;
-
-            // Efek fokus (Gelapkan mobil lain)
-            const items = document.querySelectorAll('.carousel-item-img');
-            items.forEach((item, i) => {
-                if(i === index) item.classList.remove('not-focused');
-                else item.classList.add('not-focused');
-            });
-        }
-    </script>
-
-    <footer class="bg-[#050505] pt-16 pb-10 border-t border-gray-900 text-sm">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-                <div class="space-y-6">
-                    <div class="flex items-center gap-3">
-                        <img src="lexus-logo.png" alt="Lexus" class="h-10 w-auto object-contain">
-                        <div class="text-white font-bold tracking-widest uppercase text-lg">
-                            Hafiz <span class="text-lexusGold">Mazhanafi</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 w-full h-full items-center gap-10">
+            
+            <div class="relative w-full flex flex-col items-center justify-center">
+                <div class="slider-wrapper w-full md:w-[80%]">
+                    <div id="slider-track" class="slider-track">
                         </div>
+                </div>
+                
+                <div class="absolute left-4 top-1/2 -translate-y-1/2 w-[1px] h-32 bg-gray-800 hidden md:block">
+                    <div class="w-full h-1/3 bg-lexusGold absolute top-0 transition-all duration-500" id="scroll-bar"></div>
+                </div>
+            </div>
+
+            <div class="info-panel relative z-20 text-center md:text-left pl-0 md:pl-10" id="info-panel">
+                
+                <h3 class="text-lexusGold text-sm font-bold tracking-[0.3em] uppercase mb-2" id="info-tag">CATEGORY</h3>
+                <h1 class="text-5xl md:text-7xl font-luxury text-white mb-6 uppercase leading-tight" id="info-name">MODEL</h1>
+                
+                <p class="text-gray-400 font-light leading-relaxed mb-8 max-w-md mx-auto md:mx-0" id="info-desc">
+                    Description goes here.
+                </p>
+
+                <div class="flex flex-wrap gap-8 mb-10 justify-center md:justify-start">
+                    <div>
+                        <span class="block text-[10px] text-gray-500 uppercase tracking-widest">Engine</span>
+                        <span class="text-xl text-white font-luxury" id="info-engine">---</span>
                     </div>
-                    <p class="text-gray-500 leading-relaxed pr-6">
-                        Professional Sales Advisor dedicated to providing the ultimate Lexus ownership experience.
-                    </p>
+                    <div>
+                        <span class="block text-[10px] text-gray-500 uppercase tracking-widest">Power</span>
+                        <span class="text-xl text-white font-luxury" id="info-power">---</span>
+                    </div>
                 </div>
-                <div class="md:pl-10">
-                    <h3 class="text-white font-bold tracking-widest uppercase mb-6">Quick Links</h3>
-                    <ul class="space-y-4 text-gray-400">
-                        <li><a href="index.html#home" class="hover:text-lexusGold transition">Home</a></li>
-                        <li><a href="index.html#about" class="hover:text-lexusGold transition">Profile</a></li>
-                        <li><a href="gallery.html" class="text-lexusGold font-bold">Gallery</a></li>
-                        <li><a href="index.html#collection" class="hover:text-lexusGold transition">Lexus Collection</a></li>
-                        <li><a href="index.html#contact" class="hover:text-lexusGold transition">Contact</a></li>
-                    </ul>
+
+                <div class="flex items-center gap-4 justify-center md:justify-start">
+                    <div class="flex gap-2">
+                        <button onclick="prevCar()" class="w-12 h-12 border border-gray-700 rounded-full flex items-center justify-center hover:bg-lexusGold hover:border-lexusGold hover:text-black transition duration-300">
+                            <svg class="w-5 h-5 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        <button onclick="nextCar()" class="w-12 h-12 border border-gray-700 rounded-full flex items-center justify-center hover:bg-lexusGold hover:border-lexusGold hover:text-black transition duration-300">
+                            <svg class="w-5 h-5 -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                    </div>
+
+                    <div class="h-px w-10 bg-gray-700"></div>
+
+                    <button onclick="openFullscreen()" class="group flex items-center gap-3 text-white hover:text-lexusGold transition">
+                        <span class="text-xs font-bold uppercase tracking-widest">View Full Image</span>
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-lexusGold group-hover:text-black transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                        </div>
+                    </button>
                 </div>
-                <div>
-                    <h3 class="text-white font-bold tracking-widest uppercase mb-6">Contact Info</h3>
-                    <ul class="space-y-6 text-gray-400">
-                        <li class="flex items-start gap-4">
-                            <span class="text-lexusGold text-lg">📍</span>
-                            <span>Bandar Saujana Putra,<br>Jenjarom, Selangor</span>
-                        </li>
-                        <li class="flex items-center gap-4">
-                            <span class="text-lexusGold text-lg">✉️</span>
-                            <a href="mailto:hafizbinmazhanafi@gmail.com" class="hover:text-white transition">hafizbinmazhanafi@gmail.com</a>
-                        </li>
-                        <li class="flex items-center gap-4">
-                            <span class="text-lexusGold text-lg">📞</span>
-                            <a href="tel:+601111492290" class="hover:text-white transition">+60 11-1149 2290</a>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
-            <div class="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-600 text-xs">
-                <p>&copy; 2026 Hafiz Mazhanafi. All Rights Reserved.</p>
-                <div class="flex gap-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-gray-400">Privacy Policy</a>
-                </div>
-            </div>
+
         </div>
+
+    </section>
+
+    <div id="footer-trigger" class="h-[20vh] w-full"></div>
+
+    <div id="curtain-left" class="curtain-side"></div>
+    <div id="curtain-right" class="curtain-side"></div>
+
+    <footer class="bg-black pt-16 pb-10 text-center relative z-50 border-t border-gray-900">
+        <h2 class="text-2xl font-luxury text-white mb-4">EXPERIENCE AMAZING</h2>
+        <div class="flex justify-center gap-6 mb-8">
+            <a href="#" class="text-gray-500 hover:text-lexusGold text-xl"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-500 hover:text-lexusGold text-xl"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-gray-500 hover:text-lexusGold text-xl"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="text-gray-600 text-xs">&copy; 2026 Hafiz Mazhanafi. All Rights Reserved.</p>
     </footer>
 
-    <a href="https://wa.me/601111492290" target="_blank" class="fixed bottom-6 right-6 z-50 group">
-        <div class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.5)] hover:scale-110 transition duration-300">
-            <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    <div id="fs-modal">
+        <button onclick="closeFullscreen()" class="absolute top-6 right-6 text-white hover:text-lexusGold z-50">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <img id="fs-img" src="" alt="Full View" class="object-contain">
+        <div class="absolute bottom-10 left-0 w-full text-center">
+            <h2 id="fs-title" class="text-3xl font-luxury text-white uppercase drop-shadow-lg"></h2>
         </div>
-    </a>
+    </div>
 
     <script src="lang.js"></script>
     <script>
-        // --- SETUP NAVBAR ---
-        const menuBtn = document.getElementById('mobile-menu-btn');
+        // --- DATA MOBIL ---
+        const carData = [
+            { name: "Lexus LBX", tag: "Compact Luxury", engine: "1.5L HEV", power: "136 HP", img: "lbx-default.png", desc: "The LBX breaks boundaries as a compact SUV that doesn't compromise on luxury. Perfect for the city." },
+            { name: "NX 350 F Sport", tag: "Dynamic Sport", engine: "2.4L Turbo", power: "275 HP", img: "nx350f-default.png", desc: "Experience the thrill of the NX F SPORT with its turbo engine and adaptive suspension." },
+            { name: "NX 350h", tag: "Hybrid", engine: "2.5L HEV", power: "240 HP", img: "nx350h-default.png", desc: "Efficiency meets power. The NX Hybrid delivers smooth acceleration with class-leading fuel economy." },
+            { name: "RX 350", tag: "Luxury SUV", engine: "2.4L Turbo", power: "279 HP", img: "rx350-default.png", desc: "The iconic RX, reinvented. Spacious, sophisticated, and powerful for every journey." },
+            { name: "RX 500h", tag: "F Sport Perf.", engine: "2.4L Turbo Hyb", power: "366 HP", img: "rx500h-default.png", desc: "The most powerful RX ever. Direct4 AWD system ensures incredible handling and speed." }
+        ];
+
+        let currentIndex = 0;
+        const track = document.getElementById('slider-track');
+        const infoPanel = document.getElementById('info-panel');
+
+        // --- 1. INIT & RENDER ---
+        function initGallery() {
+            track.innerHTML = '';
+            carData.forEach((car, index) => {
+                const el = document.createElement('div');
+                el.className = `car-item ${index === 0 ? 'active' : ''}`;
+                // Pakai placeholder kalau gambar error
+                el.innerHTML = `<img src="${car.img}" onerror="this.src='https://placehold.co/400x250/FFFFFF/000000?text=${car.name}'" alt="${car.name}">`;
+                el.onclick = () => goToCar(index);
+                track.appendChild(el);
+            });
+            updateView();
+            
+            // Buka Gerbang Awal setelah load
+            setTimeout(() => {
+                document.getElementById('gate-top').style.transform = 'translateY(-100%)';
+                document.getElementById('gate-bottom').style.transform = 'translateY(100%)';
+                document.querySelectorAll('.gate-logo-part').forEach(el => el.style.opacity = '0');
+            }, 1000);
+        }
+
+        // --- 2. LOGIC SCROLL & UPDATE UI ---
+        function updateView() {
+            // A. Geser Track Vertikal
+            // Item height = 20vh. Kita mau item aktif di tengah (posisi ke-2 dari 3 slot).
+            // Jadi offsetnya: index * 20vh.
+            // Tapi karena kita mau active di tengah, kita perlu logic offset sedikit.
+            // Anggap container 60vh. Item 20vh.
+            // Index 0 -> TranslateY 20vh (Biar turun ke tengah)
+            // Index 1 -> TranslateY 0vh
+            // Index 2 -> TranslateY -20vh
+            
+            const itemHeightVh = 20; 
+            const offset = (1 - currentIndex) * itemHeightVh; 
+            track.style.transform = `translateY(${offset}vh)`;
+
+            // B. Update Class Active
+            const items = document.querySelectorAll('.car-item');
+            items.forEach((item, i) => {
+                if (i === currentIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // C. Update Text Info (Fade effect)
+            infoPanel.classList.remove('visible');
+            setTimeout(() => {
+                const data = carData[currentIndex];
+                document.getElementById('info-name').innerText = data.name;
+                document.getElementById('info-tag').innerText = data.tag;
+                document.getElementById('info-desc').innerText = data.desc;
+                document.getElementById('info-engine').innerText = data.engine;
+                document.getElementById('info-power').innerText = data.power;
+                infoPanel.classList.add('visible');
+            }, 300);
+
+            // D. Update Scroll Bar Indicator
+            const bar = document.getElementById('scroll-bar');
+            const pct = (currentIndex / (carData.length - 1)) * 100;
+            if(bar) bar.style.top = `${pct}%`;
+            if(bar && pct > 80) bar.style.top = `auto`, bar.style.bottom = `0`; 
+        }
+
+        function nextCar() {
+            if (currentIndex < carData.length - 1) {
+                currentIndex++;
+                updateView();
+            }
+        }
+
+        function prevCar() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateView();
+            }
+        }
+
+        function goToCar(index) {
+            currentIndex = index;
+            updateView();
+        }
+
+        // --- 3. SCROLL MOUSE (WHEEL) PADA AREA KIRI ---
+        // Biar user bisa scroll mouse di area mobil untuk ganti mobil
+        document.querySelector('.slider-wrapper').addEventListener('wheel', (e) => {
+            e.preventDefault();
+            if (e.deltaY > 0) nextCar();
+            else prevCar();
+        });
+
+        // --- 4. ANIMASI FOOTER (TIRAI SAMPING) ---
+        const observerFooter = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const body = document.body;
+                if (entry.isIntersecting) {
+                    body.classList.add('curtains-closed');
+                } else {
+                    body.classList.remove('curtains-closed');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observerFooter.observe(document.getElementById('footer-trigger'));
+
+
+        // --- 5. FULLSCREEN MODAL ---
+        const modal = document.getElementById('fs-modal');
+        const fsImg = document.getElementById('fs-img');
+        const fsTitle = document.getElementById('fs-title');
+
+        function openFullscreen() {
+            const data = carData[currentIndex];
+            fsImg.src = data.img;
+            // Gunakan placeholder jika error
+            fsImg.onerror = function() { this.src = `https://placehold.co/800x600/FFFFFF/000000?text=${data.name}`; };
+            
+            fsTitle.innerText = data.name;
+            modal.classList.add('active');
+        }
+
+        function closeFullscreen() {
+            modal.classList.remove('active');
+        }
+
+        // --- 6. MOBILE MENU (Standard) ---
         const navMenu = document.getElementById('mobile-menu');
-        const navbar = document.getElementById('navbar');
+        const overlay = document.getElementById('mobile-overlay');
         const line1 = document.getElementById('line1');
         const line2 = document.getElementById('line2');
         const line3 = document.getElementById('line3');
         let isMenuOpen = false;
-
         function toggleMenu() {
             isMenuOpen = !isMenuOpen;
             if (isMenuOpen) {
-                navMenu.classList.remove('-translate-y-[150%]');
-                if(line1) line1.classList.add('rotate-45', 'translate-y-[8px]');
-                if(line2) line2.classList.add('opacity-0');
-                if(line3) line3.classList.add('-rotate-45', '-translate-y-[8px]');
-            } else {
-                closeMenu();
-            }
+                navMenu.classList.remove('-translate-y-[150%]'); overlay.classList.remove('hidden');
+                line1.classList.add('rotate-45', 'translate-y-[8px]'); line2.classList.add('opacity-0'); line3.classList.add('-rotate-45', '-translate-y-[8px]');
+            } else { closeMenu(); }
         }
-
         function closeMenu() {
             isMenuOpen = false;
-            navMenu.classList.add('-translate-y-[150%]');
-            if(line1) line1.classList.remove('rotate-45', 'translate-y-[8px]');
-            if(line2) line2.classList.remove('opacity-0');
-            if(line3) line3.classList.remove('-rotate-45', '-translate-y-[8px]');
+            navMenu.classList.add('-translate-y-[150%]'); overlay.classList.add('hidden');
+            line1.classList.remove('rotate-45', 'translate-y-[8px]'); line2.classList.remove('opacity-0'); line3.classList.remove('-rotate-45', '-translate-y-[8px]');
         }
 
-        if(menuBtn) menuBtn.addEventListener('click', toggleMenu);
-        
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
+        // RUN INIT
+        initGallery();
 
-        // --- SCROLL ANIMATION (FADE IN) ---
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // --- LANGUAGE LOGIC (Same as Home) ---
-        function setLanguage(lang) {
-            if(typeof translations === 'undefined') return;
-            const data = translations[lang];
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (data[key]) el.innerHTML = data[key];
-            });
-
-            const btnEn = document.getElementById('btn-en');
-            const btnMs = document.getElementById('btn-ms');
-            if(btnEn && btnMs) {
-                btnEn.style.color = "#9ca3af";
-                btnMs.style.color = "#9ca3af";
-                if(lang === 'en') btnEn.style.color = "white";
-                if(lang === 'ms') btnMs.style.color = "white";
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => setLanguage('en'));
     </script>
 </body>
 </html>
